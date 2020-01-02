@@ -26,7 +26,7 @@ module.exports = {
         ignored: /node_modules/
     },
     resolve: {
-        extensions: [ '.tsx', '.ts' ]
+        extensions: [ '.tsx', '.ts', '.js' ]
     },
     devServer: {
         contentBase: path.join(__dirname, 'dist'),
