@@ -6,8 +6,9 @@ import { Water } from './objs/Water';
 import { getWaterObject3DFactory } from './objs/WaterObject3DFactory';
 import { getWaterAnimation } from './animations/getWaterAnimation';
 import { config } from '../config';
-import { Bedrock } from './objs/Bedrock';
 import * as Stats from 'stats.js';
+import { debounce } from '../utils/debounce';
+import { CirclingLights } from './objs/CirclingLights';
 
 export class SmartScene {
   el: HTMLCanvasElement;
@@ -55,10 +56,14 @@ export class SmartScene {
     );
     const getObject3D = getWaterObject3DFactory(waterConfig.waterType, this.skyTexture);
 
-    this.staticObjects = [new StaticLights(), new Bedrock(1000)];
+    this.staticObjects = [
+      new StaticLights(),
+      //new Bedrock(1000)
+    ];
 
     this.animableObjects = [
       new Water(waterConfig.size, waterConfig.segmentCount, getObject3D, waterAnimation),
+      new CirclingLights(),
     ];
 
     this._addToMapper(this.staticObjects);
@@ -84,6 +89,15 @@ export class SmartScene {
     this.scene.background = this.skyTexture;
     this.renderer = this._initRenderer(width, height);
     this.camera = new MyCamera(width / height);
+
+    const onResizeDebounced = debounce(() => {
+      this.camera.aspect = window.innerWidth / window.innerHeight;
+      this.camera.camera.updateProjectionMatrix();
+      this.renderer.setSize(window.innerWidth, window.innerHeight);
+    }, 200);
+
+    // todo should also remove listener somewhere
+    window.addEventListener('resize', onResizeDebounced, false);
   }
 
   run = (time: number) => {
