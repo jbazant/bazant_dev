@@ -1,13 +1,9 @@
-import {SmartObj} from '../general/SmartObj';
-import {
-  BufferGeometry,
-  Float32BufferAttribute,
-  Object3D,
-} from 'three';
-import {WaterAnimation} from '../animations/WaterAnimation';
-import {NullAnimation} from '../animations/NullAnimation';
+import { SmartObj } from '../general/SmartObj';
+import { BufferGeometry, Float32BufferAttribute, Object3D } from 'three';
+import { WaterAnimation } from '../animations/WaterAnimation';
+import { NullAnimation } from '../animations/NullAnimation';
 
-type GetObject3DCallback = (geometry: BufferGeometry) => Object3D
+type GetObject3DCallback = (geometry: BufferGeometry) => Object3D;
 
 export class Water extends SmartObj {
   size: number;
@@ -19,7 +15,7 @@ export class Water extends SmartObj {
     size: number,
     segments: number,
     getMesh: GetObject3DCallback,
-    waterAnimation: WaterAnimation,
+    waterAnimation: WaterAnimation
   ) {
     super(size, segments, getMesh);
     this.size = size;
@@ -38,9 +34,9 @@ export class Water extends SmartObj {
 
     // generate vertices, normals and color data for a simple grid geometry
     for (let i = 0; i <= segments; i++) {
-      const z = (i * segmentSize) - halfSize;
+      const z = i * segmentSize - halfSize;
       for (let j = 0; j <= segments; j++) {
-        const x = (j * segmentSize) - halfSize;
+        const x = j * segmentSize - halfSize;
         vertices.push(x, 0, z);
         normals.push(0, 1, 0);
         uvs.push(i / segments, j / segments);

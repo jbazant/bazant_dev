@@ -1,8 +1,8 @@
-import {WaterAnimation} from './WaterAnimation';
-import {BufferGeometry} from 'three';
+import { WaterAnimation } from './WaterAnimation';
+import { BufferGeometry } from 'three';
 
 export class SinWaves extends WaterAnimation {
-  time: number = 0;
+  time = 0;
 
   anim(time: number) {
     this.time = time;

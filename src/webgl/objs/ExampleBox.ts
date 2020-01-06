@@ -1,5 +1,5 @@
-import {BoxGeometry, Color, Mesh, MeshPhongMaterial, Object3D, Vector3} from 'three';
-import {SmartObj} from '../general/SmartObj';
+import { BoxGeometry, Color, Mesh, MeshPhongMaterial, Object3D, Vector3 } from 'three';
+import { SmartObj } from '../general/SmartObj';
 
 export class ExampleBox extends SmartObj {
   cube: Object3D;
@@ -20,6 +20,6 @@ export class ExampleBox extends SmartObj {
   }
 
   anim() {
-    this.objs[0].rotateOnAxis(this.rotationAxis, .01);
+    this.objs[0].rotateOnAxis(this.rotationAxis, 0.01);
   }
 }

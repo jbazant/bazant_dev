@@ -1,4 +1,4 @@
-import {Object3D, Scene} from 'three';
+import { Object3D, Scene } from 'three';
 
 export class SmartObj {
   objs: Array<Object3D>;
@@ -17,9 +17,9 @@ export class SmartObj {
 
   removeFrom(scene: Scene) {
     scene.remove(...this.objs);
-  };
+  }
 
   anim(time: number) {
-
-  };
+    return;
+  }
 }

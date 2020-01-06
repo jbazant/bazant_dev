@@ -1,6 +1,6 @@
-import {SmartObj} from './general/SmartObj';
-import {PerspectiveCamera, Vector3} from 'three';
-import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls';
+import { SmartObj } from './general/SmartObj';
+import { PerspectiveCamera, Vector3 } from 'three';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 export class MyCamera extends SmartObj {
   camera: PerspectiveCamera;
@@ -21,6 +21,5 @@ export class MyCamera extends SmartObj {
     this.camera = camera;
     new OrbitControls(camera);
     return [camera];
-
-  };
+  }
 }

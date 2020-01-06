@@ -2,13 +2,14 @@ import {
   FrontSide,
   Mesh,
   MeshStandardMaterial,
-  PlaneGeometry, TextureLoader, Vector3,
+  PlaneGeometry,
+  TextureLoader,
+  Vector3,
 } from 'three';
-import {SmartObj} from '../general/SmartObj';
+import { SmartObj } from '../general/SmartObj';
 
 export class Bedrock extends SmartObj {
   init(size: number) {
-
     const loader = new TextureLoader();
     loader.setPath('gravel/');
 
@@ -28,5 +29,4 @@ export class Bedrock extends SmartObj {
 
     return [floor];
   }
-
 }

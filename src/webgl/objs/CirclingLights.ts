@@ -1,13 +1,11 @@
-import {SmartObj} from '../general/SmartObj';
-import {Group, Object3D, PointLight} from 'three';
+import { SmartObj } from '../general/SmartObj';
+import { Group, Object3D, PointLight } from 'three';
 
 export class CirclingLights extends SmartObj {
   obj: Object3D;
 
   init(): Array<Object3D> {
-    return [
-      this._initPoints(),
-    ];
+    return [this._initPoints()];
   }
 
   _initPoints(): Group {
@@ -19,18 +17,18 @@ export class CirclingLights extends SmartObj {
       'rgb(14, 104, 171)',
     ];
 
-    const step = Math.PI * 2 / colors.length;
+    const step = (Math.PI * 2) / colors.length;
     const pointsDistance = 200;
 
-    let lights = [];
+    const lights = [];
 
     for (let i = 0; i < colors.length; ++i) {
       const light = new PointLight(colors[i], 0.8, 200);
       light.position.set(
         Math.cos(i * step) * pointsDistance,
         20,
-        Math.sin(i * step) * pointsDistance)
-      ;
+        Math.sin(i * step) * pointsDistance
+      );
       lights.push(light);
     }
 

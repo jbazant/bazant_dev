@@ -1,4 +1,11 @@
 {
+  "include": [
+    "./src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ],
   "compilerOptions": {
     "noImplicitAny": true,
     "removeComments": true,
@@ -6,6 +13,6 @@
     "sourceMap": true,
     "module": "commonjs",
     "target": "es5",
-    "allowJs": true
+    "allowJs": false
   }
 }

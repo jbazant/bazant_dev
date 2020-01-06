@@ -1,6 +1,7 @@
 import {
   BufferGeometry,
-  CubeTexture, FrontSide,
+  CubeTexture,
+  FrontSide,
   Mesh,
   MeshLambertMaterial,
   Object3D,
@@ -17,13 +18,14 @@ export enum WaterTypeEnum {
 export const getWaterObject3DFactory = (waterType: WaterTypeEnum, skyTexture?: CubeTexture) => {
   switch (waterType) {
     case WaterTypeEnum.Points:
-      return (geometry: BufferGeometry): Object3D => new Points(
-        geometry,
-        new PointsMaterial({
-          color: 0xF3FFE2,
-          size: 3,
-        }),
-      );
+      return (geometry: BufferGeometry): Object3D =>
+        new Points(
+          geometry,
+          new PointsMaterial({
+            color: 0xf3ffe2,
+            size: 3,
+          })
+        );
     case WaterTypeEnum.EnvMap:
       if (!skyTexture) {
         throw new Error('skyTexture is required');
@@ -41,5 +43,3 @@ export const getWaterObject3DFactory = (waterType: WaterTypeEnum, skyTexture?: C
       }
   }
 };
-
-

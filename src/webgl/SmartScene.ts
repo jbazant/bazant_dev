@@ -1,19 +1,12 @@
-import {
-  CubeTexture,
-  CubeTextureLoader,
-  Renderer,
-  Scene,
-  WebGLRenderer,
-} from 'three';
-import {MyCamera} from './MyCamera';
-import {StaticLights} from './StaticLights';
-import {SmartObj} from './general/SmartObj';
-import {Water} from './objs/Water';
-import {CirclingLights} from './objs/CirclingLights';
-import {getWaterObject3DFactory} from './objs/WaterObject3DFactory';
-import {getWaterAnimation} from './animations/getWaterAnimation';
-import {config} from '../config';
-import {Bedrock} from './objs/Bedrock';
+import { CubeTexture, CubeTextureLoader, Renderer, Scene, WebGLRenderer } from 'three';
+import { MyCamera } from './MyCamera';
+import { StaticLights } from './StaticLights';
+import { SmartObj } from './general/SmartObj';
+import { Water } from './objs/Water';
+import { getWaterObject3DFactory } from './objs/WaterObject3DFactory';
+import { getWaterAnimation } from './animations/getWaterAnimation';
+import { config } from '../config';
+import { Bedrock } from './objs/Bedrock';
 import * as Stats from 'stats.js';
 
 export class SmartScene {
@@ -47,7 +40,7 @@ export class SmartScene {
   _addToMapper = (arr: Array<SmartObj>) => arr.forEach(this._addToCallback);
 
   _initRenderer(width: number, height: number) {
-    const renderer = new WebGLRenderer({antialias: true, canvas: this.el});
+    const renderer = new WebGLRenderer({ antialias: true, canvas: this.el });
     renderer.setClearColor(0xaaaaaa, 0.5);
     renderer.setSize(width, height);
 
@@ -55,25 +48,24 @@ export class SmartScene {
   }
 
   _initSceneObjs(waterConfig: typeof config.water) {
-
-    const waterAnimation = getWaterAnimation(waterConfig.animationType, waterConfig.segmentCount, waterConfig.animationConfig);
+    const waterAnimation = getWaterAnimation(
+      waterConfig.animationType,
+      waterConfig.segmentCount,
+      waterConfig.animationConfig
+    );
     const getObject3D = getWaterObject3DFactory(waterConfig.waterType, this.skyTexture);
 
-    this.staticObjects = [
-      new StaticLights(),
-      new Bedrock(1000),
-    ];
+    this.staticObjects = [new StaticLights(), new Bedrock(1000)];
 
     this.animableObjects = [
       new Water(waterConfig.size, waterConfig.segmentCount, getObject3D, waterAnimation),
-      new CirclingLights(),
     ];
 
     this._addToMapper(this.staticObjects);
     this._addToMapper(this.animableObjects);
 
     //this.scene.add(new AxesHelper(1000));
-  };
+  }
 
   _initScene() {
     // todo react to window size changes debounced
@@ -81,7 +73,14 @@ export class SmartScene {
     const height = window.innerHeight;
 
     this.scene = new Scene();
-    this.skyTexture = new CubeTextureLoader().load(['px.png', 'nx.png', 'py.png', 'ny.png', 'pz.png', 'nz.png']);
+    this.skyTexture = new CubeTextureLoader().load([
+      'px.png',
+      'nx.png',
+      'py.png',
+      'ny.png',
+      'pz.png',
+      'nz.png',
+    ]);
     this.scene.background = this.skyTexture;
     this.renderer = this._initRenderer(width, height);
     this.camera = new MyCamera(width / height);
