@@ -5,7 +5,7 @@ jsfiles=$(git diff --cached --name-only --diff-filter=ACM "*.ts" "*.tsx" | tr '\
 [[ -z "$jsfiles" ]] && exit 0
 
 # ts check
-tsc
+echo "$jsfiles" | xargs tsc --noEmit
 if [[ $? -ne 0 ]]; then
   echo "FATAL: typescript error}" >&2
   echo "       Blocking commit" >&2
