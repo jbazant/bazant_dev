@@ -6,10 +6,9 @@ import {
   TextureLoader,
   Vector3,
 } from 'three';
-import { SmartObj } from '../general/SmartObj';
 
-export class Bedrock extends SmartObj {
-  init(size: number) {
+export class Bedrock extends Mesh {
+  constructor(size: number) {
     const loader = new TextureLoader();
     loader.setPath('gravel/');
 
@@ -23,10 +22,9 @@ export class Bedrock extends SmartObj {
     });
 
     const floorGeometry = new PlaneGeometry(size, size, 10, 10);
-    const floor = new Mesh(floorGeometry, floorMaterial);
-    floor.position.setY(-20);
-    floor.lookAt(new Vector3(0, 1, 0));
 
-    return [floor];
+    super(floorGeometry, floorMaterial);
+    this.position.setY(-20);
+    this.lookAt(new Vector3(0, 1, 0));
   }
 }

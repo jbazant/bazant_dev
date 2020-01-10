@@ -1,75 +1,44 @@
-import { SmartObj } from '../general/SmartObj';
-import { BufferGeometry, Float32BufferAttribute, Object3D } from 'three';
+import {
+  BufferGeometry,
+  CubeTexture,
+  Float32BufferAttribute,
+  FrontSide,
+  Mesh,
+  MeshLambertMaterial,
+  TextureLoader,
+} from 'three';
 import { WaterAnimation } from '../animations/WaterAnimation';
-import { NullAnimation } from '../animations/NullAnimation';
 
-type GetObject3DCallback = (geometry: BufferGeometry) => Object3D;
-
-export class Water extends SmartObj {
-  size: number;
-  segments: number;
-  geometry: BufferGeometry;
-  waterAnimation: WaterAnimation;
-
-  constructor(
-    size: number,
-    segments: number,
-    getMesh: GetObject3DCallback,
-    waterAnimation: WaterAnimation
-  ) {
-    super(size, segments, getMesh);
-    this.size = size;
-    this.segments = segments;
-    this.waterAnimation = waterAnimation || new NullAnimation(segments, {});
-  }
-
-  _getGeometry(size: number, segments: number) {
-    const geometry = new BufferGeometry();
-    const indices = [];
-    const vertices = [];
-    const normals = [];
-    const uvs = [];
-    const halfSize = size / 2;
-    const segmentSize = size / segments;
-
-    // generate vertices, normals and color data for a simple grid geometry
-    for (let i = 0; i <= segments; i++) {
-      const z = i * segmentSize - halfSize;
-      for (let j = 0; j <= segments; j++) {
-        const x = j * segmentSize - halfSize;
-        vertices.push(x, 0, z);
-        normals.push(0, 1, 0);
-        uvs.push(i / segments, j / segments);
-      }
-    }
-    // generate indices (data for element array buffer)
-    for (let i = 0; i < segments; i++) {
-      for (let j = 0; j < segments; j++) {
-        const a = i * (segments + 1) + (j + 1);
-        const b = i * (segments + 1) + j;
-        const c = (i + 1) * (segments + 1) + j;
-        const d = (i + 1) * (segments + 1) + (j + 1);
-        // generate two faces (triangles) per iteration
-        indices.push(a, b, d); // face one
-        indices.push(b, c, d); // face two
-      }
-    }
-    //
-    geometry.setIndex(indices);
-    geometry.addAttribute('position', new Float32BufferAttribute(vertices, 3));
-    geometry.addAttribute('normal', new Float32BufferAttribute(normals, 3));
-    geometry.addAttribute('uv', new Float32BufferAttribute(uvs, 2));
-
-    return geometry;
-  }
-
-  init(size: number, segments: number, getObject3D: GetObject3DCallback) {
-    this.geometry = this._getGeometry(size, segments);
-    return [getObject3D(this.geometry)];
-  }
-
-  anim(time: number) {
-    this.waterAnimation.anim(time);
-    this.waterAnimation.applyTo(this.geometry);
-  }
+function _getMaterial(skyTexture: CubeTexture) {
+  const waterTexture = new TextureLoader().load('water.jpg');
+  return new MeshLambertMaterial({
+    envMap: skyTexture,
+    map: waterTexture,
+    opacity: 0.9,
+    transparent: true,
+    side: FrontSide,
+  });
 }
+
+
+// todo this should actually be factory
+// todo combine it with WaterObject3DFactory
+/*
+export function getWater(
+  size: number,
+  segments: number,
+  waterAnimation: WaterAnimation,
+  skyTexture: CubeTexture
+) {
+  const geometry = _getGeometry(size, segments);
+  const material = _getMaterial(skyTexture);
+  const mesh = new Mesh(geometry, material);
+
+  mesh.onBeforeRender = function() {
+    waterAnimation.anim(10);
+    waterAnimation.applyTo(geometry);
+  };
+
+  return mesh;
+}
+*/

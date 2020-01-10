@@ -1,5 +1,5 @@
 import { AnimationTypeEnum } from './webgl/animations/getWaterAnimation';
-import { WaterTypeEnum } from './webgl/objs/WaterObject3DFactory';
+import { WaterTypeEnum } from './webgl/objs/waterFactory';
 
 export const config = {
   water: {

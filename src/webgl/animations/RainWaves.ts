@@ -5,8 +5,11 @@ import { config } from '../../config';
 export class RainWaves extends WaterAnimation {
   _matrix: Array<Array<Array<number>>>;
   _currHolderIndex: 0 | 1 = 0;
-  _lastTime = 0;
   _animationConfig: typeof config.water.animationConfig;
+  _waveProbability = 0.1;
+  _k1: number;
+  _k2: number;
+  _k3: number;
 
   constructor(segmentCount: number, animationConfig: typeof config.water.animationConfig) {
     super(segmentCount, animationConfig);
@@ -17,6 +20,15 @@ export class RainWaves extends WaterAnimation {
       this._matrix[0][i] = new Array(segmentCount + 1).fill(0);
       this._matrix[1][i] = new Array(segmentCount + 1).fill(0);
     }
+
+    const time = 0.01;
+    const { speed, distance, density } = this._animationConfig;
+
+    const deltaSpeed = (Math.sqrt(speed) * Math.sqrt(time)) / Math.sqrt(distance);
+    const fPom = 1.0 / (density * time + 2);
+    this._k1 = (4.0 - 8.0 * deltaSpeed) * fPom;
+    this._k2 = (density * time - 2) * fPom;
+    this._k3 = 2.0 * (deltaSpeed * fPom);
   }
 
   get _currentHolderIndex() {
@@ -40,23 +52,14 @@ export class RainWaves extends WaterAnimation {
     this._currHolderIndex = 1 - this._currHolderIndex;
   }
 
-  _recountWaves(timeDiff: number) {
+  _recountWaves() {
     // todo move this to shader
-    const time = WaterAnimation.timeMultiplier * timeDiff;
-    const { speed, distance, density } = this._animationConfig;
-
-    const deltaSpeed = (Math.sqrt(speed) * Math.sqrt(time)) / Math.sqrt(distance);
-    const fPom = 1.0 / (density * time + 2);
-    const k1 = (4.0 - 8.0 * deltaSpeed) * fPom;
-    const k2 = (density * time - 2) * fPom;
-    const k3 = 2.0 * (deltaSpeed * fPom);
-
     for (let j = 1; j < this.segmentCount; ++j) {
       for (let i = 1; i < this.segmentCount; ++i) {
         this.prevMatrix[i][j] =
-          k1 * this.matrix[i][j] +
-          k2 * this.prevMatrix[i][j] +
-          k3 *
+          this._k1 * this.matrix[i][j] +
+          this._k2 * this.prevMatrix[i][j] +
+          this._k3 *
             (this.matrix[i + 1][j] +
               this.matrix[i - 1][j] +
               this.matrix[i][j + 1] +
@@ -65,11 +68,8 @@ export class RainWaves extends WaterAnimation {
     }
   }
 
-  _randomWaves(timeDiff: number) {
-    const { wavesPerSecond } = this._animationConfig;
-    const waveProbability = (timeDiff / 1000) * wavesPerSecond;
-
-    if (waveProbability >= Math.random()) {
+  _randomWaves() {
+    if (this._waveProbability >= Math.random()) {
       const x = Math.floor(Math.random() * (this.segmentCount - 4)) + 2;
       const y = Math.floor(Math.random() * (this.segmentCount - 4)) + 2;
       this.startWave(x, y, 10);
@@ -91,12 +91,9 @@ export class RainWaves extends WaterAnimation {
     }
   }
 
-  anim(time: number): void {
-    const timeDiff = time - this._lastTime;
-    this._lastTime = time;
-
-    this._randomWaves(timeDiff);
-    this._recountWaves(timeDiff);
+  anim(): void {
+    this._randomWaves();
+    this._recountWaves();
     this._swapHolders();
   }
 
