@@ -18,6 +18,8 @@ export class Bedrock extends Mesh {
       displacementMap: loader.load('GRAVEL_DISP1.png'),
       normalMap: loader.load('GRAVEL_NORM.png'),
       emissiveMap: loader.load('GRAVEL_SPEC.png'),
+      emissive: 'rgba(255,215,182,0.96)',
+      emissiveIntensity: 0.3,
       side: FrontSide,
     });
 

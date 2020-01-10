@@ -5,13 +5,12 @@ import {
   FrontSide,
   Mesh,
   MeshLambertMaterial,
-  Object3D,
   Points,
   PointsMaterial,
   TextureLoader,
 } from 'three';
 import {
-  animationConfig,
+  AnimationConfig,
   AnimationTypeEnum,
   getWaterAnimation,
 } from '../animations/getWaterAnimation';
@@ -27,7 +26,7 @@ export type WaterConfig = {
   size: number;
   waterType: WaterTypeEnum;
   animationType: AnimationTypeEnum;
-  animationConfig: animationConfig;
+  animationConfig: AnimationConfig;
 };
 
 export function getGeometry(size: number, segments: number) {
@@ -70,40 +69,39 @@ export function getGeometry(size: number, segments: number) {
   return geometry;
 }
 
-export function waterFactory(config: WaterConfig, skyTexture?: CubeTexture) {
-  const { segmentCount, size, waterType, animationType, animationConfig } = config;
-  const waterAnimation = getWaterAnimation(animationType, segmentCount, animationConfig);
-  const geometry = getGeometry(size, segmentCount);
-
-  let object3D: Object3D;
-
-  // todo mesh and material separate
+function getMaterial(waterType: WaterTypeEnum, skyTexture?: CubeTexture) {
   switch (waterType) {
     case WaterTypeEnum.Points:
-      new Points(
-        geometry,
-        new PointsMaterial({
-          color: 0xf3ffe2,
-          size: 3,
-        })
-      );
-      break;
+      return new PointsMaterial({
+        color: 0xf3ffe2,
+        size: 3,
+      });
 
     case WaterTypeEnum.EnvMap:
       if (!skyTexture) {
         throw new Error('skyTexture is required');
       } else {
-        const material = new MeshLambertMaterial({
+        return new MeshLambertMaterial({
           envMap: skyTexture,
           map: new TextureLoader().load('water.jpg'),
-          opacity: 0.9,
+          opacity: 0.95,
           transparent: true,
           side: FrontSide,
         });
-
-        object3D = new Mesh(geometry, material);
       }
   }
+}
+
+function getObject3DPrototype(waterType: WaterTypeEnum) {
+  return WaterTypeEnum.Points === waterType ? Points : Mesh;
+}
+
+export function waterFactory(config: WaterConfig, skyTexture?: CubeTexture) {
+  const { segmentCount, size, waterType, animationType, animationConfig } = config;
+  const waterAnimation = getWaterAnimation(animationType, segmentCount, animationConfig);
+  const geometry = getGeometry(size, segmentCount);
+  const material = getMaterial(waterType, skyTexture);
+  const object3D = new (getObject3DPrototype(waterType))(geometry, material);
 
   object3D.onBeforeRender = () => {
     waterAnimation.anim(10);

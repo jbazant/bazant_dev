@@ -1,12 +1,11 @@
 import { WaterAnimation } from './WaterAnimation';
-import { BufferGeometry } from 'three';
 
 export class NullAnimation extends WaterAnimation {
-  anim(time: number) {
+  anim() {
     return;
   }
 
-  applyTo(geometry: BufferGeometry) {
+  applyTo() {
     return;
   }
 }

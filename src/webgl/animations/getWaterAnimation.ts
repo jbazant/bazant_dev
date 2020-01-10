@@ -8,7 +8,7 @@ export enum AnimationTypeEnum {
   Sin,
 }
 
-export type animationConfig = null | {
+export type AnimationConfig = null | {
   speed: number;
   distance: number;
   density: number;
@@ -18,5 +18,5 @@ export type animationConfig = null | {
 export const getWaterAnimation = (
   animationType: AnimationTypeEnum,
   segmentCount: number,
-  animationConfig: animationConfig
+  animationConfig: AnimationConfig
 ) => new [NullAnimation, RainWaves, SinWaves][animationType](segmentCount, animationConfig);

@@ -1,17 +1,17 @@
 import { WaterAnimation } from './WaterAnimation';
 import { BufferGeometry } from 'three';
-import { config } from '../../config';
+import { AnimationConfig } from './getWaterAnimation';
 
 export class RainWaves extends WaterAnimation {
   _matrix: Array<Array<Array<number>>>;
   _currHolderIndex: 0 | 1 = 0;
-  _animationConfig: typeof config.water.animationConfig;
-  _waveProbability = 0.1;
+  _animationConfig: AnimationConfig;
+  _waveProbability: number;
   _k1: number;
   _k2: number;
   _k3: number;
 
-  constructor(segmentCount: number, animationConfig: typeof config.water.animationConfig) {
+  constructor(segmentCount: number, animationConfig: AnimationConfig) {
     super(segmentCount, animationConfig);
 
     this._matrix = [new Array(segmentCount + 1), new Array(segmentCount + 1)];
@@ -21,6 +21,7 @@ export class RainWaves extends WaterAnimation {
       this._matrix[1][i] = new Array(segmentCount + 1).fill(0);
     }
 
+    this._waveProbability = 0.05 * animationConfig.wavesPerSecond;
     const time = 0.01;
     const { speed, distance, density } = this._animationConfig;
 
@@ -64,6 +65,10 @@ export class RainWaves extends WaterAnimation {
               this.matrix[i - 1][j] +
               this.matrix[i][j + 1] +
               this.matrix[i][j - 1]);
+
+        if (Math.abs(this.prevMatrix[i][j]) < 0.01) {
+          this.prevMatrix[i][j] = 0;
+        }
       }
     }
   }

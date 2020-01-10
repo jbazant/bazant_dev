@@ -12,7 +12,7 @@ export class StaticLights extends Group {
   }
 
   _initDirectional() {
-    const lightDirectional = new DirectionalLight(0x808080, 2);
+    const lightDirectional = new DirectionalLight(0x808080, 5);
     lightDirectional.position.set(0.5, 1, 0);
     this.add(lightDirectional);
   }

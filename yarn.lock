@@ -2134,10 +2134,10 @@ https-browserify@^1.0.0:
   resolved "https://registry.yarnpkg.com/https-browserify/-/https-browserify-1.0.0.tgz#ec06c10e0a34c0f2faf199f7fd7fc78fffd03c73"
   integrity sha1-7AbBDgo0wPL68Zn3/X/Hj//QPHM=
 
-husky@^4.0.3:
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/husky/-/husky-4.0.3.tgz#8a082455f8c76a602ec00f9a6a6f9f458860f49e"
-  integrity sha512-pI4e5iC8hFkPAjOdJGdBubVdjKGhoZq0l0kkHpqGN1uf3U1Iq0wLloBm26R5OhdWYqhuBYRdRjRAclDg59+c5A==
+husky@^4.0.6:
+  version "4.0.6"
+  resolved "https://registry.yarnpkg.com/husky/-/husky-4.0.6.tgz#b64206220ab940f091cb5f1c75672453eb39fc9f"
+  integrity sha512-OxsXXQXu/FYauV5GGhNpyN1yhQPQoDFUJwzHoshYc3wO//gC0PB9YNYLgBxKckfEce0FGEbzb498UecR3jNdZw==
   dependencies:
     chalk "^3.0.0"
     ci-info "^2.0.0"
@@ -4224,10 +4224,15 @@ text-table@^0.2.0:
   resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
   integrity sha1-f17oI66AUgfACvLfSoTsP8+lcLQ=
 
-three@*, three@^0.104.0:
+three@*:
   version "0.104.0"
   resolved "https://registry.yarnpkg.com/three/-/three-0.104.0.tgz#9ad1da492153b753a89e0df066631215bd9d9087"
   integrity sha512-q617IMBC5k40U2E9UC4/LtmhzTOOLB1jGMIooUL+QrhZ7abiGCSDrKrpCDt9V8RTl6xw+0FYfA1PYsIPKbQOgg==
+
+three@^0.112.1:
+  version "0.112.1"
+  resolved "https://registry.yarnpkg.com/three/-/three-0.112.1.tgz#f8d8f4d0f8e5f753dac6260491b8209457fdc131"
+  integrity sha512-8I0O74hiYtKl3LgDNcPJbBGOlpekbcJ6fJnImmW3mFdeUFJ2H9Y3/UuUSW2sBdjrIlCM0gvOkaTEFlofO900TQ==
 
 through2@^2.0.0:
   version "2.0.5"
