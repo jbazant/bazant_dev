@@ -17,13 +17,13 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
-        test: /\.glsl$/,
-        loader: 'webpack-glsl',
+        test: /\.(glsl|frag|vert)$/,
+        use: 'ts-shader-loader',
       },
     ],
   },
   watchOptions: {
-    ignored: /node_modules/
+    ignored: /node_modules/,
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],

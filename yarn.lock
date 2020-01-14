@@ -1822,11 +1822,6 @@ fs.realpath@^1.0.0:
   resolved "https://registry.yarnpkg.com/fs.realpath/-/fs.realpath-1.0.0.tgz#1504ad2523158caa40db4a2787cb01411994ea4f"
   integrity sha1-FQStJSMVjKpA20onh8sBQRmU6k8=
 
-fs@0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/fs/-/fs-0.0.2.tgz#e1f244ef3933c1b2a64bd4799136060d0f5914f8"
-  integrity sha1-4fJE7zkzwbKmS9R5kTYGDQ9ZFPg=
-
 fsevents@^1.2.7:
   version "1.2.11"
   resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-1.2.11.tgz#67bf57f4758f02ede88fb2a1712fef4d15358be3"
@@ -2601,7 +2596,7 @@ loader-runner@^2.4.0:
   resolved "https://registry.yarnpkg.com/loader-runner/-/loader-runner-2.4.0.tgz#ed47066bfe534d7e84c4c7b9998c2a75607d9357"
   integrity sha512-Jsmr89RcXGIwivFY21FcRrisYZfvLMTWx5kOLc+JTxtpBOG6xML0vzbc6SEQG2FO9/4Fc3wW4LVcB5DmGflaRw==
 
-loader-utils@1.2.3, loader-utils@^1.0.2, loader-utils@^1.2.3:
+loader-utils@1.2.3, loader-utils@^1.0.2, loader-utils@^1.1.0, loader-utils@^1.2.3:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/loader-utils/-/loader-utils-1.2.3.tgz#1ff5dc6911c9f0a062531a4c04b609406108c2c7"
   integrity sha512-fkpz8ejdnEMG3s37wGL07iSBDg99O9D5yflE9RGNH3hRdx9SOwYfnGYdZOUIZitN8E+E2vkq3MUMYMvPYl5ZZA==
@@ -3282,11 +3277,6 @@ path-type@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/path-type/-/path-type-4.0.0.tgz#84ed01c0a7ba380afe09d90a8c180dcd9d03043b"
   integrity sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==
-
-path@^0.11.14:
-  version "0.11.14"
-  resolved "https://registry.yarnpkg.com/path/-/path-0.11.14.tgz#cbc7569355cb3c83afeb4ace43ecff95231e5a7d"
-  integrity sha1-y8dWk1XLPIOv60rOQ+z/lSMeWn0=
 
 pbkdf2@^3.0.3:
   version "3.0.17"
@@ -4319,6 +4309,13 @@ ts-loader@^6.0.0:
     micromatch "^4.0.0"
     semver "^6.0.0"
 
+ts-shader-loader@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/ts-shader-loader/-/ts-shader-loader-1.0.6.tgz#5dff860a5179b90bb4d74d42265519c98a5abdd2"
+  integrity sha512-xTiXaj6HGAMHGi4YTlR73F/PUhOxAULoPTRBYGTx8t5iO1nDSRx+INUqO6NLNnZ76oJ27DfbeEEzn3oVd1R3PA==
+  dependencies:
+    loader-utils "^1.1.0"
+
 tslib@^1.8.1, tslib@^1.9.0:
   version "1.10.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.10.0.tgz#c3c19f95973fb0a62973fb09d90d961ee43e5c8a"
@@ -4572,14 +4569,6 @@ webpack-dev-server@^3.3.1:
     webpack-log "^2.0.0"
     ws "^6.2.1"
     yargs "12.0.5"
-
-webpack-glsl-loader@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/webpack-glsl-loader/-/webpack-glsl-loader-1.0.1.tgz#72a0e30192bd57947d60d6d505c915be680d0acc"
-  integrity sha1-cqDjAZK9V5R9YNbVBckVvmgNCsw=
-  dependencies:
-    fs "0.0.2"
-    path "^0.11.14"
 
 webpack-log@^2.0.0:
   version "2.0.0"

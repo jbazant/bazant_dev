@@ -6,7 +6,7 @@ export const config = {
     segmentCount: 400,
     size: 1000,
     animationType: AnimationTypeEnum.Rain,
-    waterType: WaterTypeEnum.EnvMap,
+    waterType: WaterTypeEnum.Shader,
     animationConfig: {
       speed: 0.05,
       distance: 0.3,

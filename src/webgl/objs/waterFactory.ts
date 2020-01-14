@@ -5,8 +5,10 @@ import {
   FrontSide,
   Mesh,
   MeshLambertMaterial,
+  PlaneBufferGeometry,
   Points,
   PointsMaterial,
+  RepeatWrapping,
   TextureLoader,
 } from 'three';
 import {
@@ -14,6 +16,7 @@ import {
   AnimationTypeEnum,
   getWaterAnimation,
 } from '../animations/getWaterAnimation';
+import { Options, ShaderWater } from './ShaderWater';
 
 export enum WaterTypeEnum {
   Points,
@@ -89,6 +92,9 @@ function getMaterial(waterType: WaterTypeEnum, skyTexture?: CubeTexture) {
           side: FrontSide,
         });
       }
+
+    case WaterTypeEnum.Shader:
+      throw new Error('not supported!');
   }
 }
 
@@ -98,15 +104,30 @@ function getObject3DPrototype(waterType: WaterTypeEnum) {
 
 export function waterFactory(config: WaterConfig, skyTexture?: CubeTexture) {
   const { segmentCount, size, waterType, animationType, animationConfig } = config;
-  const waterAnimation = getWaterAnimation(animationType, segmentCount, animationConfig);
-  const geometry = getGeometry(size, segmentCount);
-  const material = getMaterial(waterType, skyTexture);
-  const object3D = new (getObject3DPrototype(waterType))(geometry, material);
+  if (waterType === WaterTypeEnum.Shader) {
+    const geometry = new PlaneBufferGeometry(512, 512);
+    const options: Options = {
+      waterNormals: new TextureLoader().load('waternormals.jpg', texture => {
+        texture.wrapS = texture.wrapT = RepeatWrapping;
+      }),
+      sunColor: 0xffffff,
+      waterColor: 0x2f1d4c,
+      distortionScale: 3.7,
+      fog: false,
+      alpha: 0.95,
+    };
+    return new ShaderWater(geometry, options);
+  } else {
+    const waterAnimation = getWaterAnimation(animationType, segmentCount, animationConfig);
+    const geometry = getGeometry(size, segmentCount);
+    const material = getMaterial(waterType, skyTexture);
+    const object3D = new (getObject3DPrototype(waterType))(geometry, material);
 
-  object3D.onBeforeRender = () => {
-    waterAnimation.anim(10);
-    waterAnimation.applyTo(geometry);
-  };
+    object3D.onBeforeRender = () => {
+      waterAnimation.anim(10);
+      waterAnimation.applyTo(geometry);
+    };
 
-  return object3D;
+    return object3D;
+  }
 }

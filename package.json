@@ -21,11 +21,11 @@
     "husky": "^4.0.6",
     "prettier": "^1.19.1",
     "ts-loader": "^6.0.0",
+    "ts-shader-loader": "^1.0.6",
     "typescript": "^3.4.5",
     "webpack": "^4.31.0",
     "webpack-cli": "^3.3.2",
-    "webpack-dev-server": "^3.3.1",
-    "webpack-glsl-loader": "^1.0.1"
+    "webpack-dev-server": "^3.3.1"
   },
   "dependencies": {
     "stats.js": "^0.17.0",

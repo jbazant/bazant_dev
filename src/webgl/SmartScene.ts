@@ -1,4 +1,4 @@
-import { CubeTexture, CubeTextureLoader, Renderer, Scene, WebGLRenderer } from 'three';
+import { CubeTexture, CubeTextureLoader, Renderer, Scene, WebGLRenderer, AxesHelper } from 'three';
 import { MyCamera } from './MyCamera';
 import { StaticLights } from './StaticLights';
 import { config } from '../config';
@@ -7,6 +7,7 @@ import { debounce } from '../utils/debounce';
 import { CirclingLights } from './objs/CirclingLights';
 import { Bedrock } from './objs/Bedrock';
 import { WaterConfig, waterFactory } from './objs/waterFactory';
+//import { getTestMeshWithShader } from './objs/ShaderTest';
 
 export class SmartScene {
   el: HTMLCanvasElement;
@@ -17,7 +18,6 @@ export class SmartScene {
   renderer: Renderer;
 
   skyTexture: CubeTexture;
-
   stats: Stats | null;
 
   constructor(targetEl: HTMLCanvasElement, sceneConfig: typeof config) {
@@ -41,12 +41,12 @@ export class SmartScene {
 
   _initSceneObjs(config: WaterConfig) {
     [
+      //getTestMeshWithShader(),
+      new StaticLights(),
       new CirclingLights(),
       new Bedrock(1000),
-      new StaticLights(),
       waterFactory(config, this.skyTexture),
-      // @ts-ignore
-      //new ShaderWater1(),
+      new AxesHelper(100),
     ].forEach(it => this.scene.add(it));
   }
 
