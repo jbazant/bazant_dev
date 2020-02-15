@@ -3,10 +3,10 @@ import { WaterTypeEnum } from './webgl/objs/waterFactory';
 
 export const config = {
   water: {
-    segmentCount: 400,
-    size: 1000,
+    segmentCount: 512,
+    size: 258,
     animationType: AnimationTypeEnum.Rain,
-    waterType: WaterTypeEnum.Shader,
+    waterType: WaterTypeEnum.CustomShader,
     animationConfig: {
       speed: 0.05,
       distance: 0.3,

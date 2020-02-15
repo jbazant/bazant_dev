@@ -1,16 +1,16 @@
-import { BufferGeometry } from 'three';
+import { Object3D, Renderer } from 'three';
 
 export abstract class WaterAnimation {
   segmentCount: number;
-  static timeMultiplier = 0.001;
-  _animationConfig: {};
+  renderer: Renderer;
 
-  constructor(segmentCount: number, animationConfig: {}) {
+  constructor(segmentCount: number, renderer: Renderer) {
     this.segmentCount = segmentCount;
-    this._animationConfig = animationConfig;
+    this.renderer = renderer;
   }
 
-  abstract anim(time: number): void;
+  abstract startAnim(): void;
+  abstract stopAnim(): void;
 
-  abstract applyTo(geometry: BufferGeometry): void;
+  abstract applyTo(object: Object3D): void;
 }

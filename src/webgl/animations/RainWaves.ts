@@ -1,117 +1,79 @@
 import { WaterAnimation } from './WaterAnimation';
-import { BufferGeometry } from 'three';
-import { AnimationConfig } from './getWaterAnimation';
+import * as THREE from 'three';
+import {
+  GPUComputationRenderer,
+  GPUComputationRendererVariable,
+} from '../utils/GPUComputationRenderer';
+import heightmapComputeShader from '../../shaders/compute_heightmap.frag';
 
 export class RainWaves extends WaterAnimation {
-  _matrix: Array<Array<Array<number>>>;
-  _currHolderIndex: 0 | 1 = 0;
-  _animationConfig: AnimationConfig;
-  _waveProbability: number;
-  _k1: number;
-  _k2: number;
-  _k3: number;
+  gpuCompute: GPUComputationRenderer;
+  heightmapVariable: GPUComputationRendererVariable;
+  halfCount: number;
+  timers: Array<NodeJS.Timeout>;
 
-  constructor(segmentCount: number, animationConfig: AnimationConfig) {
-    super(segmentCount, animationConfig);
+  constructor(segmentCount: number, renderer: THREE.WebGLRenderer) {
+    super(segmentCount, renderer);
+    this.halfCount = segmentCount / 2;
 
-    this._matrix = [new Array(segmentCount + 1), new Array(segmentCount + 1)];
+    this.gpuCompute = new GPUComputationRenderer(segmentCount, segmentCount, renderer);
 
-    for (let i = 0; i <= segmentCount; ++i) {
-      this._matrix[0][i] = new Array(segmentCount + 1).fill(0);
-      this._matrix[1][i] = new Array(segmentCount + 1).fill(0);
-    }
+    this.heightmapVariable = this.gpuCompute.addVariable(
+      'heightmap',
+      heightmapComputeShader,
+      this.gpuCompute.createTexture()
+    );
+    this.heightmapVariable.setDependencies([this.heightmapVariable]);
+    this.heightmapVariable.setMaterialUniforms({
+      wavePos: { value: new THREE.Vector2(0, 0) },
+      waveSize: { value: 0 },
+      viscosityConstant: { value: 0.98 },
+    });
+    this.heightmapVariable.addMaterialDefine('BOUNDS', segmentCount.toFixed(1));
 
-    this._waveProbability = 0.05 * animationConfig.wavesPerSecond;
-    const time = 0.01;
-    const { speed, distance, density } = this._animationConfig;
-
-    const deltaSpeed = (Math.sqrt(speed) * Math.sqrt(time)) / Math.sqrt(distance);
-    const fPom = 1.0 / (density * time + 2);
-    this._k1 = (4.0 - 8.0 * deltaSpeed) * fPom;
-    this._k2 = (density * time - 2) * fPom;
-    this._k3 = 2.0 * (deltaSpeed * fPom);
+    this.gpuCompute.init();
   }
 
-  get _currentHolderIndex() {
-    return this._currHolderIndex;
+  _getRandCoordinate() {
+    return Math.floor(Math.random() * this.segmentCount - this.halfCount);
   }
 
-  get _prevHolderIndex() {
-    return 1 - this._currHolderIndex;
+  _rainDrop = () => {
+    const x = this._getRandCoordinate();
+    const y = this._getRandCoordinate();
+    this.startWave(x, y, 5);
+    setTimeout(() => this.startWave(x, y, 2), 200);
+  };
+
+  startWave = (x: number, y: number, size: number) => {
+    this.heightmapVariable.material.uniforms['wavePos'].value = new THREE.Vector2(x, y);
+    this.heightmapVariable.material.uniforms['waveSize'].value = size;
+  };
+
+  startAnim() {
+    this.timers = [301, 501, 701].map(timeout => setInterval(this._rainDrop, timeout));
   }
 
-  get matrix() {
-    return this._matrix[this._currentHolderIndex];
+  stopAnim() {
+    this.timers.forEach(clearInterval);
   }
 
-  get prevMatrix() {
-    return this._matrix[this._prevHolderIndex];
-  }
+  applyTo(object: THREE.Object3D): void {
+    if (object instanceof THREE.Mesh) {
+      const material = object.material;
 
-  _swapHolders() {
-    // @ts-ignore result of operation is actually correct, but TS is unable to understand it
-    this._currHolderIndex = 1 - this._currHolderIndex;
-  }
+      if (material instanceof THREE.ShaderMaterial) {
+        this.gpuCompute.compute();
+        this.heightmapVariable.material.uniforms['waveSize'].value = 0;
 
-  _recountWaves() {
-    // todo move this to shader
-    for (let j = 1; j < this.segmentCount; ++j) {
-      for (let i = 1; i < this.segmentCount; ++i) {
-        this.prevMatrix[i][j] =
-          this._k1 * this.matrix[i][j] +
-          this._k2 * this.prevMatrix[i][j] +
-          this._k3 *
-            (this.matrix[i + 1][j] +
-              this.matrix[i - 1][j] +
-              this.matrix[i][j + 1] +
-              this.matrix[i][j - 1]);
-
-        if (Math.abs(this.prevMatrix[i][j]) < 0.01) {
-          this.prevMatrix[i][j] = 0;
-        }
+        material.uniforms.heightmap.value = this.gpuCompute.getCurrentRenderTarget(
+          this.heightmapVariable
+        ).texture;
+      } else {
+        console.warn('Invalid material supplied to RainWaves');
       }
+    } else {
+      console.warn('Invalid object supplied to RainWaves');
     }
-  }
-
-  _randomWaves() {
-    if (this._waveProbability >= Math.random()) {
-      const x = Math.floor(Math.random() * (this.segmentCount - 4)) + 2;
-      const y = Math.floor(Math.random() * (this.segmentCount - 4)) + 2;
-      this.startWave(x, y, 10);
-    }
-  }
-
-  // uint, uint float
-  startWave(x: number, y: number, power: number) {
-    if (x < 1 || y < 1 || x > this.segmentCount || y > this.segmentCount) {
-      throw new Error('Params out of bounds!');
-    }
-
-    for (let holder = 0; holder <= 1; ++holder) {
-      for (let i = x - 1; i <= x + 1; i = i + 2) {
-        for (let j = y - 1; j <= y + 1; j = j + 2) {
-          this._matrix[holder][i][j] = power;
-        }
-      }
-    }
-  }
-
-  anim(): void {
-    this._randomWaves();
-    this._recountWaves();
-    this._swapHolders();
-  }
-
-  applyTo(geometry: BufferGeometry): void {
-    // @ts-ignore
-    geometry.attributes.position.needsUpdate = true;
-    for (let i = 0; i <= this.segmentCount; i++) {
-      for (let j = 0; j <= this.segmentCount; j++) {
-        const index = 3 * (i + j * (this.segmentCount + 1)) + 1;
-        // @ts-ignore
-        geometry.attributes.position.array[index] = this.matrix[i][j];
-      }
-    }
-    geometry.computeVertexNormals();
   }
 }

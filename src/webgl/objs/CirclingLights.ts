@@ -12,7 +12,7 @@ export class CirclingLights extends Mesh {
     ];
 
     const step = (Math.PI * 2) / colors.length;
-    const pointsDistance = 100;
+    const pointsDistance = 50;
 
     colors.forEach((color, i) => {
       const light = new PointLight(color, 0.8, 200);

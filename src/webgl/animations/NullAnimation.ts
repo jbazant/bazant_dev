@@ -1,7 +1,11 @@
 import { WaterAnimation } from './WaterAnimation';
 
 export class NullAnimation extends WaterAnimation {
-  anim() {
+  startAnim() {
+    return;
+  }
+
+  stopAnim() {
     return;
   }
 

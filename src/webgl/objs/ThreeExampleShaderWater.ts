@@ -27,6 +27,7 @@ import {
   Side,
   Scene,
   WebGLRenderer,
+  Texture,
 } from 'three';
 import fragmentShader from '../../shaders/ShaderWater.frag';
 import vertexShader from '../../shaders/ShaderWater.vert';
@@ -37,7 +38,7 @@ export interface Options {
   clipBias?: number;
   alpha?: number;
   time?: number;
-  waterNormals?: any; // todo
+  waterNormals?: Texture;
   sunDirection?: Vector3;
   sunColor?: number;
   waterColor?: number;
@@ -47,7 +48,7 @@ export interface Options {
   fog?: boolean;
 }
 
-export class ShaderWater extends Mesh {
+export class ThreeExampleShaderWater extends Mesh {
   mirrorPlane = new Plane();
   normal = new Vector3();
   mirrorWorldPosition = new Vector3();

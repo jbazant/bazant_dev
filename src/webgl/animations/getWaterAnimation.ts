@@ -1,11 +1,10 @@
 import { NullAnimation } from './NullAnimation';
-import { SinWaves } from './SinWaves';
 import { RainWaves } from './RainWaves';
+import { WebGLRenderer } from 'three';
 
 export enum AnimationTypeEnum {
   Null,
   Rain,
-  Sin,
 }
 
 export type AnimationConfig = null | {
@@ -18,5 +17,5 @@ export type AnimationConfig = null | {
 export const getWaterAnimation = (
   animationType: AnimationTypeEnum,
   segmentCount: number,
-  animationConfig: AnimationConfig
-) => new [NullAnimation, RainWaves, SinWaves][animationType](segmentCount, animationConfig);
+  renderer: WebGLRenderer
+) => new [NullAnimation, RainWaves][animationType](segmentCount, renderer);
