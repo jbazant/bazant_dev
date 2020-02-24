@@ -94,30 +94,10 @@
  *
  * @param {int} sizeX Computation problem size is always 2d: sizeX * sizeY elements.
  * @param {int} sizeY Computation problem size is always 2d: sizeX * sizeY elements.
- * @param {WebGLRenderer} renderer The renderer
+ * @param {THREE.WebGLRenderer} renderer The renderer
  */
 
-import {
-  Camera,
-  ClampToEdgeWrapping,
-  DataTexture,
-  FloatType,
-  HalfFloatType,
-  IUniform,
-  Mesh,
-  NearestFilter,
-  PlaneBufferGeometry,
-  RenderTarget,
-  RepeatWrapping,
-  RGBAFormat,
-  Scene,
-  ShaderMaterial,
-  Texture,
-  TextureFilter,
-  WebGLRenderTarget,
-  WebGLRenderer,
-  Wrapping,
-} from 'three';
+import * as THREE from 'three';
 
 const PASS_THROUGH_VERTEX_SHADER = `
 void main(){
@@ -133,21 +113,21 @@ void main() {
 }`;
 
 interface Uniforms {
-  [uniform: string]: IUniform;
+  [uniform: string]: THREE.IUniform;
 }
 
 export class GPUComputationRendererVariable {
   public name: string;
-  public initialValueTexture: Texture;
-  public renderTargets: WebGLRenderTarget[] = [];
+  public initialValueTexture: THREE.Texture;
+  public renderTargets: THREE.WebGLRenderTarget[] = [];
   public dependencies: GPUComputationRendererVariable[] = [];
-  public wrapS: Wrapping = RepeatWrapping;
-  public wrapT: Wrapping = RepeatWrapping;
-  public minFilter: TextureFilter = NearestFilter;
-  public magFilter: TextureFilter = NearestFilter;
-  public material: ShaderMaterial;
+  public wrapS: THREE.Wrapping = THREE.RepeatWrapping;
+  public wrapT: THREE.Wrapping = THREE.RepeatWrapping;
+  public minFilter: THREE.TextureFilter = THREE.NearestFilter;
+  public magFilter: THREE.TextureFilter = THREE.NearestFilter;
+  public material: THREE.ShaderMaterial;
 
-  constructor(name: string, material: ShaderMaterial, initialValueTexture: Texture) {
+  constructor(name: string, material: THREE.ShaderMaterial, initialValueTexture: THREE.Texture) {
     this.name = name;
     this.initialValueTexture = initialValueTexture;
     this.material = material;
@@ -164,28 +144,33 @@ export class GPUComputationRendererVariable {
   addMaterialDefine(defineName: string, defineValue: string) {
     this.material.defines[defineName] = defineValue;
   }
+
+  setWrapping(wrapping: THREE.Wrapping) {
+    this.wrapT = wrapping;
+    this.wrapS = wrapping;
+  }
 }
 
 export class GPUComputationRenderer {
-  public scene: Scene;
+  public scene: THREE.Scene;
   public currentTextureIndex: number;
   public variables: GPUComputationRendererVariable[];
-  public camera: Camera;
+  public camera: THREE.Camera;
   public sizeX: number;
   public sizeY: number;
-  public renderer: WebGLRenderer;
-  public passThruShader: ShaderMaterial;
-  public mesh: Mesh;
-  public passThruUniforms: { texture: { value: Texture } };
+  public renderer: THREE.WebGLRenderer;
+  public passThruShader: THREE.ShaderMaterial;
+  public mesh: THREE.Mesh;
+  public passThruUniforms: { texture: { value: THREE.Texture } };
 
-  constructor(sizeX: number, sizeY: number, renderer: WebGLRenderer) {
+  constructor(sizeX: number, sizeY: number, renderer: THREE.WebGLRenderer) {
     this.sizeX = sizeX;
     this.sizeY = sizeY;
     this.renderer = renderer;
     this.variables = [];
     this.currentTextureIndex = 0;
-    this.scene = new Scene();
-    this.camera = new Camera();
+    this.scene = new THREE.Scene();
+    this.camera = new THREE.Camera();
     this.camera.position.z = 1;
     this.passThruUniforms = {
       texture: { value: null },
@@ -196,12 +181,12 @@ export class GPUComputationRenderer {
       this.passThruUniforms
     );
 
-    this.mesh = new Mesh(new PlaneBufferGeometry(2, 2), this.passThruShader);
+    this.mesh = new THREE.Mesh(new THREE.PlaneBufferGeometry(2, 2), this.passThruShader);
     this.scene.add(this.mesh);
   }
 
   private createShaderMaterial(computeFragmentShader: string, uniforms: Uniforms = {}) {
-    const material = new ShaderMaterial({
+    const material = new THREE.ShaderMaterial({
       uniforms,
       vertexShader: PASS_THROUGH_VERTEX_SHADER,
       fragmentShader: computeFragmentShader,
@@ -212,14 +197,14 @@ export class GPUComputationRenderer {
     return material;
   }
 
-  private addResolutionDefine(materialShader: ShaderMaterial) {
+  private addResolutionDefine(materialShader: THREE.ShaderMaterial) {
     materialShader.defines.resolution = `vec2(${this.sizeX.toFixed(1)}, ${this.sizeY.toFixed(1)})`;
   }
 
   public addVariable(
     variableName: string,
     computeFragmentShader: string,
-    initialValueTexture: Texture
+    initialValueTexture: THREE.Texture
   ) {
     const variable = new GPUComputationRendererVariable(
       variableName,
@@ -305,18 +290,20 @@ export class GPUComputationRenderer {
   public createRenderTarget(
     sizeXTexture: number = this.sizeX,
     sizeYTexture: number = this.sizeY,
-    wrapS: Wrapping = ClampToEdgeWrapping,
-    wrapT: Wrapping = ClampToEdgeWrapping,
-    minFilter: TextureFilter = NearestFilter,
-    magFilter: TextureFilter = NearestFilter
+    wrapS: THREE.Wrapping = THREE.ClampToEdgeWrapping,
+    wrapT: THREE.Wrapping = THREE.ClampToEdgeWrapping,
+    minFilter: THREE.TextureFilter = THREE.NearestFilter,
+    magFilter: THREE.TextureFilter = THREE.NearestFilter
   ) {
-    return new WebGLRenderTarget(sizeXTexture, sizeYTexture, {
+    return new THREE.WebGLRenderTarget(sizeXTexture, sizeYTexture, {
       wrapS,
       wrapT,
       minFilter,
       magFilter,
-      format: RGBAFormat,
-      type: /(iPad|iPhone|iPod)/g.test(window.navigator.userAgent) ? HalfFloatType : FloatType,
+      format: THREE.RGBAFormat,
+      type: /(iPad|iPhone|iPod)/g.test(window.navigator.userAgent)
+        ? THREE.HalfFloatType
+        : THREE.FloatType,
       stencilBuffer: false,
     });
   }
@@ -345,7 +332,7 @@ export class GPUComputationRenderer {
     this.currentTextureIndex = nextTextureIndex;
   }
 
-  public doRenderTarget(material: ShaderMaterial, output: RenderTarget) {
+  public doRenderTarget(material: THREE.ShaderMaterial, output: THREE.RenderTarget) {
     this.mesh.material = material;
     this.renderer.setRenderTarget(output);
     this.renderer.render(this.scene, this.camera);
@@ -353,7 +340,7 @@ export class GPUComputationRenderer {
     this.mesh.material = this.passThruShader;
   }
 
-  public renderTexture(input: Texture, output: RenderTarget) {
+  public renderTexture(input: THREE.Texture, output: THREE.RenderTarget) {
     this.passThruUniforms.texture.value = input;
     this.doRenderTarget(this.passThruShader, output);
     this.passThruUniforms.texture.value = null;
@@ -370,9 +357,15 @@ export class GPUComputationRenderer {
   public createTexture(
     sizeXTexture: number = this.sizeX,
     sizeYTexture: number = this.sizeY
-  ): DataTexture {
+  ): THREE.DataTexture {
     const a = new Float32Array(sizeXTexture * sizeYTexture * 4);
-    const texture = new DataTexture(a, this.sizeX, this.sizeY, RGBAFormat, FloatType);
+    const texture = new THREE.DataTexture(
+      a,
+      this.sizeX,
+      this.sizeY,
+      THREE.RGBAFormat,
+      THREE.FloatType
+    );
     texture.needsUpdate = true;
     return texture;
   }

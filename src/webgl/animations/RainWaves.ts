@@ -24,6 +24,7 @@ export class RainWaves extends WaterAnimation {
       this.gpuCompute.createTexture()
     );
     this.heightmapVariable.setDependencies([this.heightmapVariable]);
+    this.heightmapVariable.setWrapping(THREE.MirroredRepeatWrapping);
     this.heightmapVariable.setMaterialUniforms({
       wavePos: { value: new THREE.Vector2(0, 0) },
       waveSize: { value: 0 },

@@ -11,7 +11,6 @@ export const config = {
       speed: 0.05,
       distance: 0.3,
       density: 0.6,
-      wavesPerSecond: 1,
     },
   },
   useStats: true,

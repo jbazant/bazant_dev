@@ -6,7 +6,7 @@ export class MyCamera extends PerspectiveCamera {
 
   constructor(aspect: number, el: HTMLCanvasElement) {
     super(50, aspect, 1, 5000);
-    this.position.set(0, 100, 50);
+    this.position.set(120, 30, 115);
     this.lookAt(new Vector3());
 
     this.orbitControls = new OrbitControls(this, el);

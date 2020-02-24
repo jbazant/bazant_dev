@@ -11,7 +11,6 @@ export type AnimationConfig = null | {
   speed: number;
   distance: number;
   density: number;
-  wavesPerSecond: number;
 };
 
 export const getWaterAnimation = (

@@ -30,7 +30,7 @@ function getMaterial(
   waterType: WaterTypeEnum,
   size: number,
   segments: number,
-  skyTexture?: THREE.CubeTexture
+  envMap?: THREE.CubeTexture | THREE.Texture
 ) {
   switch (waterType) {
     case WaterTypeEnum.Points:
@@ -40,15 +40,19 @@ function getMaterial(
       });
 
     case WaterTypeEnum.EnvMap:
-      if (!skyTexture) {
+      if (!envMap) {
         throw new Error('skyTexture is required');
       } else {
-        return new THREE.MeshLambertMaterial({
-          envMap: skyTexture,
-          map: new THREE.TextureLoader().load('water.jpg'),
+        return new THREE.MeshPhongMaterial({
+          envMap: envMap,
+          //map: new THREE.TextureLoader().load('water.jpg'),
+          color: new THREE.Color('#54668e'),
+          specular: new THREE.Color('#fff'),
           opacity: 0.95,
           transparent: true,
           side: THREE.FrontSide,
+          reflectivity: 0.6,
+          combine: THREE.MixOperation,
         });
       }
 
@@ -59,17 +63,27 @@ function getMaterial(
           THREE.ShaderLib['phong'].uniforms,
           {
             heightmap: { value: null },
-            diffuse: { value: new THREE.Color(0x0040c0) },
-            specular: { value: new THREE.Color(0x111111) },
-            shininess: { value: 50 },
+            diffuse: { value: new THREE.Color('#54668e') },
+            specular: { value: new THREE.Color('#555') },
+            shininess: { value: 5 },
             opacity: { value: 0.95 },
+            envMap: { value: envMap },
+            flipEnvMap: { value: -1 },
+            maxMipLevel: { value: 0 },
+            combine: { value: THREE.MixOperation },
+            refractionRatio: { value: 0.98 },
+            reflectivity: { value: 0.6 },
           },
         ]),
         defines: {
           WIDTH: segments.toFixed(1),
           BOUNDS: size.toFixed(1),
+          USE_ENVMAP: '',
+          ENVMAP_TYPE_CUBE: '',
+          //ENVMAP_TYPE_CUBE_UV: true,
         },
         vertexShader: waterVertexShader,
+        //vertexShader: THREE.ShaderChunk['meshphong_vert'],
         fragmentShader: THREE.ShaderChunk['meshphong_frag'],
         lights: true,
         transparent: true,
@@ -87,7 +101,7 @@ function getObject3DPrototype(waterType: WaterTypeEnum) {
 export function waterFactory(
   config: WaterConfig,
   renderer: THREE.WebGLRenderer,
-  skyTexture?: THREE.CubeTexture
+  skyTexture?: THREE.CubeTexture | THREE.Texture
 ) {
   const { segmentCount, size, waterType, animationType } = config;
 

@@ -1,4 +1,4 @@
-import { Group, AmbientLight, DirectionalLight, DirectionalLightHelper } from 'three';
+import { Group, AmbientLight, DirectionalLight } from 'three';
 
 export class StaticLights extends Group {
   constructor() {
@@ -8,13 +8,12 @@ export class StaticLights extends Group {
   }
 
   _initAmbient() {
-    this.add(new AmbientLight(0x404040, 0.5));
+    this.add(new AmbientLight('#3b2840', 0.1));
   }
 
   _initDirectional() {
-    const lightDirectional = new DirectionalLight(0x808080, 1);
+    const lightDirectional = new DirectionalLight('#504d6b', 0.5);
     lightDirectional.position.set(0.5, 1, 0);
     this.add(lightDirectional);
-    this.add(new DirectionalLightHelper(lightDirectional, 10));
   }
 }
