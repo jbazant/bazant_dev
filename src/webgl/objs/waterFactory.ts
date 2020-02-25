@@ -63,10 +63,10 @@ function getMaterial(
           THREE.ShaderLib.phong.uniforms,
           {
             heightmap: { value: null },
-            diffuse: { value: new THREE.Color('#54668e') },
+            diffuse: { value: new THREE.Color('#445375') },
             specular: { value: new THREE.Color('#555') },
             shininess: { value: 5 },
-            opacity: { value: 0.95 },
+            opacity: { value: 0.7 },
             refractionRatio: { value: 0.98 },
             reflectivity: { value: 0.6 },
             flipEnvMap: { value: 1 },
@@ -79,12 +79,13 @@ function getMaterial(
         vertexShader: waterVertexShader,
         fragmentShader: THREE.ShaderLib.phong.fragmentShader,
         lights: true,
+        transparent: true,
       });
 
       // @ts-ignore We really need to define this prop
       material.envMap = envMap;
       // @ts-ignore We really need to define this prop
-      material.combine = THREE.MixOperation;
+      material.combine = THREE.AddOperation;
       material.uniforms.envMap.value = envMap;
 
       return material;

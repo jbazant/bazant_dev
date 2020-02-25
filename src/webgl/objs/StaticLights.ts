@@ -4,7 +4,7 @@ export class StaticLights extends Group {
   constructor() {
     super();
     this._initAmbient();
-    this._initDirectional();
+    //this._initDirectional(); // Ain't Nobody Got Time for That
   }
 
   _initAmbient() {

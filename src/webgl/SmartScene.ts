@@ -13,7 +13,7 @@ export class SmartScene {
   el: HTMLCanvasElement;
 
   camera: MyCamera;
-  cubeCamera: THREE.CubeCamera;
+  waterMirrorCamera: MirrorCamera;
 
   scene: THREE.Scene;
   renderer: THREE.WebGLRenderer;
@@ -42,13 +42,11 @@ export class SmartScene {
   }
 
   _initSceneObjs(config: WaterConfig) {
-    this.water = waterFactory(config, this.renderer, this.cubeCamera.renderTarget.texture);
+    this.water = waterFactory(config, this.renderer, this.waterMirrorCamera.renderTarget.texture);
 
     [
       new StaticLights(),
       new Firefly(new THREE.Vector3(60, 30, 0), 20),
-      //new Firefly(new THREE.Vector3(40, 30, 20), 15),
-      //new Firefly(new THREE.Vector3(-50, 30, 0), 20),
       new Mountains(),
       this.water,
     ].forEach(it => this.scene.add(it));
@@ -65,7 +63,7 @@ export class SmartScene {
 
     this.renderer = this._initRenderer(width, height);
     this.camera = new MyCamera(width / height, this.el);
-    this.cubeCamera = new MirrorCamera(512);
+    this.waterMirrorCamera = new MirrorCamera(512);
 
     const onResizeDebounced = debounce(() => {
       this.camera.aspect = window.innerWidth / window.innerHeight;
@@ -79,9 +77,11 @@ export class SmartScene {
 
   _renderMirror() {
     this.water.visible = false;
-    this.cubeCamera.update(this.renderer, this.scene);
+    this.waterMirrorCamera.mirrorPosition(this.camera);
+    this.waterMirrorCamera.update(this.renderer, this.scene);
     this.water.visible = true;
   }
+
   run = () => {
     this._renderMirror();
     this.renderer.render(this.scene, this.camera);
