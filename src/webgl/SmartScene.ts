@@ -6,8 +6,8 @@ import { config } from '../config';
 import * as Stats from 'stats.js';
 import { debounce } from '../utils/debounce';
 import { WaterConfig, waterFactory } from './objs/waterFactory';
-import { CirclingLights } from './objs/CirclingLights';
 import { Mountains } from './objs/Mountains';
+import { Firefly } from './objs/Firefly';
 
 export class SmartScene {
   el: HTMLCanvasElement;
@@ -44,9 +44,14 @@ export class SmartScene {
   _initSceneObjs(config: WaterConfig) {
     this.water = waterFactory(config, this.renderer, this.cubeCamera.renderTarget.texture);
 
-    [new StaticLights(), new CirclingLights(), new Mountains(), this.water].forEach(it =>
-      this.scene.add(it)
-    );
+    [
+      new StaticLights(),
+      new Firefly(new THREE.Vector3(60, 30, 0), 20),
+      //new Firefly(new THREE.Vector3(40, 30, 20), 15),
+      //new Firefly(new THREE.Vector3(-50, 30, 0), 20),
+      new Mountains(),
+      this.water,
+    ].forEach(it => this.scene.add(it));
   }
 
   _initScene() {
@@ -60,7 +65,6 @@ export class SmartScene {
 
     this.renderer = this._initRenderer(width, height);
     this.camera = new MyCamera(width / height, this.el);
-    // todo to config
     this.cubeCamera = new MirrorCamera(512);
 
     const onResizeDebounced = debounce(() => {
