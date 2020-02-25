@@ -58,36 +58,36 @@ function getMaterial(
 
     case WaterTypeEnum.CustomShader:
       // material: make a THREE.ShaderMaterial clone of THREE.MeshPhongMaterial, with customized vertex shader
-      return new THREE.ShaderMaterial({
+      const material = new THREE.ShaderMaterial({
         uniforms: THREE.UniformsUtils.merge([
-          THREE.ShaderLib['phong'].uniforms,
+          THREE.ShaderLib.phong.uniforms,
           {
             heightmap: { value: null },
             diffuse: { value: new THREE.Color('#54668e') },
             specular: { value: new THREE.Color('#555') },
             shininess: { value: 5 },
             opacity: { value: 0.95 },
-            envMap: { value: envMap },
-            flipEnvMap: { value: -1 },
-            maxMipLevel: { value: 0 },
-            combine: { value: THREE.MixOperation },
             refractionRatio: { value: 0.98 },
             reflectivity: { value: 0.6 },
+            flipEnvMap: { value: 1 },
           },
         ]),
         defines: {
           WIDTH: segments.toFixed(1),
           BOUNDS: size.toFixed(1),
-          USE_ENVMAP: '',
-          ENVMAP_TYPE_CUBE: '',
-          //ENVMAP_TYPE_CUBE_UV: true,
         },
         vertexShader: waterVertexShader,
-        //vertexShader: THREE.ShaderChunk['meshphong_vert'],
-        fragmentShader: THREE.ShaderChunk['meshphong_frag'],
+        fragmentShader: THREE.ShaderLib.phong.fragmentShader,
         lights: true,
-        transparent: true,
       });
+
+      // @ts-ignore We really need to define this prop
+      material.envMap = envMap;
+      // @ts-ignore We really need to define this prop
+      material.combine = THREE.MixOperation;
+      material.uniforms.envMap.value = envMap;
+
+      return material;
 
     case WaterTypeEnum.ThreeExampleShader:
       throw new Error('not supported!');
