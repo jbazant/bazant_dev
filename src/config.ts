@@ -7,11 +7,23 @@ export const config = {
     size: 258,
     animationType: AnimationTypeEnum.Rain,
     waterType: WaterTypeEnum.CustomShader,
-    animationConfig: {
-      speed: 0.05,
-      distance: 0.3,
-      density: 0.6,
-    },
   },
   useStats: true,
+  mirrorCameraResolution: 512,
+  fireflyConfig: {
+    light: {
+      color: 'rgb(117,149,47)',
+      intensity: 0.8,
+      distance: 200,
+    },
+    body: {
+      color: '#5d3a02',
+    },
+  },
+  fireflies: [
+    {
+      offset: { x: 60, y: 30, z: 0 },
+      maxDeviation: 20,
+    },
+  ],
 };

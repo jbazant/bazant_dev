@@ -10,10 +10,12 @@ export class Mountains extends THREE.Group {
     const material = this._generateMaterial();
     const geometry1 = this._generateGeometry(256);
     const geometry2 = this._generateGeometry(350);
+
     const mesh1 = new THREE.Mesh(geometry1, material);
     mesh1.translateZ(-120);
     mesh1.rotateX(-Math.PI / 4);
     mesh1.rotateZ((Math.PI * 3) / 4);
+
     const mesh2 = new THREE.Mesh(geometry2, material);
     mesh2.translateX(-120);
     mesh2.rotateX(-Math.PI / 5);
@@ -70,18 +72,21 @@ export class Mountains extends THREE.Group {
 
   private _generateMaterial() {
     const loader = new THREE.TextureLoader();
+    const map = loader.load('./terrain.jpg', texture => {
+      texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+      texture.repeat.set(2, 2);
+    });
+    const normalMap = loader.load('./terrain-normals.jpg', texture => {
+      texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+      texture.repeat.set(1, 1);
+    });
+
     return new THREE.MeshPhongMaterial({
-      map: loader.load('./terrain.jpg', texture => {
-        texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-        texture.repeat.set(2, 2);
-      }),
-      normalMap: loader.load('./waternormals.jpg', texture => {
-        texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-        texture.repeat.set(1, 1);
-      }),
+      map,
+      normalMap,
       specular: '#000',
-      shininess: 0,
       emissive: '#000',
+      shininess: 0,
     });
   }
 }

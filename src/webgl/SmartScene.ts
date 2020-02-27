@@ -1,13 +1,13 @@
 import * as THREE from 'three';
-import { MyCamera } from './MyCamera';
-import { MirrorCamera } from './MirrorCamera';
+import { MyCamera } from './cameras/MyCamera';
+import { MirrorCamera } from './cameras/MirrorCamera';
 import { StaticLights } from './objs/StaticLights';
 import { config } from '../config';
 import * as Stats from 'stats.js';
 import { debounce } from '../utils/debounce';
-import { WaterConfig, waterFactory } from './objs/waterFactory';
+import { waterFactory } from './objs/waterFactory';
 import { Mountains } from './objs/Mountains';
-import { Firefly } from './objs/Firefly';
+import { firefliesFactory } from './objs/firefliesFactory';
 
 export class SmartScene {
   el: HTMLCanvasElement;
@@ -24,8 +24,8 @@ export class SmartScene {
 
   constructor(targetEl: HTMLCanvasElement, sceneConfig: typeof config) {
     this.el = targetEl;
-    this._initScene();
-    this._initSceneObjs(sceneConfig.water);
+    this._initScene(sceneConfig);
+    this._initSceneObjs(sceneConfig);
 
     if (sceneConfig.useStats) {
       this.stats = new Stats();
@@ -41,18 +41,22 @@ export class SmartScene {
     return renderer;
   }
 
-  _initSceneObjs(config: WaterConfig) {
-    this.water = waterFactory(config, this.renderer, this.waterMirrorCamera.renderTarget.texture);
+  _initSceneObjs(sceneConfig: typeof config) {
+    this.water = waterFactory(
+      sceneConfig.water,
+      this.renderer,
+      this.waterMirrorCamera.renderTarget.texture
+    );
 
-    [
+    this.scene.add(
       new StaticLights(),
-      new Firefly(new THREE.Vector3(60, 30, 0), 20),
       new Mountains(),
       this.water,
-    ].forEach(it => this.scene.add(it));
+      ...firefliesFactory(config.fireflies, config.fireflyConfig)
+    );
   }
 
-  _initScene() {
+  _initScene(sceneConfig: typeof config) {
     const width = window.innerWidth;
     const height = window.innerHeight;
 
@@ -63,7 +67,7 @@ export class SmartScene {
 
     this.renderer = this._initRenderer(width, height);
     this.camera = new MyCamera(width / height, this.el);
-    this.waterMirrorCamera = new MirrorCamera(512);
+    this.waterMirrorCamera = new MirrorCamera(sceneConfig.mirrorCameraResolution);
 
     const onResizeDebounced = debounce(() => {
       this.camera.aspect = window.innerWidth / window.innerHeight;

@@ -1,9 +1,5 @@
 import * as THREE from 'three';
-import {
-  AnimationConfig,
-  AnimationTypeEnum,
-  getWaterAnimation,
-} from '../animations/getWaterAnimation';
+import { AnimationTypeEnum, getWaterAnimation } from '../animations/getWaterAnimation';
 import { Options, ThreeExampleShaderWater } from './ThreeExampleShaderWater';
 import waterVertexShader from '../../shaders/heightmap_phong.vert';
 
@@ -19,7 +15,6 @@ export type WaterConfig = {
   size: number;
   waterType: WaterTypeEnum;
   animationType: AnimationTypeEnum;
-  animationConfig: AnimationConfig;
 };
 
 export function getGeometry(size: number, segments: number) {
@@ -41,20 +36,19 @@ function getMaterial(
 
     case WaterTypeEnum.EnvMap:
       if (!envMap) {
-        throw new Error('skyTexture is required');
-      } else {
-        return new THREE.MeshPhongMaterial({
-          envMap: envMap,
-          //map: new THREE.TextureLoader().load('water.jpg'),
-          color: new THREE.Color('#54668e'),
-          specular: new THREE.Color('#fff'),
-          opacity: 0.95,
-          transparent: true,
-          side: THREE.FrontSide,
-          reflectivity: 0.6,
-          combine: THREE.MixOperation,
-        });
+        throw new Error('envMap is required');
       }
+
+      return new THREE.MeshPhongMaterial({
+        envMap: envMap,
+        color: new THREE.Color('#54668e'),
+        specular: new THREE.Color('#fff'),
+        opacity: 0.95,
+        transparent: true,
+        side: THREE.FrontSide,
+        reflectivity: 0.6,
+        combine: THREE.MixOperation,
+      });
 
     case WaterTypeEnum.CustomShader:
       // material: make a THREE.ShaderMaterial clone of THREE.MeshPhongMaterial, with customized vertex shader
@@ -67,8 +61,7 @@ function getMaterial(
             specular: { value: new THREE.Color('#555') },
             shininess: { value: 5 },
             opacity: { value: 0.7 },
-            refractionRatio: { value: 0.98 },
-            reflectivity: { value: 0.6 },
+            reflectivity: { value: 0.7 },
             flipEnvMap: { value: 1 },
           },
         ]),
@@ -113,11 +106,11 @@ export function waterFactory(
         waterNormals: new THREE.TextureLoader().load('waternormals.jpg', texture => {
           texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
         }),
-        sunColor: 0xffffff,
-        waterColor: 0x1234aa,
+        sunColor: 0x555555,
+        waterColor: 0x445375,
         distortionScale: 3.7,
         fog: false,
-        alpha: 0.95,
+        alpha: 0.7,
       };
       return new ThreeExampleShaderWater(geometry, options);
     }

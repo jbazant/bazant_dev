@@ -1,13 +1,9 @@
 # Roadmap
 
 ## Animation
-- improve water by some integrity checks
-- shader for water - should be huge boost
 - sand texture
-- grass texture
-- gloving artifact
-- landscape
-- do I really want circle lights?
+- gloving text
+- move with camera
 
 ## Website
 1. Create structure sketch

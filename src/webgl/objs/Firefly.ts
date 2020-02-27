@@ -1,11 +1,16 @@
 import * as THREE from 'three';
 import { SimplexNoise } from '../../utils/SimplexNoise';
 
-// todo to config / params ?
-const LIGHT_COLOR = new THREE.Color('rgb(117,149,47)');
-const LIGHT_INTENSITY = 0.8;
-const LIGHT_DISTANCE = 200;
-const BODY_COLOR = new THREE.Color('#5d3a02');
+export type FireflyConfig = {
+  light: {
+    color: string;
+    intensity: number;
+    distance: number;
+  };
+  body: {
+    color: string;
+  };
+};
 
 export class Firefly extends THREE.Mesh {
   clock: THREE.Clock;
@@ -14,7 +19,7 @@ export class Firefly extends THREE.Mesh {
   flyPosition: THREE.Vector3;
   maxDeviation: number;
 
-  constructor(position: THREE.Vector3, maxDeviation: number) {
+  constructor(position: THREE.Vector3, maxDeviation: number, config: FireflyConfig) {
     super();
 
     this.flyBasePosition = position;
@@ -24,7 +29,7 @@ export class Firefly extends THREE.Mesh {
     this.clock.start();
     this.simplex = new SimplexNoise();
 
-    const model = this._getModel();
+    const model = this._getModel(config);
     this.flyPosition = model.position;
     this.add(model);
   }
@@ -36,11 +41,11 @@ export class Firefly extends THREE.Mesh {
     return geometry;
   }
 
-  _getModel() {
+  _getModel(config: FireflyConfig) {
     const frontPart = new THREE.Mesh(
       this._getBodyPartGeometry(0.4),
       new THREE.MeshLambertMaterial({
-        color: BODY_COLOR,
+        color: config.body.color,
       })
     );
     frontPart.position.setZ(-0.2);
@@ -49,15 +54,19 @@ export class Firefly extends THREE.Mesh {
       this._getBodyPartGeometry(0.3),
       new THREE.MeshLambertMaterial({
         transparent: true,
-        color: LIGHT_COLOR,
-        emissive: LIGHT_COLOR,
+        color: config.light.color,
+        emissive: config.light.color,
         emissiveIntensity: 2,
       })
     );
     backPart.rotateX(Math.PI / 5);
     backPart.position.set(0, -0.1, 0.2);
 
-    const light = new THREE.PointLight(LIGHT_COLOR, LIGHT_INTENSITY, LIGHT_DISTANCE);
+    const light = new THREE.PointLight(
+      config.light.color,
+      config.light.intensity,
+      config.light.distance
+    );
 
     const group = new THREE.Group();
     group.add(frontPart, backPart, light);

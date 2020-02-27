@@ -7,12 +7,6 @@ export enum AnimationTypeEnum {
   Rain,
 }
 
-export type AnimationConfig = null | {
-  speed: number;
-  distance: number;
-  density: number;
-};
-
 export const getWaterAnimation = (
   animationType: AnimationTypeEnum,
   segmentCount: number,
