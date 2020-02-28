@@ -128,6 +128,10 @@ export function waterFactory(
       };
 
       waterAnimation.startAnim();
+
+      object3D.matrixAutoUpdate = false;
+      object3D.updateMatrix();
+
       return object3D;
     }
   }

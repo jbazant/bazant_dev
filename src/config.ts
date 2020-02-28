@@ -2,19 +2,18 @@ import { AnimationTypeEnum } from './webgl/animations/getWaterAnimation';
 import { WaterTypeEnum } from './webgl/objs/waterFactory';
 
 export const config = {
+  useStats: false,
   water: {
     segmentCount: 512,
     size: 258,
     animationType: AnimationTypeEnum.Rain,
     waterType: WaterTypeEnum.CustomShader,
   },
-  useStats: true,
-  mirrorCameraResolution: 512,
   fireflyConfig: {
     light: {
       color: 'rgb(117,149,47)',
-      intensity: 0.8,
-      distance: 200,
+      intensity: 2,
+      distance: 100,
     },
     body: {
       color: '#5d3a02',
@@ -22,8 +21,21 @@ export const config = {
   },
   fireflies: [
     {
-      offset: { x: 60, y: 30, z: 0 },
+      offset: { x: -10, y: 31, z: 0 },
+      maxDeviation: 30,
+    },
+    {
+      offset: { x: 70, y: 40, z: 0 },
       maxDeviation: 20,
     },
   ],
+  text3d: {
+    lines: ['Bažant.DEV', 'coming soon...'],
+  },
+  camera: {
+    allowOrbitControls: false,
+  },
+  mirrorCamera: {
+    resolution: 512,
+  },
 };

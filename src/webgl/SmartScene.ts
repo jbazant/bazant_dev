@@ -8,6 +8,7 @@ import { debounce } from '../utils/debounce';
 import { waterFactory } from './objs/waterFactory';
 import { Mountains } from './objs/Mountains';
 import { firefliesFactory } from './objs/firefliesFactory';
+import { Text3d } from './objs/Text3d';
 
 export class SmartScene {
   el: HTMLCanvasElement;
@@ -52,6 +53,7 @@ export class SmartScene {
       new StaticLights(),
       new Mountains(),
       this.water,
+      new Text3d(sceneConfig.text3d.lines),
       ...firefliesFactory(config.fireflies, config.fireflyConfig)
     );
   }
@@ -66,8 +68,8 @@ export class SmartScene {
       .load(['px.png', 'nx.png', 'py.png', 'ny.png', 'pz.png', 'nz.png']);
 
     this.renderer = this._initRenderer(width, height);
-    this.camera = new MyCamera(width / height, this.el);
-    this.waterMirrorCamera = new MirrorCamera(sceneConfig.mirrorCameraResolution);
+    this.camera = new MyCamera(width / height, this.el, sceneConfig.camera);
+    this.waterMirrorCamera = new MirrorCamera(sceneConfig.mirrorCamera);
 
     const onResizeDebounced = debounce(() => {
       this.camera.aspect = window.innerWidth / window.innerHeight;

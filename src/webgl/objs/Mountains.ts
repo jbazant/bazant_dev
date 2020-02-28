@@ -15,13 +15,20 @@ export class Mountains extends THREE.Group {
     mesh1.translateZ(-120);
     mesh1.rotateX(-Math.PI / 4);
     mesh1.rotateZ((Math.PI * 3) / 4);
+    mesh1.matrixAutoUpdate = false;
+    mesh1.updateMatrix();
 
     const mesh2 = new THREE.Mesh(geometry2, material);
     mesh2.translateX(-120);
     mesh2.rotateX(-Math.PI / 5);
     mesh2.rotateZ(Math.PI / 5);
     mesh2.rotateOnWorldAxis(new THREE.Vector3(0, 1, 0), Math.PI / 2);
+    mesh2.matrixAutoUpdate = false;
+    mesh2.updateMatrix();
+
     this.add(mesh1, mesh2);
+    this.matrixAutoUpdate = false;
+    this.updateMatrix();
   }
 
   private _getOffsetZ(x: number, y: number) {

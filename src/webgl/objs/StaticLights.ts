@@ -4,7 +4,10 @@ export class StaticLights extends Group {
   constructor() {
     super();
     this._initAmbient();
-    //this._initDirectional(); // Ain't Nobody Got Time for That
+    this._initDirectional();
+
+    this.matrixAutoUpdate = false;
+    this.updateMatrix();
   }
 
   _initAmbient() {
@@ -12,7 +15,7 @@ export class StaticLights extends Group {
   }
 
   _initDirectional() {
-    const lightDirectional = new DirectionalLight('#504d6b', 0.5);
+    const lightDirectional = new DirectionalLight('#504d6b', 0.2);
     lightDirectional.position.set(0.5, 1, 0);
     this.add(lightDirectional);
   }
