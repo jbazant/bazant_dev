@@ -65,7 +65,9 @@ export class SmartScene {
     this.scene = new THREE.Scene();
     this.scene.background = new THREE.CubeTextureLoader()
       .setPath('skybox/')
-      .load(['px.png', 'nx.png', 'py.png', 'ny.png', 'pz.png', 'nz.png']);
+      // here are wrong sides by purpose, to safe some bytes
+      // .load(['px.png', 'nx.png', 'py.png', 'ny.png', 'pz.png', 'nz.png']);
+      .load(['px.png', 'px.png', 'py.png', 'py.png', 'nz.png', 'nz.png']);
 
     this.renderer = this._initRenderer(width, height);
     this.camera = new MyCamera(width / height, this.el, sceneConfig.camera);

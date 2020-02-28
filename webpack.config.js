@@ -1,9 +1,12 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const path = require('path');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
   entry: './src/index.ts',
   mode: 'development',
-  devtool: 'inline-source-map',
+  devtool: 'source-map',
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
@@ -32,5 +35,20 @@ module.exports = {
     contentBase: path.join(__dirname, 'dist'),
     compress: false,
     port: 9000,
+  },
+  optimization: {
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          ecma: 6,
+          compress: {
+            // eslint-disable-next-line @typescript-eslint/camelcase
+            drop_console: true,
+          },
+          output: { comments: false, beautify: false },
+        },
+        sourceMap: false,
+      }),
+    ],
   },
 };
