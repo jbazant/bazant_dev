@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { AnimationTypeEnum, getWaterAnimation } from '../animations/getWaterAnimation';
 import { Options, ThreeExampleShaderWater } from './ThreeExampleShaderWater';
 import waterVertexShader from '../../shaders/heightmap_phong.vert';
+import { assetsLoaderSingleton } from '../utils/AssetsLoader';
 
 export enum WaterTypeEnum {
   Points,
@@ -103,7 +104,7 @@ export function waterFactory(
     case WaterTypeEnum.ThreeExampleShader: {
       const geometry = new THREE.PlaneBufferGeometry(segmentCount, segmentCount);
       const options: Options = {
-        waterNormals: new THREE.TextureLoader().load('waternormals.jpg', texture => {
+        waterNormals: assetsLoaderSingleton.loadTexture('waternormals.jpg', texture => {
           texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
         }),
         sunColor: 0x555555,
