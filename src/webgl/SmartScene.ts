@@ -82,8 +82,8 @@ export class SmartScene {
     this.water.visible = true;
   }
 
-  onReady(callback: () => void) {
-    assetsLoaderSingleton.progressPromise.then(callback);
+  onReady(onSuccess: () => void, onFail: () => void) {
+    assetsLoaderSingleton.progressPromise.then(onSuccess).catch(onFail);
 
     const onResizeDebounced = debounce(() => {
       this.camera.aspect = window.innerWidth / window.innerHeight;

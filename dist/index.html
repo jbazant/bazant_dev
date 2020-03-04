@@ -1,86 +1,97 @@
 <!DOCTYPE html>
 <html lang="cz">
-  <head>
-    <meta charset="utf-8" />
-    <title>Jirka Bažant</title>
+<head>
+  <meta charset="utf-8"/>
+  <title>Jirka Bažant</title>
 
-    <link rel="apple-touch-icon" sizes="57x57" href="/icons/apple-icon-57x57.png" />
-    <link rel="apple-touch-icon" sizes="60x60" href="/icons/apple-icon-60x60.png" />
-    <link rel="apple-touch-icon" sizes="72x72" href="/icons/apple-icon-72x72.png" />
-    <link rel="apple-touch-icon" sizes="76x76" href="/icons/apple-icon-76x76.png" />
-    <link rel="apple-touch-icon" sizes="114x114" href="/icons/apple-icon-114x114.png" />
-    <link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-icon-120x120.png" />
-    <link rel="apple-touch-icon" sizes="144x144" href="/icons/apple-icon-144x144.png" />
-    <link rel="apple-touch-icon" sizes="152x152" href="/icons/apple-icon-152x152.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-icon-180x180.png" />
-    <link rel="icon" type="image/png" sizes="192x192" href="/icons/android-icon-192x192.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="96x96" href="/icons/favicon-96x96.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png" />
-    <link rel="manifest" href="/manifest.json" />
-    <meta name="msapplication-TileColor" content="#ffffff" />
-    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
-    <meta name="theme-color" content="#ffffff" />
+  <link rel="apple-touch-icon" sizes="57x57" href="/icons/apple-icon-57x57.png"/>
+  <link rel="apple-touch-icon" sizes="60x60" href="/icons/apple-icon-60x60.png"/>
+  <link rel="apple-touch-icon" sizes="72x72" href="/icons/apple-icon-72x72.png"/>
+  <link rel="apple-touch-icon" sizes="76x76" href="/icons/apple-icon-76x76.png"/>
+  <link rel="apple-touch-icon" sizes="114x114" href="/icons/apple-icon-114x114.png"/>
+  <link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-icon-120x120.png"/>
+  <link rel="apple-touch-icon" sizes="144x144" href="/icons/apple-icon-144x144.png"/>
+  <link rel="apple-touch-icon" sizes="152x152" href="/icons/apple-icon-152x152.png"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-icon-180x180.png"/>
+  <link rel="icon" type="image/png" sizes="192x192" href="/icons/android-icon-192x192.png"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png"/>
+  <link rel="icon" type="image/png" sizes="96x96" href="/icons/favicon-96x96.png"/>
+  <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png"/>
+  <link rel="manifest" href="/manifest.json"/>
+  <meta name="msapplication-TileColor" content="#ffffff"/>
+  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png"/>
+  <meta name="theme-color" content="#ffffff"/>
 
-    <meta name="description" content="Jirka Bažant: Personal sandbox" />
-    <meta name="author" content="Jirka Bažant" />
-    <style type="text/css">
-      body {
-        padding: 0;
-        margin: 0;
-        background-color: #1e0e25;
-        font-family: Verdana Tahoma Helvetica sans-serif;
-      }
-      h1,
-      p {
-        margin: 20px;
-        color: white;
-      }
-      .main {
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-      }
-      #loading-info-placeholder {
-        position: absolute;
-      }
-      .no-vis {
-        display: none;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="animation-wrapper no-vis main">
-      <div id="loading-info-placeholder">
-        <p>
-          Loading data for animation that will melt down your CPU and GPU.
-        </p>
-        <p>
-          If you are planning to cook something it is right time to prepare it and place it on your
-          machine.
-        </p>
-      </div>
-      <canvas id="water-canvas"></canvas>
+  <meta name="description" content="Jirka Bažant: Personal sandbox"/>
+  <meta name="author" content="Jirka Bažant"/>
+  <style type="text/css">
+    body {
+      padding: 0;
+      margin: 0;
+      background-color: #1e0e25;
+      font-family: Verdana, Tahoma, Helvetica, sans-serif;
+    }
+
+    h1,
+    p {
+      margin: 20px;
+      color: white;
+    }
+
+    .main {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .abs {
+      position: absolute;
+    }
+
+    .no-vis {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+<div class="animation-wrapper no-vis main">
+  <div id="loading-info-placeholder" class="abs">
+    <p>Loading data for animation that will melt down your CPU and GPU.</p>
+    <p>
+      If you are planning to cook something it is right time to prepare it and place it on your
+      machine.
+    </p>
+  </div>
+
+  <div id="loading-error-placeholder" class="abs no-vis">
+    <p>Oh crap...</p>
+    <p>Something, somewhere, somehow did not go well.</p>
+    <p>Maybe your connection is too slow.</p>
+    <p>Maybe I did something really bad and everything breaks down.</p>
+    <p>Maybe you had just back luck.</p>
+  </div>
+
+  <canvas id="water-canvas"></canvas>
+</div>
+
+<noscript>
+  <div class="main">
+    <div>
+      <h1>Jirka Bažant: Personal sandbox</h1>
+      <p>Under development.<br/>Hopefully coming soon (approx. in&nbsp1 year).</p>
+      <p>
+        And by the way, this site shows less text and much more animations when you look at it
+        from browser that supports JS and WebGL. (But stays on the same level of uselessness as
+        this version.)
+      </p>
     </div>
-    <noscript>
-      <div class="main">
-        <div>
-          <h1>Jirka Bažant: Personal sandbox</h1>
-          <p>Under development.<br />Hopefully coming soon (approx. in&nbsp1 year).</p>
-          <p>
-            And by the way, this site shows less text and much more animations when you look at it
-            from browser that supports JS and WebGL. (But stays on the same level of uselessness as
-            this version.)
-          </p>
-        </div>
-      </div>
-    </noscript>
-    <script>
-      document.getElementsByClassName('animation-wrapper')[0].classList.remove('no-vis');
-    </script>
-
-    <script src="./main.js"></script>
-  </body>
+  </div>
+</noscript>
+<script>
+  document.getElementsByClassName('animation-wrapper')[0].classList.remove('no-vis');
+</script>
+<script src="./main.js"></script>
+</body>
 </html>

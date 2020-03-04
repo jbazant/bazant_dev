@@ -11,8 +11,6 @@ const BASE_GEOMETRY_PARAMS = {
   bevelSegments: 2,
 };
 
-const FONT_URL = './fonts/gentilis_bold.typeface.json';
-
 const getColor = (x: number) => Math.sin(x) * 0.4 + 0.5;
 
 export class Text3d extends THREE.Mesh {
@@ -25,7 +23,9 @@ export class Text3d extends THREE.Mesh {
     this.clock = new THREE.Clock();
     this.textMaterial = new THREE.MeshPhongMaterial({ emissiveIntensity: 0.1, shininess: 100 });
 
-    assetsLoaderSingleton.loadFont(FONT_URL, font => this._onFontLoaded(font, lines));
+    assetsLoaderSingleton.loadFont('gentilis_bold.typeface.json', font =>
+      this._onFontLoaded(font, lines)
+    );
 
     this.rotateY(Math.PI / 4);
     this.position.set(-5, 0, -5);

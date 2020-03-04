@@ -1,30 +1,54 @@
 import * as THREE from 'three';
 
+const TIMEOUT = 20e3;
+
+/*
+ * Note that this loader is not gold hammer.
+ * If your use case is that you load one image and after some time another one
+ * it can lead to problems using this loader as you get "random" rejections from `progressPromise`
+ */
 class AssetsLoader {
-  fontLoader: THREE.FontLoader = new THREE.FontLoader();
-  textureLoader: THREE.TextureLoader = new THREE.TextureLoader();
-  cubeTextureLoader: THREE.CubeTextureLoader = new THREE.CubeTextureLoader();
+  fontLoader: THREE.FontLoader;
+  textureLoader: THREE.TextureLoader;
+  cubeTextureLoader: THREE.CubeTextureLoader;
 
   inProgressCount = 0;
   progressPromise = Promise.resolve();
 
-  _resolver: () => void;
+  _progressTimeout: NodeJS.Timeout | null = null;
+  _progressResolve: () => void;
 
-  _onLoad = <T>(onLoad?: (response: T) => void) => (response: T) => {
-    --this.inProgressCount;
-    if (this.inProgressCount === 0) {
-      this._resolver();
-    }
-    onLoad && onLoad(response);
-  };
+  constructor() {
+    this.fontLoader = new THREE.FontLoader();
+    this.textureLoader = new THREE.TextureLoader();
+    this.cubeTextureLoader = new THREE.CubeTextureLoader();
+
+    this.fontLoader.setPath('fonts/');
+    this.textureLoader.setPath('images/');
+    this.cubeTextureLoader.setPath('images/');
+  }
 
   _beforeLoad() {
     if (this.inProgressCount === 0) {
-      // todo reject after timeout?
-      this.progressPromise = new Promise(resolve => (this._resolver = resolve));
+      this.progressPromise = new Promise((resolve, reject) => {
+        this._progressResolve = resolve;
+        this._progressTimeout = setTimeout(reject, TIMEOUT);
+      });
     }
+
     ++this.inProgressCount;
   }
+
+  _afterLoad = <T>(onLoad?: (response: T) => void) => (response: T) => {
+    --this.inProgressCount;
+
+    if (this.inProgressCount === 0) {
+      clearTimeout(this._progressTimeout);
+      this._progressResolve();
+    }
+
+    onLoad && onLoad(response);
+  };
 
   loadFont(
     url: string,
@@ -32,7 +56,7 @@ class AssetsLoader {
     onError?: (event: ErrorEvent) => void
   ) {
     this._beforeLoad();
-    return this.fontLoader.load(url, this._onLoad(onLoad), undefined, onError);
+    return this.fontLoader.load(url, this._afterLoad(onLoad), undefined, onError);
   }
 
   loadTexture(
@@ -41,7 +65,7 @@ class AssetsLoader {
     onError?: (event: ErrorEvent) => void
   ) {
     this._beforeLoad();
-    return this.textureLoader.load(url, this._onLoad(onLoad), undefined, onError);
+    return this.textureLoader.load(url, this._afterLoad(onLoad), undefined, onError);
   }
 
   loadCubeTexture(
@@ -50,7 +74,7 @@ class AssetsLoader {
     onError?: (event: ErrorEvent) => void
   ) {
     this._beforeLoad();
-    return this.cubeTextureLoader.load(urls, this._onLoad(onLoad), undefined, onError);
+    return this.cubeTextureLoader.load(urls, this._afterLoad(onLoad), undefined, onError);
   }
 }
 
