@@ -1,14 +1,11 @@
 import * as THREE from 'three';
 import { AnimationTypeEnum, getWaterAnimation } from '../animations/getWaterAnimation';
-import { Options, ThreeExampleShaderWater } from './ThreeExampleShaderWater';
 import waterVertexShader from '../../shaders/heightmap_phong.vert';
-import { assetsLoaderSingleton } from '../utils/AssetsLoader';
 
 export enum WaterTypeEnum {
-  Points,
   EnvMap,
-  ThreeExampleShader,
   CustomShader,
+  //ThreeExampleShader,
 }
 
 export type WaterConfig = {
@@ -18,7 +15,7 @@ export type WaterConfig = {
   animationType: AnimationTypeEnum;
 };
 
-export function getGeometry(size: number, segments: number) {
+function getGeometry(size: number, segments: number) {
   return new THREE.PlaneBufferGeometry(size, size, segments - 1, segments - 1);
 }
 
@@ -29,12 +26,6 @@ function getMaterial(
   envMap?: THREE.CubeTexture | THREE.Texture
 ) {
   switch (waterType) {
-    case WaterTypeEnum.Points:
-      return new THREE.PointsMaterial({
-        color: 0xf3ffe2,
-        size: 3,
-      });
-
     case WaterTypeEnum.EnvMap:
       if (!envMap) {
         throw new Error('envMap is required');
@@ -83,14 +74,7 @@ function getMaterial(
       material.uniforms.envMap.value = envMap;
 
       return material;
-
-    case WaterTypeEnum.ThreeExampleShader:
-      throw new Error('not supported!');
   }
-}
-
-function getObject3DPrototype(waterType: WaterTypeEnum) {
-  return WaterTypeEnum.Points === waterType ? THREE.Points : THREE.Mesh;
 }
 
 export function waterFactory(
@@ -100,40 +84,37 @@ export function waterFactory(
 ) {
   const { segmentCount, size, waterType, animationType } = config;
 
-  switch (waterType) {
-    case WaterTypeEnum.ThreeExampleShader: {
-      const geometry = new THREE.PlaneBufferGeometry(segmentCount, segmentCount);
-      const options: Options = {
-        waterNormals: assetsLoaderSingleton.loadTexture('waternormals.jpg', texture => {
-          texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-        }),
-        sunColor: 0x555555,
-        waterColor: 0x445375,
-        distortionScale: 3.7,
-        fog: false,
-        alpha: 0.7,
-      };
-      return new ThreeExampleShaderWater(geometry, options);
-    }
+  // /* THIS is altered ocean shader from THREE js examples. Let's keep it here for FFU */
+  // if (waterType === WaterTypeEnum.ThreeExampleShader) {
+  //   const geometry = new THREE.PlaneBufferGeometry(segmentCount, segmentCount);
+  //   const options: Options = {
+  //     waterNormals: assetsLoaderSingleton.loadTexture('waternormals.jpg', texture => {
+  //       texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+  //     }),
+  //     sunColor: 0x555555,
+  //     waterColor: 0x445375,
+  //     distortionScale: 3.7,
+  //     fog: false,
+  //     alpha: 0.7,
+  //   };
+  //   return new ThreeExampleShaderWater(geometry, options);
+  // }
 
-    default: {
-      const waterAnimation = getWaterAnimation(animationType, segmentCount, renderer);
-      const geometry = getGeometry(size, segmentCount);
+  const waterAnimation = getWaterAnimation(animationType, segmentCount, renderer);
+  const geometry = getGeometry(size, segmentCount);
 
-      const material = getMaterial(waterType, size, segmentCount, skyTexture);
-      const object3D = new (getObject3DPrototype(waterType))(geometry, material);
-      object3D.rotation.x = -Math.PI / 2;
+  const material = getMaterial(waterType, size, segmentCount, skyTexture);
+  const mesh = new THREE.Mesh(geometry, material);
+  mesh.rotation.x = -Math.PI / 2;
 
-      object3D.onBeforeRender = () => {
-        waterAnimation.applyTo(object3D);
-      };
+  mesh.onBeforeRender = () => {
+    waterAnimation.applyTo(mesh);
+  };
 
-      waterAnimation.startAnim();
+  waterAnimation.startAnim();
 
-      object3D.matrixAutoUpdate = false;
-      object3D.updateMatrix();
+  mesh.matrixAutoUpdate = false;
+  mesh.updateMatrix();
 
-      return object3D;
-    }
-  }
+  return mesh;
 }

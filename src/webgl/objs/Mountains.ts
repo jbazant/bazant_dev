@@ -32,10 +32,6 @@ export class Mountains extends THREE.Group {
     this.updateMatrix();
   }
 
-  private _getOffsetZ(x: number, y: number) {
-    return 3 * (x + y * this.segments) + 2;
-  }
-
   private _generateGeometry(size: number) {
     const geometry = new THREE.PlaneBufferGeometry(
       size,
@@ -43,35 +39,31 @@ export class Mountains extends THREE.Group {
       this.segments - 1,
       this.segments - 1
     );
+
+    const alterZCoord = (i: number, j: number, zMod: number) => {
+      const offset = 3 * (i + j * this.segments) + 2;
+      //@ts-ignore value is actually not read only
+      geometry.attributes.position.array[offset] += zMod;
+    };
+
     const simplex = new SimplexNoise();
+    const deviation = 8;
+    const doubleDeviation = 2 * deviation;
 
     for (let i = 0; i < this.segments; ++i) {
       for (let j = 0; j < this.segments; ++j) {
-        //@ts-ignore value is actually not read only
-        geometry.attributes.position.array[this._getOffsetZ(i, j)] +=
-          8 * simplex.noise(i * this.noiseScale, j * this.noiseScale);
+        const zMod = deviation * simplex.noise(i * this.noiseScale, j * this.noiseScale);
+        alterZCoord(i, j, zMod);
       }
-    }
 
-    for (let i = 0; i < this.segments; ++i) {
-      const modifier = 16;
-      //@ts-ignore value is actually not read only
-      geometry.attributes.position.array[this._getOffsetZ(i, 0)] -= modifier;
-      //@ts-ignore value is actually not read only
-      geometry.attributes.position.array[this._getOffsetZ(i, this.segments - 1)] -= modifier;
-      //@ts-ignore value is actually not read only
-      geometry.attributes.position.array[this._getOffsetZ(0, i)] -= modifier;
-      //@ts-ignore value is actually not read only
-      geometry.attributes.position.array[this._getOffsetZ(this.segments - 1, i)] -= modifier;
-
-      //@ts-ignore value is actually not read only
-      geometry.attributes.position.array[this._getOffsetZ(i, 1)] -= modifier / 2;
-      //@ts-ignore value is actually not read only
-      geometry.attributes.position.array[this._getOffsetZ(i, this.segments - 2)] -= modifier / 2;
-      //@ts-ignore value is actually not read only
-      geometry.attributes.position.array[this._getOffsetZ(1, i)] -= modifier / 2;
-      //@ts-ignore value is actually not read only
-      geometry.attributes.position.array[this._getOffsetZ(this.segments - 2, i)] -= modifier / 2;
+      [0, this.segments - 1].forEach(j => {
+        alterZCoord(i, j, -doubleDeviation);
+        alterZCoord(j, i, -doubleDeviation);
+      });
+      [1, this.segments - 2].forEach(j => {
+        alterZCoord(i, j, -deviation);
+        alterZCoord(j, i, -deviation);
+      });
     }
 
     geometry.computeVertexNormals();
