@@ -12,7 +12,7 @@ import {
   Color,
   FrontSide,
   LinearFilter,
-  Math as _Math,
+  MathUtils,
   Matrix4,
   Mesh,
   PerspectiveCamera,
@@ -96,7 +96,7 @@ export class ThreeExampleShaderWater extends Mesh {
 
     this.renderTarget = new WebGLRenderTarget(textureWidth, textureHeight, parameters);
 
-    if (!_Math.isPowerOfTwo(textureWidth) || !_Math.isPowerOfTwo(textureHeight)) {
+    if (!MathUtils.isPowerOfTwo(textureWidth) || !MathUtils.isPowerOfTwo(textureHeight)) {
       this.renderTarget.texture.generateMipmaps = false;
     }
 
