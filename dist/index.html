@@ -2,6 +2,11 @@
 <html lang="cz">
 <head>
   <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <meta name="description" content="Jirka Bažant: Personal sandbox"/>
+  <meta name="author" content="Jirka Bažant"/>
+
   <title>Jirka Bažant</title>
 
   <link rel="apple-touch-icon" sizes="57x57" href="/ico/apple-icon-57x57.png"/>
@@ -13,17 +18,18 @@
   <link rel="apple-touch-icon" sizes="144x144" href="/ico/apple-icon-144x144.png"/>
   <link rel="apple-touch-icon" sizes="152x152" href="/ico/apple-icon-152x152.png"/>
   <link rel="apple-touch-icon" sizes="180x180" href="/ico/apple-icon-180x180.png"/>
+
   <link rel="icon" type="image/png" sizes="192x192" href="/ico/android-icon-192x192.png"/>
   <link rel="icon" type="image/png" sizes="32x32" href="/ico/favicon-32x32.png"/>
   <link rel="icon" type="image/png" sizes="96x96" href="/ico/favicon-96x96.png"/>
   <link rel="icon" type="image/png" sizes="16x16" href="/ico/favicon-16x16.png"/>
+
   <link rel="manifest" href="/manifest.json"/>
+
   <meta name="msapplication-TileColor" content="#ffffff"/>
   <meta name="msapplication-TileImage" content="/ms-icon-144x144.png"/>
   <meta name="theme-color" content="#ffffff"/>
 
-  <meta name="description" content="Jirka Bažant: Personal sandbox"/>
-  <meta name="author" content="Jirka Bažant"/>
   <style type="text/css">
     body {
       padding: 0;
@@ -56,8 +62,19 @@
   </style>
 </head>
 <body>
-<div class="animation-wrapper no-vis main">
-  <div id="loading-info-placeholder" class="abs">
+<div class="main" id="noscript-content">
+  <div>
+    <h1>Jirka Bažant: Personal sandbox</h1>
+    <p>Under development.<br/>Hopefully coming soon (approx. in&nbsp1 year).</p>
+    <p>
+      And by the way, this site shows less text and much more animations when you look at it
+      from browser that supports JS and WebGL. (But stays on the same level of uselessness as
+      this version.)
+    </p>
+  </div>
+</div>
+<div class="no-vis main" id="animation-wrapper">
+  <div class="abs" id="loading-info-placeholder">
     <p>Loading data for animation that will melt down your CPU and GPU.</p>
     <p>
       If you are planning to cook something it is right time to prepare it and place it on your
@@ -65,7 +82,7 @@
     </p>
   </div>
 
-  <div id="loading-error-placeholder" class="abs no-vis">
+  <div class="no-vis abs" id="loading-error-placeholder">
     <p>Oh crap...</p>
     <p>Something, somewhere, somehow did not go well.</p>
     <p>Maybe your connection is too slow.</p>
@@ -75,23 +92,33 @@
 
   <canvas id="water-canvas"></canvas>
 </div>
-
-<noscript>
-  <div class="main">
-    <div>
-      <h1>Jirka Bažant: Personal sandbox</h1>
-      <p>Under development.<br/>Hopefully coming soon (approx. in&nbsp1 year).</p>
-      <p>
-        And by the way, this site shows less text and much more animations when you look at it
-        from browser that supports JS and WebGL. (But stays on the same level of uselessness as
-        this version.)
-      </p>
-    </div>
-  </div>
-</noscript>
 <script>
-  document.getElementsByClassName('animation-wrapper')[0].classList.remove('no-vis');
+  function init() {
+    var nojsEl = document.getElementById('noscript-content');
+    var canvasEl = document.getElementById('water-canvas');
+    nojsEl.classList.add('no-vis');
+
+    var gl = canvasEl.getContext('webgl') || canvasEl.getContext('experimental-webgl');
+    if (gl && gl instanceof WebGLRenderingContext) {
+      document.getElementById('animation-wrapper').classList.remove('no-vis');
+    } else {
+      nojsEl.classList.remove('no-vis');
+    }
+  }
+
+  function ga() {
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', 'UA-159918314-1');
+  }
+
+  ga();
+  init();
 </script>
-<script src="./main.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-159918314-1"></script>
+<script async src="./main.js?v=1"></script>
 </body>
 </html>

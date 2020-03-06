@@ -1,17 +1,23 @@
 import { SmartScene } from './webgl/SmartScene';
-import { config } from './config';
+import { getConfig } from './config';
 
 const canvas = document.getElementById('water-canvas') as HTMLCanvasElement;
-const smartScene = new SmartScene(canvas, config);
+const gl = canvas && (canvas.getContext('webgl') || canvas.getContext('experimental-webgl'));
 
-const onSuccess = () => {
-  document.getElementById('loading-info-placeholder').classList.add('no-vis');
-  smartScene.run();
-};
+if (gl && gl instanceof WebGLRenderingContext) {
+  const smartScene = new SmartScene(canvas, getConfig(gl.getSupportedExtensions()));
+  const getClassList = (name: string) =>
+    document.getElementById(`loading-${name}-placeholder`).classList;
 
-const onFail = () => {
-  document.getElementById('loading-info-placeholder').classList.add('no-vis');
-  document.getElementById('loading-error-placeholder').classList.remove('no-vis');
-};
+  const onSuccess = () => {
+    getClassList('info').add('no-vis');
+    smartScene.run();
+  };
 
-smartScene.onReady(onSuccess, onFail);
+  const onFail = () => {
+    getClassList('info').add('no-vis');
+    getClassList('error').remove('no-vis');
+  };
+
+  smartScene.onReady(onSuccess, onFail);
+}
