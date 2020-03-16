@@ -9,12 +9,16 @@ if (gl && gl instanceof WebGLRenderingContext) {
   const getClassList = (name: string) =>
     document.getElementById(`loading-${name}-placeholder`).classList;
 
+  let loadedSuccessfuly = true;
   const onSuccess = () => {
-    getClassList('info').add('no-vis');
-    smartScene.run();
+    if (loadedSuccessfuly) {
+      getClassList('info').add('no-vis');
+      smartScene.run();
+    }
   };
 
   const onFail = () => {
+    loadedSuccessfuly = false;
     getClassList('info').add('no-vis');
     getClassList('error').remove('no-vis');
   };

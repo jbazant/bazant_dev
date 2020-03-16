@@ -1,6 +1,5 @@
 import * as THREE from 'three';
 import { SimplexNoise } from '../../utils/SimplexNoise';
-import { assetsLoaderSingleton } from '../utils/AssetsLoader';
 
 export class Mountains extends THREE.Group {
   segments = 32;
@@ -71,12 +70,12 @@ export class Mountains extends THREE.Group {
   }
 
   private _generateMaterial() {
-    const loader = assetsLoaderSingleton;
-    const map = loader.loadTexture('./terrain.jpg', texture => {
+    const loader = new THREE.TextureLoader().setPath('images/');
+    const map = loader.load('terrain.jpg', texture => {
       texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
       texture.repeat.set(2, 2);
     });
-    const normalMap = loader.loadTexture('./terrain-normals.jpg', texture => {
+    const normalMap = loader.load('terrain-normals.jpg', texture => {
       texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
       texture.repeat.set(1, 1);
     });

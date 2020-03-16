@@ -9,7 +9,6 @@ import { waterFactory } from './objs/waterFactory';
 import { Mountains } from './objs/Mountains';
 import { firefliesFactory } from './objs/firefliesFactory';
 import { Text3d } from './objs/Text3d';
-import { assetsLoaderSingleton } from './utils/AssetsLoader';
 
 export class SmartScene {
   el: HTMLCanvasElement;
@@ -80,9 +79,9 @@ export class SmartScene {
     const textures = ['px', 'px', 'py', 'py', 'nz', 'nz'];
 
     this.scene = new THREE.Scene();
-    this.scene.background = assetsLoaderSingleton.loadCubeTexture(
-      textures.map(it => `skybox/${it}.png`)
-    );
+    this.scene.background = new THREE.CubeTextureLoader()
+      .setPath('images/skybox/')
+      .load(textures.map(it => `${it}.png`));
 
     this.renderer = this._initRenderer();
     this.camera = new MyCamera(1, this.el, sceneConfig.camera);
@@ -97,7 +96,8 @@ export class SmartScene {
   }
 
   onReady(onSuccess: () => void, onFail: () => void) {
-    assetsLoaderSingleton.progressPromise.then(onSuccess).catch(onFail);
+    THREE.DefaultLoadingManager.onLoad = onSuccess;
+    THREE.DefaultLoadingManager.onError = onFail;
 
     this._updateRatio();
     const onResizeDebounced = debounce(this._updateRatio, 200);
