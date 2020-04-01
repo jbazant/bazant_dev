@@ -45,7 +45,7 @@ module.exports = {
           ecma: 6,
           compress: {
             // eslint-disable-next-line @typescript-eslint/camelcase
-            drop_console: true,
+            //drop_console: true,
           },
           output: { comments: false, beautify: false },
         },
