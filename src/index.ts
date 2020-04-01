@@ -1,5 +1,6 @@
 import { SmartScene } from './webgl/SmartScene';
 import { getConfig } from './config';
+import { getFamily } from './family';
 
 const canvas = document.getElementById('water-canvas') as HTMLCanvasElement;
 const gl = canvas && (canvas.getContext('webgl') || canvas.getContext('experimental-webgl'));
@@ -25,3 +26,5 @@ if (gl && gl instanceof WebGLRenderingContext) {
 
   smartScene.onReady(onSuccess, onFail);
 }
+
+export { getFamily };
