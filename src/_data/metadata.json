@@ -1,0 +1,20 @@
+{
+  "title": "Jirka Bažant",
+  "url": "https://bazant.dev/",
+  "description": "Osobní pískoviště uveřejněné za účelem demonstrace vlastní ignorace a naprostého nedostatku uměleckého citu.",
+  "author": {
+    "name": "Jirka Bažant"
+  },
+  "icons": {
+    "favicon": ["16", "32", "96", "192"],
+    "appleTouchIcon": ["57", "60", "72", "76", "114", "120", "144", "152", "180"],
+    "android": [
+      ["36", "0.75"],
+      ["48", "1.0"],
+      ["72", "1.5"],
+      ["96", "2.0"],
+      ["144", "3.0"],
+      ["192", "4.0"]
+    ]
+  }
+}

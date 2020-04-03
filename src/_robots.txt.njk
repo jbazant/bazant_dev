@@ -1,0 +1,9 @@
+---
+permalink: /robots.txt
+eleventyExcludeFromCollections: true
+dynamicPermalink: false
+---
+User-agent: *
+Allow: /
+
+Sitemap: {{ '/sitemap.xml' | absoluteUrl(metadata.url) }}

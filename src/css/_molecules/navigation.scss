@@ -1,0 +1,44 @@
+@import '../_sizes';
+
+// todo mobile 1st
+.site-header {
+  display: flex;
+}
+.site-logo {
+  padding: $step2;
+  font-size: 4rem;
+  text-decoration: none;
+  color: #222222;
+  line-height: 1;
+}
+.navigation {
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li a {
+    //display: block;
+    padding: $step $step2;
+    text-decoration: none;
+    color: #222222;
+  }
+
+  &.navigation-top {
+    display: inline-flex;
+
+    ul {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: stretch;
+    }
+
+    li {
+      display: flex;
+      align-items: center;
+      margin: 0 $step;
+    }
+  }
+}
