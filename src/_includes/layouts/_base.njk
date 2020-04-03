@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title or eleventyNavigation.title }} | {{ site.name }}</title>
+  <meta name="Description" content="{{ description or metadata.description }}">
+  <link rel="stylesheet" href="{{ '/css/main.css' | url }}">
+
+  {% for size in metadata.icons.appleTouchIcon %}
+    {%- set sizeStr = size + 'x' + size -%}
+    <link rel="apple-touch-icon" sizes="{{ sizeStr }}" href="{{ '/images/ico/apple-icon-' + sizeStr + '.png' | url }}"/>
+  {% endfor %}
+  {% for size in metadata.icons.favicon %}
+    {%- set sizeStr = size + 'x' + size -%}
+    <link rel="icon" type="image/png" sizes="{{ sizeStr }}"
+          href="{{ '/images/ico/favicon-' + sizeStr + '.png' | url }}"/>
+  {% endfor %}
+  <link rel="manifest" href="{{ '/manifest.json' | url }}"/>
+
+  <meta name="msapplication-TileColor" content="#ffffff"/>
+  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png"/>
+  <meta name="theme-color" content="#ffffff"/>
+</head>
+<body>
+
+<header class="">
+  <div class="container site-header">
+    <a href="{{ '/' | url }}" title="Jiří Bažant: Úvod" class="site-logo">{% icon 'circular-graph' %}</a>
+    <nav class="navigation navigation-top">
+      {{- collections.all | eleventyNavigation | eleventyNavigationToHtml({
+        listElement: "ul",
+        listItemElement: "li",
+        activeListItemClass: "active",
+        anchorClass: "",
+        activeAnchorClass: "",
+        activeKey: eleventyNavigation.key,
+        showExcerpt: false
+      }) | safe -}}
+    </nav>
+  </div>
+</header>
+<main{% if templateClass %} class="{{ templateClass }}"{% endif %}>
+  {{ content | safe }}
+</main>
+<footer>
+  <div class="container"></div>
+</footer>
+<script>{% include 'scripts/ga.js' %}</script>
+<script src="{{ '/js/main.js' | url }}"></script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+$primary-color: #26122f;
+$primary-color-light: #352742;
+$primary-color-dark: #160a1a;
+
+// todo light?
+$light-background: #eee;
+$light-text: #eee;
+
+// todo rename
+$white: #fff;
+
+$muted-color: #555;
+$hovered-color: #333;
+
+// inherited from skeleton - has to be refefined
+// todo define pallete and inherit from it
+$primary-button-color: #33C3F0;
+$primary-button-color-active: #1EAEDB;
+$primary-button-text-color: #FFF;
+$primary-button-text-color-active: #FFF;
+
+$secondary-button-color: #bbb;
+$secondary-button-color-active: #888;
+$secondary-button-text-color: #555;
+$secondary-button-text-color-active: #333;
+
+$primary-text-color: #222;
+$link-color: $primary-color-light;
+$link-color-active: $primary-color-dark;
+
+$input-background-color: #fff;
+$input-border-color: #D1D1D1;
+
+$code-background-color: #F1F1F1;
+$code-border-color: #E1E1E1;
+
+$hr-color: #E1E1E1;

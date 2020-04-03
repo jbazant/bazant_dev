@@ -1,0 +1,26 @@
+@import "../_colors";
+@import "../_sizes";
+
+.flex-grid {
+  display: block;
+  box-sizing: border-box;
+}
+
+.col {
+  flex: 1;
+  margin: $step;
+  box-sizing: border-box;
+  padding: $step2;
+}
+
+@media (min-width: 550px) {
+  .flex-grid {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .col-half {
+    flex-basis: 45%;
+  }
+}

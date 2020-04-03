@@ -1,0 +1,20 @@
+---
+permalink: /manifest.json
+eleventyExcludeFromCollections: true
+dynamicPermalink: false
+---
+{
+ "name": "App",
+ "icons": [
+{% for size, density in metadata.icons.android %}
+  {%- set sizeStr = size + 'x' + size -%}
+
+  {
+   "src": "{{ 'images/ico/android-icon-' + sizeStr + '.png' |url }}",
+   "sizes": "{{sizeStr}}",
+   "type": "image/png",
+   "density": "{{ density }}"
+  }{% if not loop.last %},{% endif %}
+{%- endfor %}
+ ]
+}

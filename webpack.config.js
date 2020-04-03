@@ -4,12 +4,12 @@ const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.ts',
+  entry: './src/ts/index.ts',
   mode: 'development',
   devtool: 'source-map',
   output: {
     filename: 'main.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, '_site/js'),
     libraryTarget: 'var',
     library: 'bazant',
   },
@@ -32,11 +32,6 @@ module.exports = {
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
-  },
-  devServer: {
-    contentBase: path.join(__dirname, 'dist'),
-    compress: false,
-    port: 9000,
   },
   optimization: {
     minimizer: [
