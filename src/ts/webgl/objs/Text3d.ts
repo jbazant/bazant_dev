@@ -24,7 +24,7 @@ export class Text3d extends THREE.Mesh {
     this.clock = new THREE.Clock();
     this.textMaterial = new THREE.MeshPhongMaterial({ emissiveIntensity: 0.1, shininess: 100 });
 
-    new THREE.FontLoader().load(FONT_URL, font => this._onFontLoaded(font, lines));
+    new THREE.FontLoader().load(FONT_URL, (font) => this._onFontLoaded(font, lines));
 
     this.rotateY(Math.PI / 4);
     this.position.set(-5, 0, -5);
