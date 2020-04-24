@@ -13,13 +13,13 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.setDataDeepMerge(true);
 
-  eleventyConfig.addI
   // copy files
   eleventyConfig.addPassthroughCopy('./src/assets/');
   eleventyConfig.addPassthroughCopy('./src/images/');
   eleventyConfig.addPassthroughCopy('./src/fonts/');
   eleventyConfig.addPassthroughCopy('./src/browserconfig.xml');
   eleventyConfig.addPassthroughCopy('./src/favicon.ico');
+  eleventyConfig.addPassthroughCopy('./src/.htaccess');
 
   eleventyConfig.addFilter('readableDate', (dateObj) =>
     DateTime.fromJSDate(dateObj, { zone: 'utc' }).toFormat('dd LLL yyyy')
@@ -44,7 +44,7 @@ module.exports = function (eleventyConfig) {
 
   // override default config
   return {
-    templateFormats: ['md', 'njk', 'html', 'liquid'],
+    templateFormats: ['md', 'njk'],
 
     markdownTemplateEngine: 'liquid',
     htmlTemplateEngine: 'njk',
