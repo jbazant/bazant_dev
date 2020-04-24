@@ -411,8 +411,6 @@ hr {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 /* Self Clearing Goodness */
-.container:after,
-.row:after,
 .u-cf {
   content: "";
   display: table;
@@ -434,7 +432,7 @@ there.
 @media (min-width: 400px) {
 }
 
-/* Larger than phablet (also point when grid becomes active) */
+/* Larger than phablet */
 @media (min-width: 550px) {
 }
 

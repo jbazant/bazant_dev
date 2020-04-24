@@ -1,0 +1,150 @@
+@import '../_sizes';
+@import '../_colors';
+
+header, .main-menu-switch {
+  background-color: $dark;
+
+  a {
+    text-decoration: none;
+    color: $light-text;
+
+    &:hover {
+      color: $white;
+    }
+  }
+}
+
+.main-menu-switch {
+  position: fixed;
+  right: $step;
+  bottom: $step;
+  z-index: 98;
+  font-size: 4rem;
+  border-radius: 2rem;
+  line-height: 1;
+  height: 4rem;
+  width: 4rem;
+  color: $light-text;
+
+  @media (min-width: 550px) {
+    display: none;
+  }
+}
+
+header {
+  visibility: hidden;
+  opacity: 0;
+
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 99;
+
+  text-align: center;
+
+  @media (min-width: 550px) {
+    visibility: visible;
+    position: static;
+    opacity: 1;
+  }
+
+  .container {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+
+    @media (min-width: 550px) {
+      display: flex;
+      text-align: left;
+      flex-direction: row;
+      justify-content: flex-start;
+    }
+  }
+
+  &.m-fadeIn {
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0s linear 0s, opacity 300ms;
+  }
+
+  .navigation {
+    border-bottom: 1px solid $grey;
+
+    @media (min-width: 550px) {
+      border-bottom: none;
+    }
+
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+
+      @media (min-width: 550px) {
+        height: 100%;
+        display: flex;
+        text-align: left;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: stretch;
+      }
+    }
+  }
+
+  li {
+    border-top: 1px solid $grey;
+    margin: 0;
+
+    @media (min-width: 550px) {
+      padding: 0;
+      border-top: none;
+      border-left: 1px solid $grey;
+    }
+
+    a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: $step * 3 0;
+
+      &:hover {
+        background-color: $darker;
+      }
+
+      @media (min-width: 550px) {
+        height: 100%;
+        padding: 0 $step * 3;
+      }
+
+      @media (min-width: 750px) {
+        width: 100px;
+      }
+    }
+  }
+
+  .site-logo {
+    font-size: 40px;
+    line-height: 1;
+    padding: $step * 4 0;
+
+    @media (min-width: 550px) {
+      padding: $step $step * 4;
+    }
+
+    @media (min-width: 750px) {
+      width: 100px;
+    }
+  }
+
+  .main-menu-close {
+    line-height: 1;
+    padding: $step * 4;
+
+    @media (min-width: 550px) {
+      display: none;
+    }
+  }
+}

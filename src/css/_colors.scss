@@ -2,15 +2,19 @@ $primary-color: #26122f;
 $primary-color-light: #352742;
 $primary-color-dark: #160a1a;
 
+$dark: #333;
+$darker: #222;
+
 // todo light?
 $light-background: #eee;
 $light-text: #eee;
 
 // todo rename
 $white: #fff;
+$grey: #999;
 
 $muted-color: #555;
-$hovered-color: #333;
+$hovered-color: $dark;
 
 // inherited from skeleton - has to be refefined
 // todo define pallete and inherit from it
