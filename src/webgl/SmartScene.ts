@@ -15,6 +15,7 @@ export class SmartScene {
 
   camera: MyCamera;
   waterMirrorCamera: MirrorCamera;
+  waterMirrorCameraTarget: THREE.WebGLCubeRenderTarget;
 
   scene: THREE.Scene;
   renderer: THREE.WebGLRenderer;
@@ -62,7 +63,7 @@ export class SmartScene {
     this.water = waterFactory(
       sceneConfig.water,
       this.renderer,
-      this.waterMirrorCamera.renderTarget.texture
+      this.waterMirrorCameraTarget.texture
     );
 
     this.scene.add(
@@ -81,11 +82,19 @@ export class SmartScene {
     this.scene = new THREE.Scene();
     this.scene.background = new THREE.CubeTextureLoader()
       .setPath('images/skybox/')
-      .load(textures.map(it => `${it}.png`));
+      .load(textures.map((it) => `${it}.png`));
 
     this.renderer = this._initRenderer();
     this.camera = new MyCamera(1, this.el, sceneConfig.camera);
-    this.waterMirrorCamera = new MirrorCamera(sceneConfig.mirrorCamera);
+    this.waterMirrorCameraTarget = new THREE.WebGLCubeRenderTarget(
+      sceneConfig.mirrorCamera.resolution,
+      {
+        format: THREE.RGBFormat,
+        generateMipmaps: true,
+        minFilter: THREE.LinearMipmapLinearFilter,
+      }
+    );
+    this.waterMirrorCamera = new MirrorCamera(this.waterMirrorCameraTarget);
   }
 
   _renderMirror() {

@@ -55,11 +55,11 @@ export class Mountains extends THREE.Group {
         alterZCoord(i, j, zMod);
       }
 
-      [0, this.segments - 1].forEach(j => {
+      [0, this.segments - 1].forEach((j) => {
         alterZCoord(i, j, -doubleDeviation);
         alterZCoord(j, i, -doubleDeviation);
       });
-      [1, this.segments - 2].forEach(j => {
+      [1, this.segments - 2].forEach((j) => {
         alterZCoord(i, j, -deviation);
         alterZCoord(j, i, -deviation);
       });
@@ -71,11 +71,11 @@ export class Mountains extends THREE.Group {
 
   private _generateMaterial() {
     const loader = new THREE.TextureLoader().setPath('images/');
-    const map = loader.load('terrain.jpg', texture => {
+    const map = loader.load('terrain.jpg', (texture) => {
       texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
       texture.repeat.set(2, 2);
     });
-    const normalMap = loader.load('terrain-normals.jpg', texture => {
+    const normalMap = loader.load('terrain-normals.jpg', (texture) => {
       texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
       texture.repeat.set(1, 1);
     });
