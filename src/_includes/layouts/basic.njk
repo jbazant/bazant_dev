@@ -2,5 +2,10 @@
 layout: layouts/_base.njk
 templateClass: tmpl-basic
 ---
-<h1 class="home"><a href="{{ '/' | url }}">{{ title  }}</a></h1>
+<section class="page-header">
+  <div class="container">
+    <h1 class="home">{{ eleventyNavigation.title }}</h1>
+  </div>
+</section>
+
 {{ content | safe }}
