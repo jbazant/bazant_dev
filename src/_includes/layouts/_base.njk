@@ -34,9 +34,9 @@
 
     <nav class="navigation navigation-top">
       <ul>
-        <ul><li><a href="{{ '/' | url }}"><span>Úvod</span></a></li></ul>
+        <li><a href="{{ '/' | url }}"><span>Úvod</span></a></li>
         {% for page in collections.all | eleventyNavigation %}
-          <ul><li><a href="{{ page.url | url }}"><span>{{ page.title }}</span></a></li></ul>
+          <li><a href="{{ page.url | url }}"><span>{{ page.title }}</span></a></li>
         {% endfor %}
       </ul>
     </nav>
