@@ -2,6 +2,7 @@ const { DateTime } = require('luxon');
 const pluginNavigation = require('@11ty/eleventy-navigation');
 const pluginRss = require('@11ty/eleventy-plugin-rss');
 const pluginSass = require('eleventy-plugin-sass');
+const markdownIt = require('markdown-it');
 const fs = require('fs');
 
 module.exports = function (eleventyConfig) {
@@ -23,10 +24,10 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy('./src/.htaccess');
 
   eleventyConfig.addFilter('readableDate', (dateObj) =>
-    DateTime.fromJSDate(dateObj, { zone: 'utc' }).toFormat('dd LLL yyyy')
+    DateTime.fromJSDate(dateObj, { zone: 'utc' }).toFormat('dd LLL yyyy'),
   );
   eleventyConfig.addFilter('htmlDateString', (dateObj) =>
-    DateTime.fromJSDate(dateObj, { zone: 'utc' }).toFormat('yyyy-LL-dd')
+    DateTime.fromJSDate(dateObj, { zone: 'utc' }).toFormat('yyyy-LL-dd'),
   );
 
   /**
@@ -61,6 +62,8 @@ module.exports = function (eleventyConfig) {
 
     return `<span class="${spanClasses.join(' ')}"></span>`;
   });
+
+  eleventyConfig.addShortcode('markdown', (markdownString) => markdownIt({html: true}).render(markdownString));
 
   // override default config
   return {
