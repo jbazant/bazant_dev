@@ -4,11 +4,15 @@ const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
-  entry: './src/ts/index.ts',
+  entry: {
+    main: './src/ts/main.ts',
+    scene: './src/ts/scene.ts',
+  },
   mode: 'development',
   devtool: 'source-map',
   output: {
-    filename: 'main.js',
+    //filename: '[name].[contentHash].js',
+    filename: '[name].js',
     path: path.resolve(__dirname, '_site/js'),
     libraryTarget: 'var',
     library: 'bazant',
