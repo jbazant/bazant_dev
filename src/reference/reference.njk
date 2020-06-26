@@ -1,0 +1,27 @@
+---
+layout: layouts/basic.njk
+tags: top
+sitemap:
+  priority: 0.4
+eleventyNavigation:
+  key: references
+  title: Reference
+  excerpt: Zajímavé projekty na kterých jsem se podílel.
+  order: 2
+  icon: archive
+---
+<section>
+  <div class="container">
+    <p>
+      Ukázky zajímavých projektů, na kterých jsem se podílel. Většina projektů není jen mým vlastním dílem,
+      ale podílely se na&nbsp;nich různě velké týmy šikovných lidí.
+    </p>
+  </div>
+</section>
+{%- for entry in collections.references %}
+  <section>
+    <div class="container">
+      {{ entry.templateContent | safe }}
+    </div>
+  </section>
+{%- endfor %}
