@@ -9,10 +9,9 @@ dynamicPermalink: false
     {%- if page.url %}
       {%- set absoluteUrl %}{{ page.url | url | absoluteUrl(metadata.url) }}{% endset %}
       {%- set ps %}{{ page.data.sitemap or {} }}{% endset %}
-      {%- set lastmod %}{{ ps.lastmod or (page.inputPath | stat('mtime')) }}{% endset %}
   <url>
     <loc>{{ absoluteUrl }}</loc>
-    <lastmod>{{ lastmod }}</lastmod>
+    <lastmod>{{ ps.lastmod or (page.inputPath | stat('mtime')) | htmlDateString }}</lastmod>
     <changefreq>{{ ps.changeFrequency or sitemap.defaultChangeFrequency }}</changefreq>
     <priority>{{ ps.priority or sitemap.defaultPriority }}</priority>
   </url>
