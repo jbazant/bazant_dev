@@ -379,28 +379,6 @@ form {
   margin-bottom: 2.5rem;
 }
 
-
-/* Utilities
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
-.u-full-width {
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.u-max-full-width {
-  max-width: 100%;
-  box-sizing: border-box;
-}
-
-.u-pull-right {
-  float: right;
-}
-
-.u-pull-left {
-  float: left;
-}
-
-
 /* Misc
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 hr {
@@ -410,18 +388,6 @@ hr {
   border-top: 1px solid $hr-color;
 }
 
-
-/* Clearing
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
-
-/* Self Clearing Goodness */
-.u-cf {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-
 /* Media Queries
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 /*
@@ -430,24 +396,23 @@ near the relevant code. For example, if you wanted to change the styles for butt
 on small devices, paste the mobile query code up in the buttons section and style it
 there.
 */
-
-
-/* Larger than mobile */
-@media (min-width: 400px) {
-}
-
-/* Larger than phablet */
-@media (min-width: 550px) {
-}
-
-/* Larger than tablet */
-@media (min-width: 750px) {
-}
-
-/* Larger than desktop */
-@media (min-width: 1000px) {
-}
-
-/* Larger than Desktop HD */
-@media (min-width: 1200px) {
-}
+//
+///* Larger than mobile */
+//@media (min-width: 400px) {
+//}
+//
+///* Larger than phablet */
+//@media (min-width: 550px) {
+//}
+//
+///* Larger than tablet */
+//@media (min-width: 750px) {
+//}
+//
+///* Larger than desktop */
+//@media (min-width: 1000px) {
+//}
+//
+///* Larger than Desktop HD */
+//@media (min-width: 1200px) {
+//}
