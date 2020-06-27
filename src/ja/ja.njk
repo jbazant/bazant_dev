@@ -1,0 +1,20 @@
+---
+layout: layouts/basic.njk
+tags: top
+title: Jsem
+sitemap:
+  priority: 0.6
+eleventyNavigation:
+  key: about
+  title: O mně
+  excerpt: Mé zkušenosti a proč byste mě (ne)měli chtít poznat.
+  order: 3
+  icon: user
+---
+{%- for entry in collections.about_me %}
+  <section class="basic">
+    <div class="container">
+      {{ entry.templateContent | safe }}
+    </div>
+  </section>
+{%- endfor %}
