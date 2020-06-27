@@ -1,3 +1,6 @@
+---
+date: "2010-04-04"
+---
 ## CBRE Properties
 Nabídka kanceláří, skadů a obchodních prostor k pronájmu. [Webový portál](https://www.cbreproperties.cz) s databází nabízených objektů, rozsáhlou administrací a obousměrnou komunikací s (SugarCRM)(https://www.sugarcrm.com/).
 

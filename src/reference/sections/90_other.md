@@ -1,3 +1,6 @@
+---
+date: "2019-01-01"
+---
 ## A mnoho dalších, často již ukončených, projektů
 TODO - přepsat na něco delšího
 ### Engage 2017
