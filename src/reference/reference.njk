@@ -10,7 +10,7 @@ eleventyNavigation:
   order: 2
   icon: archive
 ---
-<section>
+<section class="basic">
   <div class="container">
     <p>
       Ukázky zajímavých projektů, na kterých jsem se podílel. Většina projektů není jen mým vlastním dílem,
@@ -19,7 +19,7 @@ eleventyNavigation:
   </div>
 </section>
 {%- for entry in collections.references %}
-  <section>
+  <section class="basic">
     <div class="container">
       {{ entry.templateContent | safe }}
     </div>
