@@ -13,16 +13,28 @@ eleventyNavigation:
 
 <section class="basic">
   <div class="container">
-    <h2>Kontakt</h2>
-    <p>Zaujala Vás moje práce. Zaujal jsem Vás já? Napište mi! SLibuji, že aspoň první zprávu si přečtu.</p>
+    <p>Zaujala Vás moje práce? Zaujal jsem Vás já? Napište mi! Slibuji, že aspoň první zprávu si přečtu.</p>
   </div>
 </section>
-<section>
-  <input type="email" />
-  <textarea>
 
-  </textarea>
-  <button>
-    Odeslat
-  </button>
+<section>
+  <div class="container contact-form">
+    <form id="contact-form"
+          action="https://formspree.io/mlepwpnl"
+          method="POST"
+    >
+      <div>
+        <label for="contact-form-email">Váš email:</label>
+        <input type="email" name="email" id="contact-form-email"/>
+      </div>
+      <div>
+        <label for="contact-form-message">Zpráva:</label>
+        <textarea name="message" id="contact-form-message"></textarea>
+      </div>
+      <div class="form-actions">
+        <button id="contact-form-submit" class="button-primary">Odeslat</button>
+      </div>
+    </form>
+  </div>
+
 </section>

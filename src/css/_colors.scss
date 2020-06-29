@@ -18,10 +18,10 @@ $hovered-color: $dark;
 
 // inherited from skeleton - has to be refefined
 // todo define pallete and inherit from it
-$primary-button-color: #33C3F0;
-$primary-button-color-active: #1EAEDB;
-$primary-button-text-color: #FFF;
-$primary-button-text-color-active: #FFF;
+$primary-button-color: $primary-color-light; //#33C3F0;
+$primary-button-color-active: $primary-color;// #1EAEDB;
+$primary-button-text-color: $white;
+$primary-button-text-color-active: $white;
 
 $secondary-button-color: #bbb;
 $secondary-button-color-active: #888;
