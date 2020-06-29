@@ -1,0 +1,31 @@
+@import "../_colors";
+@import "../_sizes";
+
+.contact-form {
+  max-width: 500px;
+  padding: $step * 10 $step2;
+
+  input, textarea {
+    width: 100%;
+  }
+
+  textarea {
+    resize: none;
+    overflow: visible;
+    height: 110px;
+  }
+
+}
+
+@media (min-width: 550px) {
+  .contact-form {
+    textarea {
+      height: 210px;
+    }
+  }
+}
+
+.form-actions {
+  display: flex;
+  flex-direction: row-reverse;
+}
