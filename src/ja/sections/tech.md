@@ -33,7 +33,7 @@ dnes se soustředím spíše na mobilní Chrome a Safari, ale hlavně na React N
 **[Electron](https://www.electronjs.org/)**,
 **[Jest](https://jestjs.io/)**,
 **[Detox](https://github.com/wix/detox)**,
-**[TypeScript](https://www.typescriptlang.org/)** a
+**[TypeScript](https://www.typescriptlang.org/)** i
 **[Flow](https://flow.org/en/)**.
 
 ### Databáze

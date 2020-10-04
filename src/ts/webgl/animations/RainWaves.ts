@@ -10,7 +10,7 @@ export class RainWaves extends WaterAnimation {
   gpuCompute: GPUComputationRenderer;
   heightmapVariable: GPUComputationRendererVariable;
   halfCount: number;
-  timers: Array<number>;
+  timers: Array<NodeJS.Timeout>;
 
   constructor(segmentCount: number, renderer: THREE.WebGLRenderer) {
     super(segmentCount, renderer);
