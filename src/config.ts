@@ -35,7 +35,7 @@ export const getConfig = (supportedFeatureList: Array<string>) => {
       },
     ],
     text3d: {
-      lines: ['Bažant.DEV', 'coming soon...'],
+      lines: ['bazant JS API', 'New version!'],
     },
     camera: {
       allowOrbitControls: false,
