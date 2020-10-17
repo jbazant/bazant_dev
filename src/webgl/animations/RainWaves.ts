@@ -52,7 +52,7 @@ export class RainWaves extends WaterAnimation {
   };
 
   startAnim() {
-    this.timers = [301, 501, 701].map(timeout => setInterval(this._rainDrop, timeout));
+    this.timers = [301, 501, 701].map((timeout) => setInterval(this._rainDrop, timeout));
   }
 
   stopAnim() {

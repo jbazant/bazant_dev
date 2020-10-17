@@ -1,8 +1,8 @@
 import * as THREE from 'three';
 
 export class MirrorCamera extends THREE.CubeCamera {
-  constructor({ resolution }: { resolution: number }) {
-    super(0.1, 5000, resolution);
+  constructor(renderTarget: THREE.WebGLCubeRenderTarget) {
+    super(0.1, 5000, renderTarget);
   }
 
   mirrorPosition(camera: THREE.Camera) {
