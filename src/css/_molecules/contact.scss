@@ -15,6 +15,17 @@
     height: 110px;
   }
 
+  .form-error {
+    color: $alert-text;
+    font-style: italic;
+    font-size: 0.9em;
+    margin: -$step2 $step2 $step $step2;
+  }
+
+  .form-field-error {
+    color: $alert-text;
+    border: 1px solid $alert-text;
+  }
 }
 
 @media (min-width: 550px) {

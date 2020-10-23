@@ -17,4 +17,17 @@ section.basic {
   }
 }
 
+section.top {
+  background-color: $white;
+  padding: $step * 5 $step2;
+
+  p {
+    margin: 2.5rem;
+    font-size: 1.2em;
+    font-weight: bold;
+    font-style: oblique;
+    color: $muted-color;
+    text-align: center;
+  }
+}
 
