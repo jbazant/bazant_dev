@@ -207,6 +207,12 @@ input[type="button"].button-primary:focus {
   border-color: $primary-button-color-active;
 }
 
+button:disabled,
+button[disabled] {
+  background-color: $muted-color;
+  border-color: $dark;
+}
+
 
 /* Forms
 –––––––––––––––––––––––––––––––––––––––––––––––––– */

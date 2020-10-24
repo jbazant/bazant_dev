@@ -26,6 +26,11 @@
     color: $alert-text;
     border: 1px solid $alert-text;
   }
+
+  .form-success-info {
+    font-size: 2em;
+    text-align: center;
+  }
 }
 
 @media (min-width: 550px) {

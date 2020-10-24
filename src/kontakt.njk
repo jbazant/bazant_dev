@@ -17,25 +17,36 @@ eleventyNavigation:
   </div>
 </section>
 
-<section>
-  <div class="container contact-form">
-    <form id="contact-form"
-{#          action="https://formspree.io/mlepwpnl"#}
-          action="https://localhost"
-          method="POST"
-    >
-      <div>
-        <label for="contact-form-email">Váš email:</label>
-        <input type="email" name="email" id="contact-form-email"/>
-      </div>
-      <div>
-        <label for="contact-form-message">Zpráva:</label>
-        <textarea name="message" id="contact-form-message"></textarea>
-      </div>
-      <div class="form-actions">
-        <button id="contact-form-submit" class="button-primary">Odeslat</button>
-      </div>
-    </form>
+<section class="basic">
+  <div class="container">
+    <h2>Rychlá zpráva</h2>
+    <div class="container contact-form">
+      <form id="contact-form"
+            action="https://formspree.io/mlepwpnl"
+            method="POST"
+      >
+        <div>
+          <label for="contact-form-email">Váš email:</label>
+          <input type="email" name="email" id="contact-form-email"/>
+        </div>
+        <div>
+          <label for="contact-form-message">Zpráva:</label>
+          <textarea name="message" id="contact-form-message"></textarea>
+        </div>
+        <div class="form-actions">
+          <button id="contact-form-submit" class="button-primary">Odeslat</button>
+        </div>
+      </form>
+    </div>
   </div>
+</section>
 
+<section class="basic">
+  <div class="container">
+    <h2>Nebo zkuste socky</h2>
+    <p><a href="https://twitter.com/JiriBazant" title="Twitter" class="social"><span
+          class="ico">{% icon 'twitter-with-circle' %}</span> Twitter</a></p>
+    <p><a href="https://www.linkedin.com/in/jiří-bažant-5639a053" title="LinkedIn" class="social"><span
+          class="ico">{% icon 'linkedin-with-circle' %}</span> LinkedIn</a></p>
+  </div>
 </section>

@@ -3,3 +3,13 @@
 .container-flex {
   display: flex;
 }
+
+a.social {
+  text-decoration: none;
+
+  .icon {
+    font-size: 1.5em;
+    vertical-align: middle;
+    color: $grey;
+  }
+}

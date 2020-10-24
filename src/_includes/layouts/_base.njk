@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ title or eleventyNavigation.title }} | {{ site.name }}</title>
   <meta name="Description" content="{{ description or metadata.description }}">
+  <link rel="preload" href="{{ '/fonts/entypo.woff' }}" as="font" type="font/woff" crossorigin="anonymous">
+  <link rel="preload" href="{{ '/fonts/entypo.ttf' }}" as="font" type="font/ttf" crossorigin="anonymous">
+  <link rel="preload" href="{{ '/fonts/entypo.eot' }}" as="font" type="font/eot" crossorigin="anonymous">
   <link rel="stylesheet" href="{{ '/css/main.css' | url }}">
 
   {% for size in metadata.icons.appleTouchIcon %}

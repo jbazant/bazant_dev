@@ -1,85 +1,143 @@
 import { appendPara, gid } from '../utils/domHelpers';
 
-// todo use class and real state bitch!
-function clearError(el: HTMLElement) {
-  if (el.nextSibling) {
-    el.parentNode.removeChild(el.nextSibling);
+abstract class FormField {
+  id: string;
+  elem: HTMLTextAreaElement | HTMLInputElement;
+  errors: Array<string> = [];
+
+  get isValid() {
+    return this.errors.length === 0;
   }
-}
 
-function addError(el: HTMLElement, text: string) {
-  appendPara(el, text, 'form-error');
-  // todo disable submit
-}
-
-// todo is it corretly placed?
-function onFormResponse(data: Object) {}
-
-function onFormError(error: Object) {}
-
-function onFormSubmit(event: Event) {
-  event.preventDefault();
-  // validate form one more time
-  onEmailBlur();
-  onMessageBlur();
-  // todo check for any error
-
-  // change button to some waiting sign
-
-  fetch(this.action, {
-    method: this.method,
-    headers: {
-      Accept: 'application/json',
-    },
-    body: new FormData(this),
-  })
-    .then((response) => response.json())
-    .then(onFormResponse, onFormError);
-  // todo success and fail
-}
-
-// todo test validatation function (and probably move it somewhere else
-function validateEmail(input: string): boolean {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input);
-}
-
-function onEmailBlur(): void {
-  clearError(this);
-
-  if (!validateEmail(this.value)) {
-    addError(this, 'Neplatný formát emailu.');
+  get value() {
+    return this.elem.value;
   }
-}
 
-function onMessageBlur(): void {
-  clearError(this);
-
-  if (this.textLength < 10) {
-    addError(this, 'Prosím vyplňte alespoň krátkou zprávu.');
+  constructor(id: string) {
+    this.id = id;
+    // @ts-ignore - lets pretend we know what we get
+    this.elem = gid(id);
+    if (!this.elem) {
+      throw new Error('Element not found!');
+    }
   }
+
+  clearErrors = () => {
+    this.errors = [];
+    while (this.elem.nextSibling) {
+      this.elem.parentNode.removeChild(this.elem.nextSibling);
+    }
+    this.elem.classList.remove('form-field-error');
+  };
+
+  addError = (errorText: string) => {
+    appendPara(this.elem, errorText, 'form-error');
+    this.elem.classList.add('form-field-error');
+  };
+
+  onChange = () => {
+    this.clearErrors();
+  };
+
+  onBlur = () => {
+    this.clearErrors();
+    this.validate();
+    this.errors.forEach(this.addError);
+  };
+
+  abstract validate(): void;
 }
 
-function onFieldChange(): void {
-  clearError(this);
-}
-
-export function initContactForm(): void {
-  const contactForm = gid('contact-form');
-
-  if (contactForm) {
-    const email = gid('contact-form-email');
-    const message = gid('contact-form-message');
-
-    if (email && message) {
-      contactForm.addEventListener('submit', onFormSubmit);
-
-      email.addEventListener('blur', onEmailBlur);
-      email.addEventListener('change', onFieldChange);
-
-      message.addEventListener('blur', onMessageBlur);
-      message.addEventListener('change', onFieldChange);
+class EmailField extends FormField {
+  validate() {
+    if (this.value == '') {
+      this.errors.push('Prosím zadejte email.');
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.value)) {
+      this.errors.push('Neplatný formát emailu.');
     }
   }
 }
 
-// todo disposer?
+class MessageField extends FormField {
+  validate() {
+    if (this.value.length < 10) {
+      this.errors.push('Prosím vyplňte alespoň krátkou zprávu.');
+    }
+  }
+}
+
+class ContactForm {
+  elem: HTMLFormElement;
+  fields: Array<FormField>;
+  submitButton: HTMLButtonElement;
+
+  constructor(id: string, fields: Array<FormField>, submitFormButtonId: string) {
+    this.fields = fields;
+    // @ts-ignore
+    this.elem = gid(id);
+    // @ts-ignore
+    this.submitButton = gid(submitFormButtonId);
+
+    this.fields.forEach((it) => {
+      it.elem.addEventListener('input', it.onChange);
+      it.elem.addEventListener('blur', it.onBlur);
+    });
+
+    this.elem.addEventListener('submit', this.submit);
+    // todo disable submit button
+  }
+
+  submit = async (event: Event) => {
+    event.preventDefault();
+
+    this.fields.forEach((it) => it.onBlur());
+    if (this.fields.reduce((acc, it) => acc && it.isValid, true)) {
+      const { action, method } = this.elem;
+      this.submitButton.disabled = true;
+
+      try {
+        const response = await fetch(action, {
+          method,
+          headers: {
+            Accept: 'application/json',
+          },
+          body: new FormData(this.elem),
+        });
+
+        if (response.ok) {
+          const parent = this.elem.parentNode;
+          parent.removeChild(this.elem);
+          const para = document.createElement('p');
+          para.innerHTML = 'Paráda, holub je na cestě!';
+          para.classList.add('form-success-info');
+          parent.appendChild(para);
+        } else {
+          this.fields[this.fields.length - 1].addError(
+            'Ajaj. Něco se pokazilo! Možná to zkusíme později?'
+          );
+        }
+      } catch (e) {
+        this.fields[this.fields.length - 1].addError(
+          'Ajaj. Něco se pokazilo! Možná to zkusíme později?'
+        );
+      } finally {
+        this.submitButton.disabled = false;
+      }
+    }
+  };
+}
+
+export const initContactForm = () => {
+  const formId = 'contact-form';
+  const submitFormButtonId = 'contact-form-submit';
+
+  if (gid(formId)) {
+    const form = new ContactForm(
+      formId,
+      [new EmailField('contact-form-email'), new MessageField('contact-form-message')],
+      submitFormButtonId
+    );
+
+    // todo disposer?
+  }
+};
