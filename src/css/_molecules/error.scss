@@ -1,0 +1,10 @@
+@import '../_sizes';
+
+.error-page-info {
+  text-align: center;
+  padding: 0 $step3;
+
+  @media (min-height: 600px) {
+    padding: 20 * $step $step3;
+  }
+}

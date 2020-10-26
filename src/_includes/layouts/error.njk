@@ -3,10 +3,10 @@
 {% include 'partials/_head.njk' %}
 <body>
   {% include 'partials/_header.njk' %}
-  <main{% if templateClass %} class="{{ templateClass }}"{% endif %}>
+  <main class="error {% if templateClass %}{{ templateClass }}{% endif %}">
     {{ content | safe }}
   </main>
   {% include 'partials/_footer.njk' %}
-  <script src="{{ '/js/main.js' | url }}"></script>
+  <script src="{{ '/js/error.js' | url }}"></script>
 </body>
 </html>

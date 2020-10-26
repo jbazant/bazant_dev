@@ -1,6 +1,6 @@
 @import "../_colors";
 @import "../_sizes";
-.page-header, .hero {
+.page-header, .hero, .page-not-found {
   background-color: $primary-color;
   /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/$primary-color+0,352742+50,1e0e25+51,352742+100 */
   background: $primary-color; /* Old browsers */
@@ -20,7 +20,7 @@
   }
 }
 
-.hero {
+.hero, .page-not-found {
   $vertical-padding: $step * 20;
   padding: $vertical-padding $step;
 

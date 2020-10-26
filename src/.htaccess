@@ -5,8 +5,8 @@ Options -Indexes
 # Follow symbolic links in this directory.
 Options +FollowSymLinks
 
-# todo
-# ErrorDocument 404 /new404.html
+# 404 Page not found
+ErrorDocument 404 /404.html
 
 <IfModule mod_rewrite.c>
   # force non www variant

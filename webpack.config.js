@@ -7,6 +7,7 @@ module.exports = {
   entry: {
     main: './src/ts/main.ts',
     scene: './src/ts/scene.ts',
+    error: './src/ts/error.ts',
   },
   mode: 'development',
   devtool: 'source-map',

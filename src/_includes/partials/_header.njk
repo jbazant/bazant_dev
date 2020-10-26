@@ -1,0 +1,20 @@
+<div class="main-menu-switch">
+  <a id="display-site-menu-main" title="Zobrazit navigaci">{% icon 'menu' %}</a>
+</div>
+
+<header class="" id="site-menu-main">
+  <div class="container site-header">
+    <a href="{{ '/' | url }}" title="Jiří Bažant: Úvod" class="site-logo">{% icon 'circular-graph' %}</a>
+
+    <nav class="navigation navigation-top">
+      <ul>
+        <li><a href="{{ '/' | url }}"><span>Úvod</span></a></li>
+        {% for page in collections.all | eleventyNavigation %}
+          <li><a href="{{ page.url | url }}"><span>{{ page.title }}</span></a></li>
+        {% endfor %}
+      </ul>
+    </nav>
+
+    <a title="Zavřít navigaci" class="main-menu-close" id="close-site-menu-main">{% icon 'cross' %}</a>
+  </div>
+</header>
