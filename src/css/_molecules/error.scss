@@ -1,10 +1,32 @@
-@import '../_sizes';
+@import "../_sizes";
+@import "../_colors";
+@import "../_mixins/textGlitch";
+@import "../_mixins/opacityGlitch";
 
 .error-page-info {
-  text-align: center;
-  padding: 0 $step3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
+  padding: 0 $step3;
   @media (min-height: 600px) {
     padding: 20 * $step $step3;
+  }
+
+  .glitchy {
+    text-align: center;
+    background-color: $primary-color;
+    padding: $step3 10*$step;
+    margin: $step3;
+    display: block;
+
+    @include opacityGlitch("opacity-glitch", 5);
+
+    h1 {
+      @include textGlitch("text-glitch-1", 8, $light-text, $primary-color, blue, red);
+    }
+    h2 {
+      @include textGlitch("text-glitch-2", 10, $light-text, $primary-color, red, blue);
+    }
   }
 }
