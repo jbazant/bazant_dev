@@ -15,7 +15,6 @@ module.exports = {
     //filename: '[name].[contentHash].js',
     filename: '[name].js',
     path: path.resolve(__dirname, '_site/js'),
-    libraryTarget: 'var',
     library: 'bazant',
   },
 
