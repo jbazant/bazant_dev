@@ -5,29 +5,21 @@ const pluginSass = require('eleventy-plugin-sass');
 const markdownIt = require('markdown-it');
 const fs = require('fs');
 
-module.exports = function (eleventyConfig) {
-  eleventyConfig.addPlugin(pluginNavigation);
-  eleventyConfig.addPlugin(pluginRss);
-  eleventyConfig.addPlugin(pluginSass, {
-    watch: ['src/**/*.{scss,sass}', '!node_modules/**'],
-    sourcemaps: true,
-  });
-
-  eleventyConfig.setDataDeepMerge(true);
-
-  // copy files
+function setUpPassThroughCopies(eleventyConfig) {
   eleventyConfig.addPassthroughCopy('./src/assets/');
   eleventyConfig.addPassthroughCopy('./src/images/');
   eleventyConfig.addPassthroughCopy('./src/fonts/');
   eleventyConfig.addPassthroughCopy('./src/browserconfig.xml');
   eleventyConfig.addPassthroughCopy('./src/favicon.ico');
   eleventyConfig.addPassthroughCopy('./src/.htaccess');
+}
 
+function setUpCustomFilters(eleventyConfig) {
   eleventyConfig.addFilter('readableDate', (dateObj) =>
-    DateTime.fromJSDate(dateObj, { zone: 'utc' }).toFormat('dd LLL yyyy'),
+    DateTime.fromJSDate(dateObj, { zone: 'utc' }).toFormat('dd LLL yyyy')
   );
   eleventyConfig.addFilter('htmlDateString', (dateObj) =>
-    DateTime.fromJSDate(dateObj, { zone: 'utc' }).toFormat('yyyy-LL-dd'),
+    DateTime.fromJSDate(dateObj, { zone: 'utc' }).toFormat('yyyy-LL-dd')
   );
 
   /**
@@ -48,7 +40,20 @@ module.exports = function (eleventyConfig) {
     }
     fs.stat(file, (err, stats) => callback(err, stats && stats[prop]));
   });
+}
 
+function setUpStylingShortcodes(eleventyConfig) {
+  const colShortcode = (colContent, ...additionalClasses) =>
+    `<div class="col col-nopad ${additionalClasses.join(' ')}">${colContent}</div>`;
+
+  eleventyConfig.addPairedShortcode('col', colShortcode);
+  eleventyConfig.addPairedShortcode('colhalf', (...attrs) => colShortcode(...attrs, 'col-half', 'col--o2'));
+  eleventyConfig.addPairedShortcode('colimg', (...attrs) =>
+    colShortcode(...attrs, 'col-half', 'center-content', 'col-img')
+  );
+}
+
+function setUpCustomShortCodes(eleventyConfig) {
   eleventyConfig.addShortcode('icon', (name, classNames = undefined) => {
     let spanClasses = ['icon', 'icon-' + name];
 
@@ -62,8 +67,28 @@ module.exports = function (eleventyConfig) {
 
     return `<span class="${spanClasses.join(' ')}"></span>`;
   });
+}
 
-  eleventyConfig.addShortcode('markdown', (markdownString) => markdownIt({html: true}).render(markdownString));
+module.exports = function (eleventyConfig) {
+  const mardownOptions = {
+    html: true,
+    breaks: false,
+    linkify: true,
+  };
+  eleventyConfig.setLibrary('md', markdownIt(mardownOptions));
+  eleventyConfig.addPlugin(pluginNavigation);
+  eleventyConfig.addPlugin(pluginRss);
+  eleventyConfig.addPlugin(pluginSass, {
+    watch: ['src/**/*.{scss,sass}', '!node_modules/**'],
+    sourcemaps: true,
+  });
+
+  eleventyConfig.setDataDeepMerge(true);
+
+  setUpPassThroughCopies(eleventyConfig);
+  setUpCustomFilters(eleventyConfig);
+  setUpCustomShortCodes(eleventyConfig);
+  setUpStylingShortcodes(eleventyConfig);
 
   // override default config
   return {
