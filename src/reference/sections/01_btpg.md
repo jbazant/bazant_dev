@@ -1,8 +1,21 @@
 ---
-date: "2010-01-01"
+date: 2010-01-01
+title: Blacktype Pedigree
 ---
-## Blacktype Pedigree
-Stránky [Blacktypepedigree.com](https://blacktypepedigree.com) byly založeny s cílem pomoci chovatelům, ale i majitelům, bloodstock agentům i zájemcům o chov plnokrevníka při analýzách rodokmenů a hledání optimálních spojení. Umožní Vám zjistit, jak se Vámi plánované spojení a jemu blízká spojení dokázala prosadit v produkci koní, úspěšných v black-type dostizích, ale též Vám může napovědět, kde hledat vhodné plemeníky pro Vaše chovné klisny, či analyzovat jak si jednotliví plemeníci, otcové plemeníků, paternitní linie či rodiny vedou v prudukci black-type koní.
+{% col %}
+
+*Stránky [Blacktypepedigree.com](https://blacktypepedigree.com) byly založeny s cílem pomoci chovatelům, 
+ale i majitelům, bloodstock agentům i zájemcům o chov plnokrevníka při analýzách rodokmenů a hledání optimálních spojení. Umožní Vám zjistit, jak se Vámi plánované spojení a jemu blízká spojení dokázala prosadit v produkci koní, úspěšných v black-type dostizích, ale též Vám může napovědět, kde hledat vhodné plemeníky pro Vaše chovné klisny, či analyzovat jak si jednotliví plemeníci, otcové plemeníků, paternitní linie či rodiny vedou v prudukci black-type koní.*
+
+{% endcol %}
+
+{% colimg  %}
+
+![Blacktype pedigree screenshot](/images/references/btpg.png)
+
+{% endcolimg %}
+
+{% colhalf %}
 
 ### Použité Technologie
  * PHP 5 (původní verze) / PHP 7 (současná verze)
@@ -20,3 +33,5 @@ Stránky [Blacktypepedigree.com](https://blacktypepedigree.com) byly založeny s
  * implementace,
  * team lead super velkého týmu o dvou lidech a
  * stále běžící údržba projektu.
+{% endcolhalf %}
+

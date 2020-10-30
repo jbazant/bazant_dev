@@ -19,9 +19,13 @@ eleventyNavigation:
   </div>
 </section>
 {%- for entry in collections.references %}
+
   <section class="basic">
     <div class="container">
-      {{ entry.templateContent | safe }}
+      <h2>{{ entry.data.title }}</h2>
+      <div class="flex-grid flex-grid--wide">
+        {{ entry.templateContent | safe }}
+      </div>
     </div>
   </section>
 {%- endfor %}

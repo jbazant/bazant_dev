@@ -13,6 +13,17 @@
   padding: $step2;
 }
 
+.col-nopad {
+  padding: 0;
+}
+
+.col-img {
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
 @media (min-width: 550px) {
   .flex-grid {
     display: flex;
@@ -20,7 +31,34 @@
     flex-wrap: wrap;
   }
 
+  .col {
+    flex-basis: 100%;
+  }
   .col-half {
     flex-basis: 45%;
   }
+
+  .col-img {
+    order: 2;
+  }
 }
+
+@media (min-width: 550px) and (max-width: 900px) {
+  .flex-grid--wide {
+    display: block;
+    box-sizing: border-box;
+
+    .col-half {
+      flex-basis: auto;
+    }
+  }
+}
+
+.center-content {
+  display: flex;
+  align-items: center;
+}
+
+
+
+
