@@ -17,7 +17,7 @@ title: Rychlé Kačky
 {% colhalf %}
 
 ### Použité Technologie
- * Node JS
+ * NodeJS
  * WebSockets
  * ExpressJS
  * Phaser
