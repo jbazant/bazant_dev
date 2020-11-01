@@ -22,9 +22,18 @@
   justify-content: center;
 
   img {
+    display: block;
     max-width: 100%;
-    max-height: 500px;
+    width: 100%;
     height: auto;
+  }
+
+  .m700 {
+    max-width: 700px;
+  }
+
+  .m300 {
+    max-width: 300px;
   }
 }
 

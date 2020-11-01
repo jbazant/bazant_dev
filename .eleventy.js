@@ -4,6 +4,7 @@ const pluginRss = require('@11ty/eleventy-plugin-rss');
 const pluginSass = require('eleventy-plugin-sass');
 const markdownIt = require('markdown-it');
 const fs = require('fs');
+const lazyImagesPlugin = require('eleventy-plugin-lazyimages');
 
 function setUpPassThroughCopies(eleventyConfig) {
   eleventyConfig.addPassthroughCopy('./src/assets/');
@@ -46,10 +47,15 @@ function setUpStylingShortcodes(eleventyConfig) {
   const colShortcode = (colContent, ...additionalClasses) =>
     `<div class="col col-nopad ${additionalClasses.join(' ')}">${colContent}</div>`;
 
+  const imgShortcode = (alt, src, ...additionalClasses) => {
+    const classStr = `class="img-resp ${additionalClasses.join(' ')}"`;
+    return `<img alt="${alt}" src="${src}" ${classStr} />`;
+  };
+
   eleventyConfig.addPairedShortcode('col', colShortcode);
   eleventyConfig.addPairedShortcode('colhalf', (...attrs) => colShortcode(...attrs, 'col-half', 'col--o2'));
-  eleventyConfig.addPairedShortcode('colimg', (...attrs) =>
-    colShortcode(...attrs, 'col-half', 'center-content', 'col-img')
+  eleventyConfig.addShortcode('colimg', (...attrs) =>
+    colShortcode(imgShortcode(...attrs), 'col-half', 'center-content', 'col-img')
   );
 }
 
@@ -81,6 +87,10 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(pluginSass, {
     watch: ['src/**/*.{scss,sass}', '!node_modules/**'],
     sourcemaps: true,
+  });
+  eleventyConfig.addPlugin(lazyImagesPlugin, {
+    appendInitScript: false,
+    preferNativeLazyLoad: true,
   });
 
   eleventyConfig.setDataDeepMerge(true);

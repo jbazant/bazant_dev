@@ -13,11 +13,7 @@ V současné době již projekt spravuje agentura Wunderman.
 
 {% endcol %}
 
-{% colimg %}
-
-![CBRE screenshot](/images/references/cbreproperties.png)
-
-{% endcolimg %}
+{% colimg 'CBRE Properties screenshot', '/images/references/cbreproperties-700.png', 'm700' %}
 
 {% colhalf %}
 

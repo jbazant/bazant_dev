@@ -5,15 +5,14 @@ title: Blacktype Pedigree
 {% col %}
 
 *Stránky [Blacktypepedigree.com](https://blacktypepedigree.com) byly založeny s cílem pomoci chovatelům, 
-ale i majitelům, bloodstock agentům i zájemcům o chov plnokrevníka při analýzách rodokmenů a hledání optimálních spojení. Umožní Vám zjistit, jak se Vámi plánované spojení a jemu blízká spojení dokázala prosadit v produkci koní, úspěšných v black-type dostizích, ale též Vám může napovědět, kde hledat vhodné plemeníky pro Vaše chovné klisny, či analyzovat jak si jednotliví plemeníci, otcové plemeníků, paternitní linie či rodiny vedou v prudukci black-type koní.*
+ale i majitelům, bloodstock agentům i zájemcům o chov plnokrevníka při analýzách rodokmenů a hledání optimálních spojení. 
+Umožní Vám zjistit, jak se Vámi plánované spojení a jemu blízká spojení dokázala prosadit v produkci koní, 
+úspěšných v black-type dostizích, ale též Vám může napovědět, kde hledat vhodné plemeníky pro Vaše chovné klisny, 
+či analyzovat jak si jednotliví plemeníci, otcové plemeníků, paternitní linie či rodiny vedou v prudukci black-type koní.*
 
 {% endcol %}
 
-{% colimg  %}
-
-![Blacktype pedigree screenshot](/images/references/btpg.png)
-
-{% endcolimg %}
+{% colimg 'Blacktype pedigree screenshot', '/images/references/btpg-700.png', 'm700' %}
 
 {% colhalf %}
 

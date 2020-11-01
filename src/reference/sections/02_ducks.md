@@ -8,11 +8,7 @@ title: Rychlé Kačky
 
 {% endcol %}
 
-{% colimg  %}
-
-![Rychlé Kačky screenshot](/images/references/rychlekacky.png)
-
-{% endcolimg %}
+{% colimg 'Rychlé Kačky screenshot', '/images/references/rychlekacky-700.png', 'm700' %}
 
 {% colhalf %}
 

@@ -45,11 +45,36 @@ ErrorDocument 404 /404.html
 
     # SECURITY
     # CSP
-    Header set Content-Security-Policy "default-src 'none'; script-src 'self' https://www.google-analytics.com https://ssl.google-analytics.com https://www.googletagmanager.com; img-src 'self' https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com; style-src 'self'; object-src 'none'; base-uri 'none'; font-src 'self'; frame-ancestors 'none'; frame-src 'self';  manifest-src 'self'; media-src 'self'; worker-src 'none'; form-action 'self' https://formspree.io;"
+    Header set Content-Security-Policy "default-src 'none'; script-src 'self' https://cdn.jsdelivr.net https://www.google-analytics.com https://ssl.google-analytics.com https://www.googletagmanager.com; img-src 'self' https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com; style-src 'self'; object-src 'none'; base-uri 'none'; font-src 'self'; frame-ancestors 'none'; frame-src 'self';  manifest-src 'self'; media-src 'self'; worker-src 'none'; form-action 'self' https://formspree.io;"
 
     # other security headers
     Header set X-Content-Type-Options nosniff
     Header set X-Frame-Options DENY
     Header set X-XSS-Protection "1; mode=block"
+
+    <IfModule mod_expires.c>
+        ExpiresActive On
+
+        # Images
+        ExpiresByType image/jpeg "access plus 1 month"
+        ExpiresByType image/gif "access plus 1 month"
+        ExpiresByType image/png "access plus 1 month"
+        ExpiresByType image/webp "access plus 1 month"
+        ExpiresByType image/svg+xml "access plus 1 month"
+        ExpiresByType image/x-icon "access plus 1 month"
+
+        # Video
+        ExpiresByType video/mp4 "access plus 1 month"
+        ExpiresByType video/mpeg "access plus 1 month"
+
+        # CSS, JavaScript
+        ExpiresByType text/css "access plus 1 week"
+        ExpiresByType text/javascript "access plus 1 week"
+        ExpiresByType application/javascript "access plus 1 week"
+
+        # Others
+        ExpiresByType application/pdf "access plus 1 month"
+        ExpiresByType application/x-shockwave-flash "access plus 1 month"
+    </IfModule>
   </IfModule>
 </IfModule>
