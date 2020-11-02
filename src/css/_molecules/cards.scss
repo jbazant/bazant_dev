@@ -20,19 +20,22 @@
   text-decoration: none;
   font-weight: bold;
 
-  //todo does it work?
-  transition: color 0.5s ease;
+  &, h3, .theme-icon {
+    color: $muted-color;
+    transition: 0.5s;
+  }
 
   .theme-icon {
     display: block;
     font-size: 6.0rem;
-    color: $muted-color;
     margin: $step2;
   }
+
   &:hover {
     border-color: $secondary-button-color-active;
+    box-shadow: 1px 1px 2px 2px #ccc;
 
-    .theme-icon {
+    &, h3, .theme-icon {
       color: $hovered-color;
     }
   }
