@@ -15,8 +15,8 @@ sitemap:
     {%- for entry in collections.all | eleventyNavigation %}
         <a class="col col-half card" href="{{ entry.url | url }}">
             {% icon entry.icon, 'theme-icon' %}
-            <h3>{{ entry.title }}</h3>
-            <p>{{ entry.excerpt }}</p>
+            <h3>{{ entry.title | safe }}</h3>
+            <p>{{ entry.description | safe }}</p>
         </a>
     {%- endfor %}
   </div>

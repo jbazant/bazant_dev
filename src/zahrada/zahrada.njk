@@ -1,0 +1,35 @@
+---
+layout: layouts/basic.njk
+tags: top
+sitemap:
+  priority: 0.6
+  lastmod: "2020-11-02"
+eleventyNavigation:
+  key: garden
+  title: Zahrada
+  description: Mé pokusy s různými technologiemi a jejich výsledky.
+  order: 1
+  icon: tree
+---
+<section class="top">
+  <div class="container">
+    <p>
+      Mé pokusy s&nbsp;různými technologiemi. Zahrada není nijak přísně udržovaná.
+      Nebuďte tedy překvapeni tím, co tu roste za&nbsp;plevel.
+      Prezentované výsledky jsou často jen koncept. Funkčnost není garantována, užitečnost nemusí být cílem.
+    </p>
+    <p>Vstup na&nbsp;vlastní nebezpečí!</p>
+  </div>
+</section>
+
+<section>
+  <div class="container flex-grid cards">
+    {%- for entry in collections.bed %}
+      <a class="col col-half card" href="{{ (entry.data.url or entry.url) | url }}">
+        {% icon entry.icon, 'theme-icon' %}
+        <h3>{{ entry.data.title }}</h3>
+        <p>{{ entry.data.description }}</p>
+      </a>
+    {%- endfor %}
+  </div>
+</section>

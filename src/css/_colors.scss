@@ -2,6 +2,9 @@ $primary-color: #26122f;
 $primary-color-light: #352742;
 $primary-color-dark: #160a1a;
 
+$text-empathized: #453356;
+$text-empathized-light: #7c5b99;
+
 $dark: #333;
 $darker: #222;
 
@@ -18,6 +21,8 @@ $grey: #999;
 $muted-color: #555;
 $hovered-color: $dark;
 
+$common-heading: $text-empathized;
+
 // inherited from skeleton - has to be refefined
 // todo define pallete and inherit from it
 $primary-button-color: $primary-color-light; //#33C3F0;
@@ -31,8 +36,8 @@ $secondary-button-text-color: #555;
 $secondary-button-text-color-active: #333;
 
 $primary-text-color: #222;
-$link-color: $primary-color-light;
-$link-color-active: $primary-color-dark;
+$link-color: $text-empathized;
+$link-color-active: $text-empathized-light;
 
 $input-background-color: #fff;
 $input-border-color: #D1D1D1;

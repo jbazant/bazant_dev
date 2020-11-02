@@ -10,7 +10,7 @@
       <ul>
         <li><a href="{{ '/' | url }}"><span>Úvod</span></a></li>
         {% for page in collections.all | eleventyNavigation %}
-          <li><a href="{{ page.url | url }}"><span>{{ page.title }}</span></a></li>
+          <li><a href="{{ page.url | url }}"><span>{{ page.title | safe }}</span></a></li>
         {% endfor %}
       </ul>
     </nav>

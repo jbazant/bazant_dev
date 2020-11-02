@@ -65,6 +65,8 @@ main {
 h1, h2, h3, h4, h5, h6 {
   margin: 0 0 2rem;
   font-weight: 300;
+  font-family: "Arial Black", Gadget, sans-serif;
+  color: $common-heading;
 }
 
 h1 {
@@ -103,28 +105,6 @@ h6 {
   letter-spacing: 0;
 }
 
-/* Larger than phablet */
-@media (min-width: 550px) {
-  //h1 {
-  //  font-size: 5.0rem;
-  //}
-  //h2 {
-  //  font-size: 4.2rem;
-  //}
-  //h3 {
-  //  font-size: 3.6rem;
-  //}
-  //h4 {
-  //  font-size: 3.0rem;
-  //}
-  //h5 {
-  //  font-size: 2.4rem;
-  //}
-  //h6 {
-  //  font-size: 1.5rem;
-  //}
-}
-
 p {
   margin-top: 0;
 }
@@ -134,11 +114,14 @@ p {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 a {
   color: $link-color;
+  transition: 0.5s;
+  font-weight: bold;
+
+  &:hover {
+    color: $link-color-active;
+  }
 }
 
-a:hover {
-  color: $link-color-active;
-}
 
 
 /* Buttons
