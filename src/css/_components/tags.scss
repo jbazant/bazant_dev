@@ -1,0 +1,43 @@
+@import "../_sizes";
+
+.tag{
+  font-size: 0.8em;
+  display: inline-block;
+  color: white;
+  font-weight: normal;
+  padding: 0 $step2;
+  border-radius: 1em;
+
+  &-0 {
+    background-color: #fff100;
+  }
+  &-1 {
+    background-color: #ff8c00;
+  }
+  &-2 {
+    background-color: #e81123;
+  }
+  &-3 {
+    background-color: #ec008c;
+  }
+  &-4 {
+    background-color: #68217a;
+  }
+  &-5 {
+    background-color: #00188f;
+  }
+  &-6 {
+    background-color: #00bcf2;
+  }
+  &-7 {
+    background-color: #00b294;
+  }
+  &-8 {
+    background-color: #009e49;
+  }
+  &-9 {
+    background-color: #bad80a;
+  }
+
+
+}

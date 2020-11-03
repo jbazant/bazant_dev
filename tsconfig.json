@@ -1,6 +1,6 @@
 {
   "include": ["./src/ts/**/*"],
-  "exclude": ["node_modules", "_site"],
+  "exclude": ["node_modules", "_site", "eleventy"],
   "compilerOptions": {
     "noImplicitAny": true,
     "removeComments": true,

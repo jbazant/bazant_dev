@@ -11,9 +11,11 @@
 }
 
 .card {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   text-align: center;
-  padding: 5 * $step;
+  padding: 10 * $step 5 * $step;
   background-color: $white;
   border: 1px solid $secondary-button-color;
   border-radius: $step;
@@ -24,11 +26,13 @@
     color: $muted-color;
     transition: 0.5s;
   }
+  p {
+    margin: 1em 0 0 0;
+  }
 
   .theme-icon {
     display: block;
     font-size: 6.0rem;
-    margin: $step2;
   }
 
   &:hover {

@@ -4,7 +4,7 @@ templateClass: tmpl-basic
 ---
 <section class="page-header">
   <div class="container">
-    <h1 class="home">{{ eleventyNavigation.title or title }}</h1>
+    <h1 class="home">{{ (eleventyNavigation.title or title) | safe }}</h1>
   </div>
 </section>
 
