@@ -1,11 +1,12 @@
-import { SmartScene } from './webgl/SmartScene';
-import { getConfig } from './config';
+import { SmartScene } from './bay/webgl/SmartScene';
+import { getConfig } from './bay/config';
 
 const canvas = document.getElementById('water-canvas') as HTMLCanvasElement;
+const wrapper = document.getElementById('animation-wrapper') as HTMLDivElement;
 const gl = canvas && (canvas.getContext('webgl') || canvas.getContext('experimental-webgl'));
 
 if (gl && gl instanceof WebGLRenderingContext) {
-  const smartScene = new SmartScene(canvas, getConfig(gl.getSupportedExtensions()));
+  const smartScene = new SmartScene(canvas, wrapper, getConfig(gl.getSupportedExtensions()));
   const getClassList = (name: string) =>
     document.getElementById(`loading-${name}-placeholder`).classList;
 

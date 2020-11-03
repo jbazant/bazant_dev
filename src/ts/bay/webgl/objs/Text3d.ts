@@ -10,7 +10,7 @@ const BASE_GEOMETRY_PARAMS = {
   bevelSegments: 2,
 };
 
-const FONT_URL = './fonts/gentilis_bold.typeface.json';
+const FONT_URL = '/fonts/gentilis_bold.typeface.json';
 
 const getColor = (x: number) => Math.sin(x) * 0.4 + 0.5;
 

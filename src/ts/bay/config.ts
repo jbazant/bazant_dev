@@ -35,7 +35,7 @@ export const getConfig = (supportedFeatureList: Array<string>) => {
       },
     ],
     text3d: {
-      lines: ['bazant JS API', 'New version!'],
+      lines: ['Bažant.DEV'],
     },
     camera: {
       allowOrbitControls: false,
@@ -43,6 +43,7 @@ export const getConfig = (supportedFeatureList: Array<string>) => {
     mirrorCamera: {
       resolution: 512,
     },
+    aspect: 4 / 3,
   };
 };
 

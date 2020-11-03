@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { SimplexNoise } from '../../utils/SimplexNoise';
+import { SimplexNoise } from '../../../utils/SimplexNoise';
 
 export type FireflyConfig = {
   light: {

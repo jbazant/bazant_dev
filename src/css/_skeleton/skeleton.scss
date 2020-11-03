@@ -20,11 +20,15 @@
   margin: 0 auto;
   padding: 0 20px;
   box-sizing: border-box;
+
+  &--animation {
+    padding: 0;
+  }
 }
 
 /* For devices larger than 400px */
 @media (min-width: 400px) {
-  .œcontainer {
+  .container {
     width: 85%;
     padding: 0;
   }

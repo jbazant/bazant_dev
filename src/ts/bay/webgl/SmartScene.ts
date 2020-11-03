@@ -4,7 +4,7 @@ import { MirrorCamera } from './cameras/MirrorCamera';
 import { StaticLights } from './objs/StaticLights';
 import { ConfigType } from '../config';
 import * as Stats from 'stats.js';
-import { debounce } from '../utils/debounce';
+import { debounce } from '../../utils/debounce';
 import { waterFactory } from './objs/waterFactory';
 import { Mountains } from './objs/Mountains';
 import { firefliesFactory } from './objs/firefliesFactory';
@@ -12,6 +12,9 @@ import { Text3d } from './objs/Text3d';
 
 export class SmartScene {
   el: HTMLCanvasElement;
+  wrapper: HTMLElement;
+
+  aspect: number;
 
   camera: MyCamera;
   waterMirrorCamera: MirrorCamera;
@@ -24,8 +27,11 @@ export class SmartScene {
 
   stats: Stats | null;
 
-  constructor(targetEl: HTMLCanvasElement, sceneConfig: ConfigType) {
+  constructor(targetEl: HTMLCanvasElement, wrapper: HTMLElement, sceneConfig: ConfigType) {
     this.el = targetEl;
+    this.wrapper = wrapper;
+    this.aspect = sceneConfig.aspect;
+
     this._initScene(sceneConfig);
     this._initSceneObjs(sceneConfig);
 
@@ -35,21 +41,10 @@ export class SmartScene {
     }
   }
 
-  _updateRatio = () => {
-    const fullScreenRatio = window.innerWidth / window.innerHeight;
-
-    if (fullScreenRatio < 1) {
-      this.camera.aspect = 1;
-      this.renderer.setSize(window.innerWidth, window.innerWidth);
-    } else if (fullScreenRatio > 2.5) {
-      this.camera.aspect = 2.5;
-      this.renderer.setSize(2.5 * window.innerHeight, window.innerHeight);
-    } else {
-      this.camera.aspect = fullScreenRatio;
-      this.renderer.setSize(window.innerWidth, window.innerHeight);
-    }
-
-    this.camera.updateProjectionMatrix();
+  _updateSize = () => {
+    const w = this.wrapper.clientWidth;
+    this.renderer.setSize(w, w / this.aspect);
+    //this.camera.updateProjectionMatrix();
   };
 
   _initRenderer() {
@@ -81,11 +76,11 @@ export class SmartScene {
 
     this.scene = new THREE.Scene();
     this.scene.background = new THREE.CubeTextureLoader()
-      .setPath('images/skybox/')
+      .setPath('/images/gl_bay/skybox/')
       .load(textures.map((it) => `${it}.png`));
 
     this.renderer = this._initRenderer();
-    this.camera = new MyCamera(1, this.el, sceneConfig.camera);
+    this.camera = new MyCamera(this.aspect, this.el, sceneConfig.camera);
     this.waterMirrorCameraTarget = new THREE.WebGLCubeRenderTarget(
       sceneConfig.mirrorCamera.resolution,
       {
@@ -108,8 +103,8 @@ export class SmartScene {
     THREE.DefaultLoadingManager.onLoad = onSuccess;
     THREE.DefaultLoadingManager.onError = onFail;
 
-    this._updateRatio();
-    const onResizeDebounced = debounce(this._updateRatio, 200);
+    this._updateSize();
+    const onResizeDebounced = debounce(this._updateSize, 200);
 
     // todo should also remove listener somewhere
     window.addEventListener('resize', onResizeDebounced, { passive: false });

@@ -2,7 +2,7 @@
 date: "2010-02-01"
 ---
 ## Vím něco málo o těchto technologiích
-A někdy ve své kariéře jsem je použil i k něčemu jinému, než je vypsání "Hello world!", nebo blikání diodou.
+A někdy ve své kariéře jsem je použil i k něčemu jinému, než je vypsání "Hello world!" nebo blikání diodou.
 
 ### PHP
 

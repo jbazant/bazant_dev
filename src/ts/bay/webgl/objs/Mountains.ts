@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { SimplexNoise } from '../../utils/SimplexNoise';
+import { SimplexNoise } from '../../../utils/SimplexNoise';
 
 export class Mountains extends THREE.Group {
   segments = 32;
@@ -70,7 +70,7 @@ export class Mountains extends THREE.Group {
   }
 
   private _generateMaterial() {
-    const loader = new THREE.TextureLoader().setPath('images/');
+    const loader = new THREE.TextureLoader().setPath('/images/gl_bay/');
     const map = loader.load('terrain.jpg', (texture) => {
       texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
       texture.repeat.set(2, 2);
