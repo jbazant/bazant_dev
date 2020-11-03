@@ -1,0 +1,19 @@
+@import "../_colors";
+
+@mixin gradientBackground($primary, $secondary) {
+  background: $primary linear-gradient(135deg, $primary 0%, $secondary 50%, $primary 51%, $secondary 100%);
+}
+
+@mixin withGradient($primary) {
+  $secondary: lighten($primary, 10%);
+  @include gradientBackground($primary, $secondary);
+}
+
+@mixin withDarkenGradient($primary) {
+  $secondary: darken($primary, 10%);
+  background: $primary linear-gradient(135deg, $secondary 0%, $primary 50%, $secondary 51%, $secondary 100%);
+}
+
+@mixin heroBackground() {
+  @include withGradient($primary-color);
+}

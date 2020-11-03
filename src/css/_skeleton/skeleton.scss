@@ -8,6 +8,7 @@
 */
 
 @import "../_colors";
+@import "../_sizes";
 @import "normalize";
 
 /* Grid
@@ -114,7 +115,7 @@ p {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 a {
   color: $link-color;
-  transition: 0.5s;
+  transition: $transition-default;
   font-weight: bold;
 
   &:hover {

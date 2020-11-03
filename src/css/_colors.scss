@@ -1,6 +1,6 @@
 $primary-color: #26122f;
-$primary-color-light: #352742;
-$primary-color-dark: #160a1a;
+$primary-color-light: lighten($primary-color, 10%);
+$primary-color-dark: darken($primary-color, 10%);
 
 $text-empathized: #453356;
 $text-empathized-light: #7c5b99;
@@ -10,11 +10,9 @@ $darker: #222;
 
 $alert-text: #770606;
 
-// todo light?
 $light-background: #eee;
 $light-text: #eee;
 
-// todo rename
 $white: #fff;
 $grey: #999;
 
@@ -23,10 +21,9 @@ $hovered-color: $dark;
 
 $common-heading: $text-empathized;
 
-// inherited from skeleton - has to be refefined
-// todo define pallete and inherit from it
-$primary-button-color: $primary-color-light; //#33C3F0;
-$primary-button-color-active: $primary-color;// #1EAEDB;
+// inherited from skeleton - has to be refined
+$primary-button-color: $primary-color-light;
+$primary-button-color-active: $primary-color;
 $primary-button-text-color: $white;
 $primary-button-text-color-active: $white;
 

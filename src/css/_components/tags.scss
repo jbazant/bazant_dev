@@ -1,43 +1,42 @@
 @import "../_sizes";
+@import "../_colors";
+@import "../_mixins/visualIdentity";
 
 .tag{
   font-size: 0.8em;
   display: inline-block;
-  color: white;
-  font-weight: normal;
+  color: $white;
   padding: 0 $step2;
   border-radius: 1em;
 
   &-0 {
-    background-color: #fff100;
+    @include withDarkenGradient(#fff100);
   }
   &-1 {
-    background-color: #ff8c00;
+    @include withDarkenGradient(#ff8c00);
   }
   &-2 {
-    background-color: #e81123;
+    @include withDarkenGradient(#e81123);
   }
   &-3 {
-    background-color: #ec008c;
+    @include withDarkenGradient(#ec008c);
   }
   &-4 {
-    background-color: #68217a;
+    @include withDarkenGradient(#68217a);
   }
   &-5 {
-    background-color: #00188f;
+    @include withDarkenGradient(#00188f);
   }
   &-6 {
-    background-color: #00bcf2;
+    @include withDarkenGradient(#00bcf2);
   }
   &-7 {
-    background-color: #00b294;
+    @include withDarkenGradient(#00b294);
   }
   &-8 {
-    background-color: #009e49;
+    @include withDarkenGradient(#009e49);
   }
   &-9 {
-    background-color: #bad80a;
+    @include withDarkenGradient(#bad80a);
   }
-
-
 }

@@ -1,12 +1,9 @@
 @import "../_colors";
 @import "../_sizes";
+@import "../_mixins/visualIdentity";
+
 .page-header, .hero, .page-not-found {
-  background-color: $primary-color;
-  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/$primary-color+0,352742+50,1e0e25+51,352742+100 */
-  background: $primary-color; /* Old browsers */
-  background: -moz-linear-gradient(-45deg, $primary-color 0%, $primary-color-light 50%, $primary-color 51%, $primary-color-light 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(-45deg, $primary-color 0%, $primary-color-light 50%, $primary-color 51%, $primary-color-light 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(135deg, $primary-color 0%, $primary-color-light 50%, $primary-color 51%, $primary-color-light 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  @include heroBackground();
 
   h1, h2 {
     color: $light-text;

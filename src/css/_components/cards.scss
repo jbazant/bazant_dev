@@ -22,10 +22,16 @@
   text-decoration: none;
   font-weight: bold;
 
-  &, h3, .theme-icon {
-    color: $muted-color;
-    transition: 0.5s;
+  // do not distinguish between h2 and h3
+  h2 {
+    font-size: 3.0rem;
   }
+
+  &, h2, h3, .theme-icon {
+    color: $muted-color;
+    transition: $transition-default;
+  }
+
   p {
     margin: 1em 0 0 0;
   }
@@ -39,8 +45,9 @@
     border-color: $secondary-button-color-active;
     box-shadow: 1px 1px 2px 2px #ccc;
 
-    &, h3, .theme-icon {
+    &, h2, h3, .theme-icon {
       color: $hovered-color;
+      transition: $transition-default;
     }
   }
 }

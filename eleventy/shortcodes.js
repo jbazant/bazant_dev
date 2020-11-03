@@ -1,3 +1,6 @@
+// --------------------
+// -- icon from font --
+// --------------------
 function iconShortcode(name, classNames = undefined) {
   let spanClasses = ['icon', 'icon-' + name];
 
@@ -12,9 +15,11 @@ function iconShortcode(name, classNames = undefined) {
   return `<span class="${spanClasses.join(' ')}"></span>`;
 }
 
-function stringToHash(str) {}
+// --------------------
+// --- Tag coloring ---
+// --------------------
 
-function coloredTagShortcode(tag) {
+function coloredTag(tag) {
   let hash = 0;
   for (let i = 0; i < tag.length; ++i) {
     hash += tag.charCodeAt(i);
@@ -23,6 +28,15 @@ function coloredTagShortcode(tag) {
 
   return `<span class="tag tag-${hash}">${tag}</span>`;
 }
+
+function coloredTagsShortcode(tags, ignored = []) {
+  const ignoreFilter = (it) => !ignored.includes(it);
+  return tags.filter(ignoreFilter).map(coloredTag).join(' ');
+}
+
+// --------------------
+// -- col shortcodes --
+// --------------------
 
 function setUpStylingShortcodes(eleventyConfig) {
   const colShortcode = (colContent, ...additionalClasses) =>
@@ -42,9 +56,13 @@ function setUpStylingShortcodes(eleventyConfig) {
   );
 }
 
+// ----------------------
+// -- setup everything --
+// ----------------------
+
 function setUpCustomShortcodes(eleventyConfig) {
   eleventyConfig.addShortcode('icon', iconShortcode);
-  eleventyConfig.addShortcode('colorTag', coloredTagShortcode);
+  eleventyConfig.addShortcode('colorTags', coloredTagsShortcode);
   setUpStylingShortcodes(eleventyConfig);
 }
 

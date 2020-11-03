@@ -26,15 +26,9 @@ eleventyNavigation:
   <div class="container flex-grid cards">
     {%- for entry in collections.bed %}
       <a class="col col-half card" href="{{ (entry.data.url or entry.url) | url }}">
-        <h3>{{ entry.data.title }}</h3>
-        <p>{{ entry.data.description }}</p>
-        <p>
-          {%- for tag in entry.data.tags %}
-            {%- if tag != 'bed' %}
-              {% colorTag tag %}{{ ' ' }}
-            {% endif %}
-          {% endfor %}
-        </p>
+        <h2>{{ entry.data.title | safe}}</h2>
+        <p>{{ entry.data.description | safe}}</p>
+        <p> {% colorTags entry.data.tags, ['bed'] %}</p>
       </a>
     {%- endfor %}
   </div>
