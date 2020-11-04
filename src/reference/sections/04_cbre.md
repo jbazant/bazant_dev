@@ -7,7 +7,7 @@ title: CBRE Properties
 *Nabídka kanceláří, skadů a obchodních prostor k pronájmu.* 
 
 [Webový portál](https://www.cbreproperties.cz) s databází nabízených objektů, 
-rozsáhlou administrací a obousměrnou komunikací s [SugarCRM](https://www.sugarcrm.com/). Portál umožňoval generování XLSX s porovnáním objektů, DOCX a PDF s popisem objektů a PPTX s nabídkou na míru.
+rozsáhlou administrací a obousměrnou komunikací s [SugarCRM](https://www.sugarcrm.com/). Portál umožňoval generování XLSX s&nbsp;porovnáním objektů, DOCX a PDF s&nbsp;popisem objektů a PPTX s nabídkou na&nbsp;míru.
 
 V současné době již projekt spravuje agentura Wunderman.
 
@@ -18,19 +18,19 @@ V současné době již projekt spravuje agentura Wunderman.
 {% colhalf %}
 
 ### Použité Technologie
- * PHP 5, později PHP 7
- * Symfony 2.8
- * TCPDF
- * Google Maps API
- * PHPOffice
- * JS
- * MariaDB
+ * PHP 5, později PHP 7,
+ * Symfony 2.8,
+ * TCPDF,
+ * Google Maps API,
+ * PHPOffice,
+ * JS,
+ * MariaDB.
 
 ### Moje role
- * Návrh dílčích řešení,
- * návrh rozhraní pro komunikaci s SugarCMS,
- * implementace a
- * komunikace s klientem.
+ * návrh dílčích řešení,
+ * návrh rozhraní pro komunikaci se&nbsp;SugarCMS,
+ * implementace,
+ * komunikace s&nbsp;klientem.
 
 {% endcolhalf %}
 

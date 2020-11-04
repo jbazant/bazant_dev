@@ -4,7 +4,7 @@ title: Rychlé Kačky
 ---
 {% col %}
 
-*Sazka Loterie [Rychlé Kačky](https://www.sazka.cz/loterie/rychle-kacky) je nejrychlejší online loterijní hra, která byla firmou Sazka spuštěna teprve v roce 2018.*
+*Sazka Loterie [Rychlé Kačky](https://www.sazka.cz/loterie/rychle-kacky) je nejrychlejší online loterijní hra, která byla firmou Sazka spuštěna teprve v&nbsp;roce 2018.*
 
 {% endcol %}
 
@@ -13,14 +13,14 @@ title: Rychlé Kačky
 {% colhalf %}
 
 ### Použité Technologie
- * NodeJS
- * WebSockets
- * ExpressJS
- * Phaser
+ * NodeJS,
+ * WebSockets,
+ * ExpressJS,
+ * Phaser.
 
 ### Moje role
- * Návrh a propojení se systémy Sazka,
- * implementace webového prototypu a
+ * návrh a propojení se systémy Sazka,
+ * implementace webového prototypu,
  * implementace serverové části.
 
 {% endcolhalf %}

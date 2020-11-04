@@ -8,25 +8,25 @@ title: A mnoho dalších, často již ukončených, projektů
 ### Engage 2017
 Web na podporu konference. [Případová studie](https://symbio.agency/work/engage) od [SYMBIO](https://symbio.agency).
 
-Postaveno na PHP, Symfony 2 a Three.js.
+Postaveno na&nbsp;PHP, Symfony 2 a Three.js.
 
 {% endcolhalf %}
 
 {% colhalf %}
 
 ### Parking SMS
-Platba za parkování přes premium SMS na různých místech ČR.
+Platba za parkování přes premium SMS na&nbsp;různých místech ČR.
 
-Projekt stále běží, ovšem již s jiným provozovatelem.
+Projekt stále běží, ovšem již s&nbsp;jiným provozovatelem.
 
 {% endcolhalf %}
 
 {% colhalf %}
 
 ### Gambrinus Team
-Věrnostní program s pivem Gambrinus. Pod víčky byly unikátní kódy, které zákazníci mohli zaslat přes SMS, nebo zadat na webu pro získání bodů. Následně tyto body směnit za reklamní předměty, nebo použít v různých soutěžích.
+Věrnostní program s&nbsp;pivem Gambrinus. Pod víčky byly unikátní kódy, které zákazníci mohli zaslat přes SMS, nebo zadat na&nbsp;webu pro&nbsp;získání bodů. Následně tyto body směnit za&nbsp;reklamní předměty, nebo použít v&nbsp;různých soutěžích.
 
-Počet vygenerovaných unikátních kódů byl v řádu stovek miliónů. Postaveno na PHP, Drupalu a PostgreSQL.
+Počet vygenerovaných unikátních kódů byl v&nbsp;řádu stovek miliónů. Postaveno na&nbsp;PHP, Drupalu a PostgreSQL.
 
 {% endcolhalf %}
 
@@ -34,8 +34,8 @@ Počet vygenerovaných unikátních kódů byl v řádu stovek miliónů. Postav
 
 ### SMS i FB soutěže
 
-* FB vánoční soutěž s Marinnaud.
-* SMS soutěže s Pepsi a Kinder Bueno.
-* A další...
+* FB vánoční soutěž s&nbsp;Marinnaud.
+* SMS soutěže s&nbsp;Pepsi a Kinder Bueno.
+* A další, ...
 
 {% endcolhalf %}
