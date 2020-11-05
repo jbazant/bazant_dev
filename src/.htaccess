@@ -19,6 +19,9 @@ ErrorDocument 404 /404.html
   RewriteCond %{HTTPS} off
   RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
+  # Redirect /.well-known URLs
+  RewriteRule .well-known/manifest.json /manifest.json
+
   # Rules to correctly serve gzip compressed CSS and JS files.
   # Requires both mod_rewrite and mod_headers to be enabled.
   <IfModule mod_headers.c>
@@ -43,39 +46,105 @@ ErrorDocument 404 /404.html
       Header append Vary Accept-Encoding
     </FilesMatch>
 
+    # speed optimizations (probably not allowed by hosting)
+    Header set Connection keep-alive
+
     # SECURITY
     # CSP
     Header set Content-Security-Policy "default-src 'none'; script-src 'self' https://cdn.jsdelivr.net https://www.google-analytics.com https://ssl.google-analytics.com https://www.googletagmanager.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://formspree.io; style-src 'self'; object-src 'none'; base-uri 'none'; font-src 'self'; frame-ancestors 'none'; frame-src 'self';  manifest-src 'self'; media-src 'self'; worker-src 'none'; form-action 'self' https://formspree.io;"
 
     # other security headers
     Header set X-Frame-Options DENY
-    # already implemented by hosting
+    Header set Referrer-Policy same-origin
+
+    # already set by hosting
     #Header set X-Content-Type-Options nosniff
     #Header set X-XSS-Protection "1; mode=block"
 
+    # We need to set correct content-type for fonts
+    AddType application/vnd.ms-fontobject .eot
+    AddType application/x-font-ttf .ttf
+    AddType application/x-font-opentype .otf
+    AddType application/x-font-woff .woff
+    AddType image/svg+xml .svg
+
+    <Files "manifest.json">
+      # beware this is pretty hungry assumption
+      AddType application/manifest+json .json
+    </Files>
+
     <IfModule mod_expires.c>
-        ExpiresActive On
+      ExpiresActive On
 
-        # Images
-        ExpiresByType image/jpeg "access plus 1 month"
-        ExpiresByType image/gif "access plus 1 month"
-        ExpiresByType image/png "access plus 1 month"
-        ExpiresByType image/webp "access plus 1 month"
-        ExpiresByType image/svg+xml "access plus 1 month"
-        ExpiresByType image/x-icon "access plus 1 month"
+      ExpiresDefault "access plus 10 seconds"
 
-        # Video
-        ExpiresByType video/mp4 "access plus 1 month"
-        ExpiresByType video/mpeg "access plus 1 month"
+      # HTML
+      ExpiresByType text/html "access plus 1 hour"
 
-        # CSS, JavaScript
-        ExpiresByType text/css "access plus 1 week"
-        ExpiresByType text/javascript "access plus 1 week"
-        ExpiresByType application/javascript "access plus 1 week"
+      # Images
+      ExpiresByType image/jpeg "access plus 1 year"
+      ExpiresByType image/gif "access plus 1 year"
+      ExpiresByType image/png "access plus 1 year"
+      ExpiresByType image/webp "access plus 1 year"
+      ExpiresByType image/svg+xml "access plus 1 year"
+      ExpiresByType image/x-icon "access plus 1 year"
 
-        # Others
-        ExpiresByType application/pdf "access plus 1 month"
-        ExpiresByType application/x-shockwave-flash "access plus 1 month"
+      # Video
+      ExpiresByType video/mp4 "access plus 1 month"
+      ExpiresByType video/mpeg "access plus 1 month"
+
+      # CSS, JavaScript
+      ExpiresByType text/css "access plus 1 month"
+      ExpiresByType text/javascript "access plus 1 month"
+      ExpiresByType application/javascript "access plus 1 month"
+
+      # Manifest files
+      ExpiresByType application/manifest+json "access plus 1 week"
+
+      # Fonts
+      ExpiresByType application/vnd.ms-fontobject "access plus 1 year"
+      ExpiresByType application/x-font-ttf "access plus 1 year"
+      ExpiresByType application/x-font-opentype "access plus 1 year"
+      ExpiresByType application/x-font-woff "access plus 1 year"
+
+      # Others
+      ExpiresByType application/pdf "access plus 1 month"
+      ExpiresByType application/x-shockwave-flash "access plus 1 month"
     </IfModule>
   </IfModule>
+</IfModule>
+
+<IfModule mod_filter.c>
+    AddOutputFilterByType DEFLATE "application/atom+xml" \
+                                  "application/javascript" \
+                                  "application/json" \
+                                  "application/ld+json" \
+                                  "application/manifest+json" \
+                                  "application/rdf+xml" \
+                                  "application/rss+xml" \
+                                  "application/schema+json" \
+                                  "application/vnd.geo+json" \
+                                  "application/vnd.ms-fontobject" \
+                                  "application/x-font-ttf" \
+                                  "application/x-javascript" \
+                                  "application/x-web-app-manifest+json" \
+                                  "application/xhtml+xml" \
+                                  "application/xml" \
+                                  "font/eot" \
+                                  "font/opentype" \
+                                  "image/bmp" \
+                                  "image/svg+xml" \
+                                  "image/vnd.microsoft.icon" \
+                                  "image/x-icon" \
+                                  "text/cache-manifest" \
+                                  "text/css" \
+                                  "text/html" \
+                                  "text/javascript" \
+                                  "text/plain" \
+                                  "text/vcard" \
+                                  "text/vnd.rim.location.xloc" \
+                                  "text/vtt" \
+                                  "text/x-component" \
+                                  "text/x-cross-domain-policy" \
+                                  "text/xml"
 </IfModule>
