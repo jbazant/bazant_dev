@@ -48,9 +48,10 @@ ErrorDocument 404 /404.html
     Header set Content-Security-Policy "default-src 'none'; script-src 'self' https://cdn.jsdelivr.net https://www.google-analytics.com https://ssl.google-analytics.com https://www.googletagmanager.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://formspree.io; style-src 'self'; object-src 'none'; base-uri 'none'; font-src 'self'; frame-ancestors 'none'; frame-src 'self';  manifest-src 'self'; media-src 'self'; worker-src 'none'; form-action 'self' https://formspree.io;"
 
     # other security headers
-    Header set X-Content-Type-Options nosniff
     Header set X-Frame-Options DENY
-    Header set X-XSS-Protection "1; mode=block"
+    # already implemented by hosting
+    #Header set X-Content-Type-Options nosniff
+    #Header set X-XSS-Protection "1; mode=block"
 
     <IfModule mod_expires.c>
         ExpiresActive On
