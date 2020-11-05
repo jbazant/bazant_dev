@@ -1,4 +1,9 @@
-export function lazyload(selector: string, src: string, preferNativeLazyLoad: boolean): void {
+export function lazyload(
+  selector: string,
+  src: string,
+  integrity: string | false,
+  preferNativeLazyLoad: boolean
+): void {
   const images = document.querySelectorAll(selector);
   const numImages = images.length;
 
@@ -17,6 +22,10 @@ export function lazyload(selector: string, src: string, preferNativeLazyLoad: bo
       const script = document.createElement('script');
       script.async = true;
       script.src = src;
+      script.crossOrigin = 'anonymous';
+      if (integrity) {
+        script.integrity = integrity;
+      }
       document.body.appendChild(script);
     }
   }

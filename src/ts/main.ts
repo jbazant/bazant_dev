@@ -9,5 +9,10 @@ ga();
 ready(() => {
   initMenu();
   initContactForm();
-  lazyload('img.img-resp', 'https://cdn.jsdelivr.net/npm/lazysizes@5/lazysizes.min.js', true);
+  lazyload(
+    'img.img-resp',
+    'https://cdn.jsdelivr.net/npm/lazysizes@5/lazysizes.min.js',
+    'sha384-1N8YjIsNRRCGVDKyAhuzcypn/egF8x3HYOojJWpxKhYt/YbyYLefKrQJBGSRopcw',
+    true
+  );
 });
