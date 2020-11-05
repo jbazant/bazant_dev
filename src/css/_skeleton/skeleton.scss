@@ -58,6 +58,9 @@ body {
   font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: $primary-text-color;
   background-color: $dark;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 main {
