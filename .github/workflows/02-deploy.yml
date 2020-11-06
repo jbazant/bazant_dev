@@ -1,0 +1,33 @@
+name: deploy
+
+on:
+    push:
+        branches: [ master ]
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+
+        strategy:
+            matrix:
+                node-version: [ 12.x ]
+
+        steps:
+            -   uses: actions/checkout@v2
+            -   name: Use Node.js ${{ matrix.node-version }}
+                uses: actions/setup-node@v1
+                with:
+                    node-version: ${{ matrix.node-version }}
+            -   name: Install dependencies
+                run: yarn install --frozen-lockfile
+            -   name: Build app
+                run: yarn build
+            -   name: FTP-Deploy-Action
+                uses: kevinpainchaud/simple-ftp-deploy-action@v1.2.1
+                with:
+                    ftp_host: ftp://ftp.bazant.dev/
+                    ftp_username: bazant.dev
+                    ftp_password: '${{ secrets.FTP_PASSWORD }}'
+                    local_source_dir: '_site'
+                    dist_target_dir: '/'
+                    exclude: "'^css/_.*'"
