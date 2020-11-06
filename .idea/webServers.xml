@@ -3,7 +3,7 @@
   <component name="WebServers">
     <option name="servers">
       <webServer id="1bebad00-fecb-4bc1-babd-30c7627edafa" name="Vas hosting" url="https://bazant.dev">
-        <fileTransfer host="ftp.bazant.dev" port="21">
+        <fileTransfer rootFolder="/www" host="ftp.bazant.dev" port="21">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
           </advancedOptions>
