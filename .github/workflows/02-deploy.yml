@@ -28,7 +28,7 @@ jobs:
                 with:
                     ftp_host: ftp://ftp.bazant.dev/
                     ftp_username: bazant.dev
-                    ftp_password: ${{ secrets.FTP_PASSWORD }}
-                    local-dir: "_site"
-                    dist_target_dir: "/"
+                    ftp_password: '${{ secrets.FTP_PASSWORD }}'
+                    local_source_dir: '_site'
+                    dist_target_dir: '/'
                     exclude: "'^css/_.*'"
