@@ -1,14 +1,14 @@
   <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{{ title or eleventyNavigation.title }} | {{ site.name }}</title>
-  <meta name="Description" content="{{ eleventyNavigation.description or description or metadata.description }}">
-  <link rel="preload" href="{{ '/fonts/entypo.woff' }}" as="font" type="font/woff" crossorigin="anonymous">
-  <link rel="preload" href="{{ '/fonts/entypo.ttf' }}" as="font" type="font/ttf" crossorigin="anonymous">
-  <link rel="stylesheet" href="{{ '/css/main.css?v=201105' | url }}">
+  <meta name="Description" content="{{ eleventyNavigation.description or description or metadata.description }}" />
+  <link rel="preload" href="{{ '/fonts/entypo.woff' }}" as="font" type="font/woff" crossorigin="anonymous" />
+  <link rel="preload" href="{{ '/fonts/entypo.ttf' }}" as="font" type="font/ttf" crossorigin="anonymous" />
+  <link rel="stylesheet" href="{{ '/css/main.css?v=201105' | url }}" />
   {% for size in metadata.icons.appleTouchIcon %}
     {%- set sizeStr = size + 'x' + size -%}
-    <link rel="apple-touch-icon" sizes="{{ sizeStr }}" href="{{ '/images/ico/apple-icon-' + sizeStr + '.png' | url }}"/>
+    <link rel="apple-touch-icon" sizes="{{ sizeStr }}" href="{{ '/images/ico/apple-icon-' + sizeStr + '.png' | url }}" />
   {% endfor %}
   {% for size in metadata.icons.favicon %}
     {%- set sizeStr = size + 'x' + size -%}

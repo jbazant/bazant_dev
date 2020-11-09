@@ -1,0 +1,36 @@
+@import "../_colors";
+@import "../_sizes";
+@import "../_mixins/visualIdentity";
+
+table {
+  width: 100%;
+
+  &.smaller {
+    font-size: 0.8em;
+  }
+}
+
+thead {
+  color: $white;
+  @include heroBackground();
+  border-bottom: 1px $darker solid;
+
+  th {
+    text-align: left;
+    padding: $step;
+  }
+}
+
+tbody {
+  td {
+    padding: $step;
+
+    a {
+      font-weight: normal;
+    }
+  }
+
+  tr:nth-child(even) {
+    background-color: $white;
+  }
+}

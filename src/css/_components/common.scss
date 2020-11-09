@@ -1,7 +1,19 @@
 @import "../colors";
 
-.container-flex {
-  display: flex;
+.container {
+  &--flex {
+    display: flex;
+  }
+
+  &--flex-grow {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+  }
+
+  &--overflow {
+    overflow: scroll;
+  }
 }
 
 a.social {
