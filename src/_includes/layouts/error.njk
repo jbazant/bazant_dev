@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="en">
+<html lang="cs_CZ">
 {% include 'partials/_head.njk' %}
 <body>
   {% include 'partials/_header.njk' %}
-  <main class="error {% if templateClass %}{{ templateClass }}{% endif %}">
+  <main class="error container--flex-grow {% if templateClass %}{{ templateClass }}{% endif %}">
     {{ content | safe }}
   </main>
   {% include 'partials/_footer.njk' %}

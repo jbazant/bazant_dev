@@ -8,6 +8,7 @@ module.exports = {
     main: './src/ts/main.ts',
     scene: './src/ts/scene.ts',
     error: './src/ts/error.ts',
+    sitemap: './src/ts/sitemap.ts',
   },
   mode: 'development',
   devtool: 'source-map',
@@ -15,7 +16,6 @@ module.exports = {
     //filename: '[name].[contentHash].js',
     filename: '[name].js',
     path: path.resolve(__dirname, '_site/js'),
-    library: 'bazant',
   },
 
   module: {
@@ -43,8 +43,7 @@ module.exports = {
         terserOptions: {
           ecma: 6,
           compress: {
-            // eslint-disable-next-line @typescript-eslint/camelcase
-            //drop_console: true,
+            drop_console: true,
           },
           output: { comments: false, beautify: false },
         },
