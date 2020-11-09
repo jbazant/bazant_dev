@@ -3,11 +3,34 @@
 @import "../_mixins/visualIdentity";
 
 table {
-  width: 100%;
-
   &.smaller {
     font-size: 0.8em;
   }
+  &.no-margin {
+    margin: 0;
+  }
+
+  &.nowrap td {
+      white-space: nowrap;
+  }
+
+  .text-right {
+    text-align: right;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+}
+
+@media (min-width: 750px) {
+  table.nowrap th {
+    white-space: nowrap;
+  }
+}
+
+th, td {
+  padding: $step $step2;
 }
 
 thead {
@@ -16,14 +39,20 @@ thead {
   border-bottom: 1px $darker solid;
 
   th {
-    text-align: left;
-    padding: $step;
+    text-align: center;
+    border-right: 1px solid $white;
+
+    &:last-child {
+      border-right: none;
+    }
   }
 }
 
 tbody {
   td {
-    padding: $step;
+    &.wide {
+      width: 99%;
+    }
 
     a {
       font-weight: normal;
