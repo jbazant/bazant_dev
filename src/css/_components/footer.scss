@@ -4,6 +4,10 @@
 footer {
   background-color: $dark;
 
+  @media print {
+    display: none;
+  }
+
   .container {
     padding: $step3;
 

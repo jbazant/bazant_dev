@@ -37,7 +37,7 @@
   }
 }
 
-@media (min-width: 550px) {
+@media (min-width: 550px), print {
   .flex-grid {
     display: flex;
     justify-content: space-between;

@@ -24,7 +24,9 @@ Projekt stále běží, ovšem již s&nbsp;jiným provozovatelem.
 {% colhalf %}
 
 ### Gambrinus Team
-Věrnostní program s&nbsp;pivem Gambrinus. Pod víčky byly unikátní kódy, které zákazníci mohli zaslat přes SMS, nebo zadat na&nbsp;webu pro&nbsp;získání bodů. Následně tyto body směnit za&nbsp;reklamní předměty, nebo použít v&nbsp;různých soutěžích.
+Věrnostní program s&nbsp;pivem Gambrinus. Zákazníci sbírali unokátní kódy z podvíček, které následně mohli zaslat 
+přes&nbsp;SMS, nebo zadat na&nbsp;webu pro&nbsp;získání bodů. A následně tyto body směnit za&nbsp;reklamní předměty, 
+nebo použít v&nbsp;různých soutěžích.
 
 Počet vygenerovaných unikátních kódů byl v&nbsp;řádu stovek miliónů. Postaveno na&nbsp;PHP, Drupalu a PostgreSQL.
 
@@ -34,7 +36,7 @@ Počet vygenerovaných unikátních kódů byl v&nbsp;řádu stovek miliónů. P
 
 ### SMS i FB soutěže
 
-* FB vánoční soutěž s&nbsp;Marinnaud.
+* FB vánoční soutěž s&nbsp;Marionnaud.
 * SMS soutěže s&nbsp;Pepsi a Kinder Bueno.
 * A další, ...
 

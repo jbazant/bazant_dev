@@ -31,6 +31,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(lazyImagesPlugin, {
     appendInitScript: false,
     preferNativeLazyLoad: true,
+    imgSelector: 'img.img-resp',
   });
 
   eleventyConfig.setDataDeepMerge(true);

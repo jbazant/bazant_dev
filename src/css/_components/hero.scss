@@ -8,6 +8,15 @@
   h1, h2 {
     color: $light-text;
   }
+
+  @media print {
+    h1, h2 {
+      color: $common-heading;
+      text-align: center;
+    }
+
+    background: none;
+  }
 }
 
 .page-header {

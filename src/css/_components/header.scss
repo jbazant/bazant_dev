@@ -26,7 +26,7 @@ header, .main-menu-switch {
   width: 4rem;
   color: $light-text;
 
-  @media (min-width: 550px) {
+  @media (min-width: 550px), print {
     display: none;
   }
 }
@@ -48,6 +48,10 @@ header {
     visibility: visible;
     position: static;
     opacity: 1;
+  }
+
+  @media print {
+    display: none;
   }
 
   .container {

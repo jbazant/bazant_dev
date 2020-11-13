@@ -10,6 +10,8 @@ if (gl && gl instanceof WebGLRenderingContext) {
   const getClassList = (name: string) =>
     document.getElementById(`loading-${name}-placeholder`).classList;
 
+  getClassList('info').remove('no-vis');
+
   let loadedSuccessfuly = true;
   const onSuccess = () => {
     if (loadedSuccessfuly) {
