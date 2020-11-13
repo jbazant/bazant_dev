@@ -10,11 +10,21 @@ sitemap:
 <section class="top">
   <p>Relaxujme.</p>
 </section>
+
 <section class="basic">
   <div class="container">
-    <p><a href="{{ '/zahrada' | url }}">&lt; Zpět do zahrady</a></p>
+    <p><a href="{{ '/zahrada' | url }}" class="no-print">&lt; Zpět do&nbsp;zahrady</a></p>
 
-    <div class="abs" id="loading-info-placeholder">
+    <noscript>
+      <h2>Sorry jako...</h2>
+      <p>... ale tohle bez&nbsp;JavaScriptu (a WebGL podpory) nepůjde.</p>
+      <p>Nejlepší, co mohu nabídnout je obrázek:</p>
+      <div class="col col-img">
+        <img src="{{ '/images/gl_bay/preview.jpeg' | url }}" alt="Náhled WebGL scény" class="img"/>
+      </div>
+    </noscript>
+
+    <div class="no-vis" id="loading-info-placeholder">
       <h2>Animace se načítá...</h2>
       <p>...a až se načte, tak tu zatopí.</p>
       <p>
@@ -22,12 +32,16 @@ sitemap:
       </p>
     </div>
 
-    <div class="no-vis abs" id="loading-error-placeholder">
+    <div class="no-vis" id="loading-error-placeholder">
       <h2>Tak to se nepovedlo</h2>
-      <p>Něco, někde, nějak, se pokazilo.</p>
+      <p>Něco se někde nějak pokazilo.</p>
       <p>Nebo jste na&nbsp;opravdu pomalém připojení.</p>
       <p>Nebo jsem prostě něco pokazil já a všechno se rozsypalo. (Slyšíte chrastění?)</p>
       <p>A nebo tu prostě jen někdo měl smůlu.</p>
+      <h3>Ochutnávka toho, jak by to mělo vypadat</h3>
+      <div class="col col-img">
+        <img src="{{ '/images/gl_bay/preview.jpeg' | url }}" alt="Náhled WebGL scény" class="img img-resp"/>
+      </div>
     </div>
   </div>
 
