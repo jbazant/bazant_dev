@@ -30,3 +30,8 @@ section.top {
   }
 }
 
+@media print {
+  .section--reference {
+    page-break-before: always;
+  }
+}

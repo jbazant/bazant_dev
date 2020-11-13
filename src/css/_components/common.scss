@@ -25,6 +25,29 @@ a.social {
   }
 }
 
-.no-vis {
+.no-vis, .print-only-text, .print-only-block {
   display: none;
+}
+
+
+@media print {
+  h1:before {
+    content: "Jirka Bažant - ";
+
+    .tmpl-home & {
+      content: none;
+    }
+  }
+
+  .no-print {
+    display: none;
+  }
+
+  .print-only-text {
+    display: inline;
+  }
+
+  .print-only-block {
+    display: block;
+  }
 }

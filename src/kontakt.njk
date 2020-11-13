@@ -20,7 +20,7 @@ eleventyNavigation:
 <section class="basic">
   <div class="container">
     <h2>Rychlá zpráva</h2>
-    <div class="container contact-form">
+    <div class="container contact-form no-print">
       <form id="contact-form"
             action="https://formspree.io/mlepwpnl"
             method="POST"
@@ -38,15 +38,24 @@ eleventyNavigation:
         </div>
       </form>
     </div>
+    <div class="print-only-block">
+      <p>Pomocí formuláře na&nbsp;mém webu <a href="{{ page.url | absoluteUrl(metadata.url) }}">{{ page.url | absoluteUrl(metadata.url) }}</a>.</p>
+    </div>
   </div>
 </section>
 
 <section class="basic">
   <div class="container">
     <h2>Nebo zkuste socky</h2>
-    <p><a href="https://twitter.com/JiriBazant" title="Twitter" class="social"><span
-          class="ico">{% icon 'twitter-with-circle' %}</span> Twitter</a></p>
-    <p><a href="https://www.linkedin.com/in/jiří-bažant-5639a053" title="LinkedIn" class="social"><span
-          class="ico">{% icon 'linkedin-with-circle' %}</span> LinkedIn</a></p>
+    <p>
+      <a href="https://twitter.com/JiriBazant" title="Twitter" class="social"><span
+            class="ico">{% icon 'twitter-with-circle' %}</span> Twitter</a>
+      <span class="print-only-text">- @JiriBazant</span>
+    </p>
+    <p>
+      <a href="https://www.linkedin.com/in/jiri-bazant/" title="LinkedIn" class="social"><span
+            class="ico">{% icon 'linkedin-with-circle' %}</span> LinkedIn</a>
+      <span class="print-only-text"> - https://www.linkedin.com/in/jiri-bazant/</span>
+    </p>
   </div>
 </section>
