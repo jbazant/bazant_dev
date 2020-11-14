@@ -3,6 +3,8 @@ const fs = require('fs');
 const { DateTime } = require('luxon');
 
 function setUpCustomFilters(eleventyConfig) {
+  eleventyConfig.addFilter('noNbsp', (str) => str.split('&nbsp;').join(' '));
+
   eleventyConfig.addFilter('readableDate', (dateObj) =>
     DateTime.fromJSDate(dateObj, { zone: 'utc' }).toFormat('dd LLL yyyy')
   );

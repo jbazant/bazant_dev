@@ -2,10 +2,10 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>{{ title or eleventyNavigation.title }} | {{ site.name }}</title>
-  <meta name="Description" content="{{ eleventyNavigation.description or description or metadata.description }}" />
-  <meta property="og:title" content="{{ title or eleventyNavigation.title }}" />
-  <meta property="og:description" content="{{ eleventyNavigation.description or description or metadata.description }}" />
+  <title>{{ (title or eleventyNavigation.title) | noNbsp }} | {{ site.name }}</title>
+  <meta name="Description" content="{{ (eleventyNavigation.description or description or metadata.description) | noNbsp }}" />
+  <meta property="og:title" content="{{ (title or eleventyNavigation.title) | noNbsp }}" />
+  <meta property="og:description" content="{{ (eleventyNavigation.description or description or metadata.description) | noNbsp }}" />
   <meta property="og:image" content="{{ (og_image or '/images/og/bazant-dev.jpeg') | absoluteUrl(metadata.url) }}" />
   <meta property="og:url" content="{{ (page.url or '') | absoluteUrl(metadata.url) }}" />
   <meta property="og:type" content="website" />
