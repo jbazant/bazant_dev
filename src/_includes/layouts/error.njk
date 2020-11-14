@@ -8,6 +8,6 @@
   </main>
   {% include 'partials/_footer.njk' %}
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-159918314-1"></script>
-  <script src="{{ '/js/error.js?v=201105' | url }}"></script>
+  <script src="{{ ('/js/error.js?v=' + cache.jsTimestamp) | url }}"></script>
 </body>
 </html>
