@@ -22,6 +22,7 @@
     "@11ty/eleventy": "^0.11.0",
     "@11ty/eleventy-navigation": "^0.1.5",
     "@11ty/eleventy-plugin-rss": "^1.0.7",
+    "@types/gtag.js": "^0.0.3",
     "@types/stats.js": "^0.17.0",
     "@types/three": "^0.103.2",
     "@typescript-eslint/eslint-plugin": "^3.4.0",
