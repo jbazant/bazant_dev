@@ -1,5 +1,6 @@
 ## general research
-* Find out how to invalidate css and js cache in CI (append current hash)
+* Find better js and css cache busting
+  * maybe shorttag inspired by [cache buster plugin](https://github.com/mightyplow/eleventy-plugin-cache-buster)
 * CSS animations and parallax effect
   * https://css-tricks.com/slide-in-as-you-scroll-down-boxes/
   * https://www.cssscript.com/zoom-fade-elements-scroll/
@@ -11,7 +12,6 @@
     
 ## just do it
 * no js navigation for small devices
-* form submission analytics event       
 
 ## life quality tasks
 * better pre commit (lint-staged?)
