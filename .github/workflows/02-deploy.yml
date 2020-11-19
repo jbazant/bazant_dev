@@ -1,4 +1,4 @@
-name: deploy
+name: Lint and deploy
 
 on:
     push:
@@ -20,6 +20,8 @@ jobs:
                     node-version: ${{ matrix.node-version }}
             -   name: Install dependencies
                 run: yarn install --frozen-lockfile
+            -   name: Run lint
+                run: yarn lint
             -   name: Build app
                 run: yarn build
             -   name: FTP-Deploy-Action
