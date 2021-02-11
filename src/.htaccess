@@ -55,7 +55,7 @@ ErrorDocument 404 /404.html
 
     # other security headers
     Header set X-Frame-Options DENY
-    Header set Referrer-Policy same-origin
+    Header set Referrer-Policy strict-origin-when-cross-origin
 
     # already set by hosting
     #Header set X-Content-Type-Options nosniff
