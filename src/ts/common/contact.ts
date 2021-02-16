@@ -128,12 +128,12 @@ class ContactForm {
   };
 }
 
-export const initContactForm = () => {
+export const initContactForm = (): void => {
   const formId = 'contact-form';
   const submitFormButtonId = 'contact-form-submit';
 
   if (gid(formId)) {
-    const form = new ContactForm(
+    new ContactForm(
       formId,
       [new EmailField('contact-form-email'), new MessageField('contact-form-message')],
       submitFormButtonId

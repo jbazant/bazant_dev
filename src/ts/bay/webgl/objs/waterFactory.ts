@@ -81,7 +81,7 @@ export function waterFactory(
   config: WaterConfig,
   renderer: THREE.WebGLRenderer,
   skyTexture?: THREE.CubeTexture | THREE.Texture
-) {
+): THREE.Object3D {
   const { segmentCount, size, waterType, animationType } = config;
 
   // /* THIS is altered ocean shader from THREE js examples. Let's keep it here for FFU */

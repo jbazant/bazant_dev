@@ -1,6 +1,7 @@
 import { AnimationTypeEnum } from './webgl/animations/getWaterAnimation';
 import { WaterTypeEnum } from './webgl/objs/waterFactory';
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const getConfig = (supportedFeatureList: Array<string>) => {
   const floatTextures =
     supportedFeatureList.includes('OES_texture_float') ||

@@ -1,6 +1,7 @@
 import { NullAnimation } from './NullAnimation';
 import { RainWaves } from './RainWaves';
 import { WebGLRenderer } from 'three';
+import { WaterAnimation } from './WaterAnimation';
 
 export enum AnimationTypeEnum {
   Null,
@@ -11,4 +12,4 @@ export const getWaterAnimation = (
   animationType: AnimationTypeEnum,
   segmentCount: number,
   renderer: WebGLRenderer
-) => new [NullAnimation, RainWaves][animationType](segmentCount, renderer);
+): WaterAnimation => new [NullAnimation, RainWaves][animationType](segmentCount, renderer);
