@@ -25,8 +25,7 @@ export class Firefly extends THREE.Mesh {
     this.flyBasePosition = position;
     this.maxDeviation = maxDeviation;
 
-    this.clock = new THREE.Clock();
-    this.clock.start();
+    this.clock = new THREE.Clock(true);
     this.simplex = new SimplexNoise();
 
     const model = this._getModel(config);
@@ -34,14 +33,14 @@ export class Firefly extends THREE.Mesh {
     this.add(model);
   }
 
-  _getBodyPartGeometry(size: number) {
+  _getBodyPartGeometry(size: number): THREE.BufferGeometry {
     const geometry = new THREE.SphereBufferGeometry(size);
     geometry.scale(1, 1, 2);
 
     return geometry;
   }
 
-  _getModel(config: FireflyConfig) {
+  _getModel(config: FireflyConfig): THREE.Object3D {
     const frontPart = new THREE.Mesh(
       this._getBodyPartGeometry(0.4),
       new THREE.MeshLambertMaterial({
@@ -75,7 +74,7 @@ export class Firefly extends THREE.Mesh {
     return group;
   }
 
-  _getNoise(t1: number, t2: number) {
+  _getNoise(t1: number, t2: number): THREE.Vector3 {
     const positionNoise = new THREE.Vector3(
       this.simplex.noise2d(Math.cos(t1), t2),
       this.simplex.noise2d(0, t2),
@@ -86,14 +85,15 @@ export class Firefly extends THREE.Mesh {
     return positionNoise;
   }
 
-  _computePosition() {
+  _computePosition(): void {
+    const d = this.clock.getDelta();
     const t = this.clock.getElapsedTime();
 
     this.flyPosition.addVectors(this._getNoise(t / 2, t / 4), this.flyBasePosition);
-    this.rotateOnAxis(new THREE.Vector3(0, 1, 0), 0.01);
+    this.rotateOnAxis(new THREE.Vector3(0, 1, 0), 0.6 * d);
   }
 
-  onBeforeRender = () => {
+  onBeforeRender = (): void => {
     this._computePosition();
   };
 }
