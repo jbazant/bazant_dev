@@ -133,19 +133,19 @@ export class GPUComputationRendererVariable {
     this.material = material;
   }
 
-  setDependencies(dependencies: GPUComputationRendererVariable[]) {
+  setDependencies(dependencies: GPUComputationRendererVariable[]): void {
     this.dependencies = dependencies;
   }
 
-  setMaterialUniforms(uniforms: Uniforms) {
+  setMaterialUniforms(uniforms: Uniforms): void {
     this.material.uniforms = uniforms;
   }
 
-  addMaterialDefine(defineName: string, defineValue: string) {
+  addMaterialDefine(defineName: string, defineValue: string): void {
     this.material.defines[defineName] = defineValue;
   }
 
-  setWrapping(wrapping: THREE.Wrapping) {
+  setWrapping(wrapping: THREE.Wrapping): void {
     this.wrapT = wrapping;
     this.wrapS = wrapping;
   }
@@ -205,7 +205,7 @@ export class GPUComputationRenderer {
     variableName: string,
     computeFragmentShader: string,
     initialValueTexture: THREE.Texture
-  ) {
+  ): GPUComputationRendererVariable {
     const variable = new GPUComputationRendererVariable(
       variableName,
       this.createShaderMaterial(computeFragmentShader),
@@ -216,7 +216,7 @@ export class GPUComputationRenderer {
     return variable;
   }
 
-  public init() {
+  public init(): string {
     if (!this.renderer.extensions.get('OES_texture_float')) {
       return 'No OES_texture_float support for float textures.';
     }
@@ -294,7 +294,7 @@ export class GPUComputationRenderer {
     wrapT: THREE.Wrapping = THREE.ClampToEdgeWrapping,
     minFilter: THREE.TextureFilter = THREE.NearestFilter,
     magFilter: THREE.TextureFilter = THREE.NearestFilter
-  ) {
+  ): THREE.WebGLRenderTarget {
     return new THREE.WebGLRenderTarget(sizeXTexture, sizeYTexture, {
       wrapS,
       wrapT,
@@ -308,7 +308,7 @@ export class GPUComputationRenderer {
     });
   }
 
-  public compute() {
+  public compute(): void {
     const currentTextureIndex = this.currentTextureIndex;
     const nextTextureIndex = this.currentTextureIndex === 0 ? 1 : 0;
 
@@ -332,7 +332,7 @@ export class GPUComputationRenderer {
     this.currentTextureIndex = nextTextureIndex;
   }
 
-  public doRenderTarget(material: THREE.ShaderMaterial, output: THREE.RenderTarget) {
+  public doRenderTarget(material: THREE.ShaderMaterial, output: THREE.RenderTarget): void {
     this.mesh.material = material;
     this.renderer.setRenderTarget(output);
     this.renderer.render(this.scene, this.camera);
@@ -340,17 +340,19 @@ export class GPUComputationRenderer {
     this.mesh.material = this.passThruShader;
   }
 
-  public renderTexture(input: THREE.Texture, output: THREE.RenderTarget) {
+  public renderTexture(input: THREE.Texture, output: THREE.RenderTarget): void {
     this.passThruUniforms.texture.value = input;
     this.doRenderTarget(this.passThruShader, output);
     this.passThruUniforms.texture.value = null;
   }
 
-  public getCurrentRenderTarget(variable: GPUComputationRendererVariable) {
+  public getCurrentRenderTarget(variable: GPUComputationRendererVariable): THREE.WebGLRenderTarget {
     return variable.renderTargets[this.currentTextureIndex];
   }
 
-  public getAlternateRenderTarget(variable: GPUComputationRendererVariable) {
+  public getAlternateRenderTarget(
+    variable: GPUComputationRendererVariable
+  ): THREE.WebGLRenderTarget {
     return variable.renderTargets[this.currentTextureIndex === 0 ? 1 : 0];
   }
 

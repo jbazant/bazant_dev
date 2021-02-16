@@ -148,7 +148,7 @@ export class ThreeExampleShaderWater extends Mesh {
     this.rotation.x = -Math.PI / 2;
   }
 
-  onBeforeRender = (renderer: WebGLRenderer, scene: Scene, camera: PerspectiveCamera) => {
+  onBeforeRender = (renderer: WebGLRenderer, scene: Scene, camera: PerspectiveCamera): void => {
     this.material.uniforms['time'].value += 0.02;
 
     this.mirrorWorldPosition.setFromMatrixPosition(this.matrixWorld);

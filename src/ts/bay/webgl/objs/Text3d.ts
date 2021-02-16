@@ -21,7 +21,7 @@ export class Text3d extends THREE.Mesh {
   constructor(lines: Array<string>) {
     super();
 
-    this.clock = new THREE.Clock();
+    this.clock = new THREE.Clock(true);
     this.textMaterial = new THREE.MeshPhongMaterial({ emissiveIntensity: 0.1, shininess: 100 });
 
     new THREE.FontLoader().load(FONT_URL, (font) => this._onFontLoaded(font, lines));
@@ -30,7 +30,7 @@ export class Text3d extends THREE.Mesh {
     this.position.set(-5, 0, -5);
   }
 
-  _createTextLine(text: string, font: THREE.Font, y: number) {
+  _createTextLine(text: string, font: THREE.Font, y: number): void {
     const geometry = new THREE.TextBufferGeometry(text, { font, ...BASE_GEOMETRY_PARAMS });
     geometry.computeBoundingBox();
 
@@ -45,14 +45,14 @@ export class Text3d extends THREE.Mesh {
     this.add(mesh);
   }
 
-  _onFontLoaded(font: THREE.Font, lines: Array<string>) {
+  _onFontLoaded(font: THREE.Font, lines: Array<string>): void {
     lines.forEach((text, index) => {
       const y = (lines.length - index) * 20 - 10;
       this._createTextLine(text, font, y);
     });
   }
 
-  onBeforeRender = () => {
+  onBeforeRender = (): void => {
     const t = this.clock.getElapsedTime();
 
     const color: [number, number, number] = [getColor(t / 50), getColor(t / 20), getColor(t / 30)];

@@ -35,27 +35,27 @@ export class RainWaves extends WaterAnimation {
     this.gpuCompute.init();
   }
 
-  _getRandCoordinate() {
+  _getRandCoordinate(): number {
     return Math.floor(Math.random() * this.segmentCount - this.halfCount);
   }
 
-  _rainDrop = () => {
+  _rainDrop = (): void => {
     const x = this._getRandCoordinate();
     const y = this._getRandCoordinate();
     this.startWave(x, y, 5);
     setTimeout(() => this.startWave(x, y, 2), 200);
   };
 
-  startWave = (x: number, y: number, size: number) => {
+  startWave = (x: number, y: number, size: number): void => {
     this.heightmapVariable.material.uniforms['wavePos'].value = new THREE.Vector2(x, y);
     this.heightmapVariable.material.uniforms['waveSize'].value = size;
   };
 
-  startAnim() {
+  startAnim(): void {
     this.timers = [301, 501, 701].map((timeout) => setInterval(this._rainDrop, timeout));
   }
 
-  stopAnim() {
+  stopAnim(): void {
     this.timers.forEach(clearInterval);
   }
 

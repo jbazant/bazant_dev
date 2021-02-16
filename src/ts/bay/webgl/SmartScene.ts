@@ -41,20 +41,20 @@ export class SmartScene {
     }
   }
 
-  _updateSize = () => {
+  _updateSize = (): void => {
     const w = this.wrapper.clientWidth;
     this.renderer.setSize(w, w / this.aspect);
     //this.camera.updateProjectionMatrix();
   };
 
-  _initRenderer() {
+  _initRenderer(): THREE.WebGLRenderer {
     const renderer = new THREE.WebGLRenderer({ antialias: true, canvas: this.el });
     renderer.setClearColor(0x1e0e25, 0.5);
 
     return renderer;
   }
 
-  _initSceneObjs(sceneConfig: ConfigType) {
+  _initSceneObjs(sceneConfig: ConfigType): void {
     this.water = waterFactory(
       sceneConfig.water,
       this.renderer,
@@ -70,7 +70,7 @@ export class SmartScene {
     );
   }
 
-  _initScene(sceneConfig: ConfigType) {
+  _initScene(sceneConfig: ConfigType): void {
     //const textures = ['px', 'nx', 'py', 'ny', 'pz', 'nz'];
     const textures = ['px', 'px', 'py', 'py', 'nz', 'nz'];
 
@@ -92,14 +92,14 @@ export class SmartScene {
     this.waterMirrorCamera = new MirrorCamera(this.waterMirrorCameraTarget);
   }
 
-  _renderMirror() {
+  _renderMirror(): void {
     this.water.visible = false;
     this.waterMirrorCamera.mirrorPosition(this.camera);
     this.waterMirrorCamera.update(this.renderer, this.scene);
     this.water.visible = true;
   }
 
-  onReady(onSuccess: () => void, onFail: () => void) {
+  onReady(onSuccess: () => void, onFail: () => void): void {
     THREE.DefaultLoadingManager.onLoad = onSuccess;
     THREE.DefaultLoadingManager.onError = onFail;
 
@@ -110,7 +110,7 @@ export class SmartScene {
     window.addEventListener('resize', onResizeDebounced, { passive: false });
   }
 
-  run = () => {
+  run = (): void => {
     this._renderMirror();
     this.renderer.render(this.scene, this.camera);
     requestAnimationFrame(this.run);

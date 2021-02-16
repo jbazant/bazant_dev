@@ -8,7 +8,7 @@ export type FireflyShape = {
 
 export type FirefliesShape = Array<FireflyShape>;
 
-export function firefliesFactory(fireflies: FirefliesShape, config: FireflyConfig) {
+export function firefliesFactory(fireflies: FirefliesShape, config: FireflyConfig): Firefly[] {
   return fireflies.map((it) => {
     const { x, y, z } = it.offset;
     const position = new Vector3(x, y, z);

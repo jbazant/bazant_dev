@@ -10,11 +10,11 @@ export class StaticLights extends Group {
     this.updateMatrix();
   }
 
-  _initAmbient() {
+  _initAmbient(): void {
     this.add(new AmbientLight('#3b2840', 0.1));
   }
 
-  _initDirectional() {
+  _initDirectional(): void {
     const lightDirectional = new DirectionalLight('#504d6b', 0.2);
     lightDirectional.position.set(0.5, 1, 0);
     this.add(lightDirectional);

@@ -168,11 +168,11 @@ export class SimplexNoise {
     return t > 0 ? Math.pow(t, 4) * this._dot(grad4[gi], [x, y, z, w]) : 0;
   }
 
-  public noise(xin: number, yin: number) {
+  public noise(xin: number, yin: number): number {
     return this.noise2d(xin, yin);
   }
 
-  public noise2d(xin: number, yin: number) {
+  public noise2d(xin: number, yin: number): number {
     // Skew the input space to determine which simplex cell we're in
     const s = (xin + yin) * F2; // Hairy factor for 2D
     const i = Math.floor(xin + s);
@@ -216,7 +216,7 @@ export class SimplexNoise {
     return 70 * (n0 + n1 + n2);
   }
 
-  public noise3d(xin: number, yin: number, zin: number) {
+  public noise3d(xin: number, yin: number, zin: number): number {
     // Skew the input space to determine which simplex cell we're in
     const s = (xin + yin + zin) * F3; // Very nice and simple skew factor for 3D
     const i = Math.floor(xin + s);
@@ -322,7 +322,7 @@ export class SimplexNoise {
     return 32 * (n0 + n1 + n2 + n3);
   }
 
-  public noise4d(x: number, y: number, z: number, w: number) {
+  public noise4d(x: number, y: number, z: number, w: number): number {
     // Skew the (x,y,z,w) space to determine which cell of 24 simplices we're in
     const s = (x + y + z + w) * F4; // Factor for 4D skewing
     const i = Math.floor(x + s);
