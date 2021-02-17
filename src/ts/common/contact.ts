@@ -70,13 +70,21 @@ class ContactForm {
   elem: HTMLFormElement;
   fields: Array<FormField>;
   submitButton: HTMLButtonElement;
+  action: string | null;
 
-  constructor(id: string, fields: Array<FormField>, submitFormButtonId: string) {
+  constructor(
+    id: string,
+    fields: Array<FormField>,
+    submitFormButtonId: string,
+    action: string | null = null
+  ) {
     this.fields = fields;
     // @ts-ignore
     this.elem = gid(id);
     // @ts-ignore
     this.submitButton = gid(submitFormButtonId);
+
+    this.action = action;
 
     this.fields.forEach((it) => {
       it.elem.addEventListener('input', it.onChange);
@@ -96,7 +104,7 @@ class ContactForm {
       this.submitButton.disabled = true;
 
       try {
-        const response = await fetch(action, {
+        const response = await fetch(this.action ?? action, {
           method,
           headers: {
             Accept: 'application/json',
@@ -136,7 +144,8 @@ export const initContactForm = (): void => {
     new ContactForm(
       formId,
       [new EmailField('contact-form-email'), new MessageField('contact-form-message')],
-      submitFormButtonId
+      submitFormButtonId,
+      'https://formspree.io/f/mdopvdrj'
     );
 
     // todo disposer?
