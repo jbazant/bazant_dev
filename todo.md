@@ -23,4 +23,3 @@
         - parallax effect for camera
     - L-system
     - Game of life
-    - this web (mozilla observatory, lighthouse, webpagetest)

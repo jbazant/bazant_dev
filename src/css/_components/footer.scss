@@ -25,10 +25,11 @@ footer {
   }
 
   a {
-    font-size: 24px;
+    font-size: 30px;
     text-decoration: none;
     color: $grey;
     transition: color $transition-default ease;
+    margin-right: 8px;
 
     &:hover {
       color: $white;
