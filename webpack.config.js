@@ -11,7 +11,6 @@ module.exports = {
     sitemap: './src/ts/sitemap.ts',
   },
   mode: 'development',
-  devtool: 'source-map',
   output: {
     //filename: '[name].[contentHash].js',
     filename: '[name].js',
@@ -47,7 +46,6 @@ module.exports = {
           },
           output: { comments: false, beautify: false },
         },
-        sourceMap: false,
       }),
     ],
   },
