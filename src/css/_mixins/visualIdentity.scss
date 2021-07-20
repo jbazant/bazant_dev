@@ -1,7 +1,8 @@
-@import "../_colors";
+@import '../_colors';
 
 @mixin gradientBackground($primary, $secondary) {
-  background: $primary linear-gradient(135deg, $primary 0%, $secondary 50%, $primary 51%, $secondary 100%);
+  background: $primary
+    linear-gradient(135deg, $primary 0%, $secondary 50%, $primary 51%, $secondary 100%);
 }
 
 @mixin withGradient($primary) {
@@ -11,9 +12,30 @@
 
 @mixin withDarkenGradient($primary) {
   $secondary: darken($primary, 10%);
-  background: $primary linear-gradient(135deg, $secondary 0%, $primary 50%, $secondary 51%, $secondary 100%);
+  background: $primary
+    linear-gradient(135deg, $secondary 0%, $primary 50%, $secondary 51%, $secondary 100%);
 }
 
 @mixin heroBackground() {
+  $points: (
+    '0%': 0.5,
+    '25%': 0.7,
+    '75%': 0.3,
+    '100%': 0.5,
+  );
+  $speed: 60;
+
   @include withGradient($primary-color);
+  background-size: 160% 100%;
+  animation: hero-anim #{$speed}s ease infinite;
+
+  @at-root {
+    @keyframes hero-anim {
+      @each $frame, $position in $points {
+        #{$frame} {
+          background-position: #{percentage($position)} 50%;
+        }
+      }
+    }
+  }
 }
