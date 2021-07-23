@@ -1,12 +1,18 @@
 @import "../_colors";
 @import "../_sizes";
 @import "../_mixins/visualIdentity";
+@import "../_mixins/blurIn";
+
 
 .page-header, .hero, .page-not-found {
   @include heroBackground();
 
   h1, h2 {
     color: $light-text;
+  }
+
+  h2 {
+    @include blurIn('h2hero-blur', 5);
   }
 
   @media print {
