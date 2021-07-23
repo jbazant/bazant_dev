@@ -1,4 +1,9 @@
 @import "../colors";
+@import "../_mixins/blurIn";
+
+h1 {
+  @include blurIn('h1-blur', 1);
+}
 
 .container {
   &--flex {

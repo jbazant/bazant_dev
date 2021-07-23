@@ -1,0 +1,20 @@
+@mixin blurIn($name, $duration) {
+  animation: #{$name}-anim #{$duration}s 1 ease-in-out;
+
+  @at-root {
+    @keyframes #{$name}-anim {
+      0% {
+        filter: blur(0.5em);
+        opacity: 0;
+      }
+      20% {
+        filter: blur(0.5em);
+        opacity: 1;
+      }
+      100% {
+        filter: blur(0);
+        opacity: 1;
+      }
+    }
+  }
+}
