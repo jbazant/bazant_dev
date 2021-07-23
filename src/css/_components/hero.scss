@@ -12,7 +12,7 @@
   }
 
   h2 {
-    @include blurIn('h2hero-blur', 5);
+    @include blurIn('h2hero-blur', 1.5);
   }
 
   @media print {
