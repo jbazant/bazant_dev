@@ -18,10 +18,11 @@ eleventyNavigation:
     </p>
   </div>
 </section>
-{%- for entry in collections.references %}
 
+{% set anim = cycler("scroll-transition-right", "scroll-transition-left") %}
+{%- for entry in collections.references %}
   <section class="basic section--reference">
-    <div class="container">
+    <div class="container {{ anim.next() }}">
       <h2>{{ entry.data.title }}</h2>
       <div class="flex-grid flex-grid--wide">
         {{ entry.templateContent | safe }}

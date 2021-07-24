@@ -23,3 +23,6 @@
         - parallax effect for camera
     - L-system
     - Game of life
+    
+# accessibility
+* use `@media (prefers-reduced-motion: no-preference)`

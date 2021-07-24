@@ -3,8 +3,10 @@ import { initMenu } from './common/menu';
 import { initContactForm } from './common/contact';
 import { lazyload } from './utils/lazyload';
 import { ga } from './utils/ga';
+import { initTransitions } from './common/transitions';
 
 ga();
+initTransitions('.scroll-transition-left, .scroll-transition-right');
 
 ready(() => {
   initMenu();
