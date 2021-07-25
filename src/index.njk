@@ -12,7 +12,7 @@ sitemap:
 
 <section>
   <div class="container flex-grid cards">
-    {% set anim = cycler("scroll-transition-right", "scroll-transition-left") %}
+    {% set anim = cycler("scroll-transition-ltr", "scroll-transition-rtl transition-postponed") %}
     {%- for entry in collections.all | eleventyNavigation %}
         <a class="col col-half card {{ anim.next() }}" href="{{ entry.url | url }}">
           <div>

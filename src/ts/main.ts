@@ -6,7 +6,7 @@ import { ga } from './utils/ga';
 import { initTransitions } from './common/transitions';
 
 ga();
-initTransitions('.scroll-transition-left, .scroll-transition-right');
+initTransitions('.scroll-transition-ltr, .scroll-transition-rtl');
 
 ready(() => {
   initMenu();

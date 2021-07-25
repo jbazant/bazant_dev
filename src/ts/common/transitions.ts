@@ -3,7 +3,8 @@ export function initTransitions(selector: string, delay = 250): void {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(({ isIntersecting, target }) => {
         if (isIntersecting) {
-          setTimeout(() => target.classList.add('transition-final'), delay);
+          const timeout = target.classList.contains('transition-postponed') ? 2 * delay : delay;
+          setTimeout(() => target.classList.add('transition-final'), timeout);
           observer.unobserve(target);
         }
       });
