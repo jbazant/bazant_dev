@@ -4,7 +4,9 @@
   $opacity: 0;
   $blinkDuration: 0.03;
 
-  animation: #{$name}-anim #{$duration}s 1 linear normal;
+  @media screen and (prefers-reduced-motion: no-preference) {
+    animation: #{$name}-anim #{$duration}s 1 linear normal;
+  }
 
   @at-root {
     @keyframes #{$name}-anim {

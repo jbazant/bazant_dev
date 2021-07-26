@@ -1,9 +1,10 @@
-@import "../_colors";
-@import "../_sizes";
+@import '../_colors';
+@import '../_sizes';
 
 .contact-form {
-  max-width: 500px;
-  padding: $step * 10 $step2;
+  form {
+    margin: 0;
+  }
 
   input, textarea {
     width: 100%;
@@ -44,4 +45,30 @@
 .form-actions {
   display: flex;
   flex-direction: row-reverse;
+}
+
+.contact-card {
+  padding: 10 * $step 5 * $step;
+  background-color: $white;
+  border: 1px solid $secondary-button-color;
+  border-radius: $step;
+  flex: 3;
+
+  @media screen {
+    &:hover {
+      border-color: $secondary-button-color-active;
+      box-shadow: 1px 1px 2px 2px #ccc;
+    }
+  }
+}
+
+.contact-social {
+  padding: 10 * $step + 1 5 * $step;
+  flex: 2;
+
+  @media screen {
+    hr {
+      border-color: $dark;
+    }
+  }
 }

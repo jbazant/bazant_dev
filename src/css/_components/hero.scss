@@ -11,9 +11,6 @@
     color: $light-text;
   }
 
-  h2 {
-    @include blurIn('h2hero-blur', 1.5);
-  }
 
   @media print {
     h1, h2 {
@@ -40,4 +37,8 @@
   @media (min-width: 400px) {
     padding: $vertical-padding $step * 5;
   }
+}
+
+.hero h2 {
+  @include blurIn('h2hero-blur', 1.5);
 }

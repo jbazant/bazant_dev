@@ -27,7 +27,10 @@
 
   @include withGradient($primary-color);
   background-size: 160% 100%;
-  animation: hero-anim #{$speed}s ease infinite;
+
+  @media screen and (prefers-reduced-motion: no-preference) {
+    animation: hero-anim #{$speed}s ease infinite;
+  }
 
   @at-root {
     @keyframes hero-anim {

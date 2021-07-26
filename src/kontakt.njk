@@ -18,48 +18,51 @@ eleventyNavigation:
 </section>
 
 <section class="basic">
-  <div class="container">
-    <h2>Rychlá zpráva</h2>
-    <div class="container contact-form no-print">
-      <form id="contact-form"
-            action="https://formspree.io/mlepwpnl"
-            method="POST"
-      >
-        <div>
-          <label for="contact-form-email">Váš email:</label>
-          <input type="email" name="email" id="contact-form-email"/>
-        </div>
-        <div>
-          <label for="contact-form-message">Zpráva:</label>
-          <textarea name="message" id="contact-form-message"></textarea>
-        </div>
-        <div class="no-vis">
-          <label for="contact-form-name">Nevyplňujte (tedy pokud nejste robot):</label>
-          <input type="text" name="_gotcha" id="contact-form-name"/>
-        </div>
-        <div class="form-actions">
-          <button id="contact-form-submit" class="button-primary">Odeslat</button>
-        </div>
-      </form>
+  <div class="container flex-grid">
+    <div class="col col-half scroll-transition scroll-transition-ltr contact-card">
+      <h3>Rychlá zpráva</h3>
+      <hr />
+      <div class="contact-form  no-print">
+        <form id="contact-form"
+              action="https://formspree.io/mlepwpnl"
+              method="POST"
+        >
+          <div>
+            <label for="contact-form-email">Váš email:</label>
+            <input type="email" name="email" id="contact-form-email"/>
+          </div>
+          <div>
+            <label for="contact-form-message">Zpráva:</label>
+            <textarea name="message" id="contact-form-message"></textarea>
+          </div>
+          <div class="no-vis">
+            <label for="contact-form-name">Nevyplňujte (tedy pokud nejste robot):</label>
+            <input type="text" name="_gotcha" id="contact-form-name"/>
+          </div>
+          <div class="form-actions">
+            <button id="contact-form-submit" class="button-primary">Odeslat</button>
+          </div>
+        </form>
+      </div>
+      <div class="print-only-block">
+        <p>Pomocí formuláře na&nbsp;mém webu <a
+              href="{{ page.url | absoluteUrl(metadata.url) }}">{{ page.url | absoluteUrl(metadata.url) }}</a>.</p>
+      </div>
     </div>
-    <div class="print-only-block">
-      <p>Pomocí formuláře na&nbsp;mém webu <a href="{{ page.url | absoluteUrl(metadata.url) }}">{{ page.url | absoluteUrl(metadata.url) }}</a>.</p>
-    </div>
-  </div>
-</section>
 
-<section class="basic">
-  <div class="container">
-    <h2>Nebo zkuste socky</h2>
-    <p>
-      <a href="https://twitter.com/JiriBazant" title="Twitter" class="social"><span
-            class="ico">{% icon 'twitter-with-circle' %}</span> Twitter</a>
-      <span class="print-only-text">- @JiriBazant</span>
-    </p>
-    <p>
-      <a href="https://www.linkedin.com/in/jiri-bazant/" title="LinkedIn" class="social"><span
-            class="ico">{% icon 'linkedin-with-circle' %}</span> LinkedIn</a>
-      <span class="print-only-text"> - https://www.linkedin.com/in/jiri-bazant/</span>
-    </p>
+    <div class="col col-half scroll-transition scroll-transition-rtl transition-postponed contact-social">
+      <h3>Nebo zkuste socky</h3>
+      <hr/>
+        <p>
+          <a href="https://twitter.com/JiriBazant" title="Twitter" class="social"><span
+                class="ico">{% icon 'twitter-with-circle' %}</span> Twitter</a>
+          <span class="print-only-text">- @JiriBazant</span>
+        </p>
+        <p>
+          <a href="https://www.linkedin.com/in/jiri-bazant/" title="LinkedIn" class="social"><span
+                class="ico">{% icon 'linkedin-with-circle' %}</span> LinkedIn</a>
+          <span class="print-only-text"> - https://www.linkedin.com/in/jiri-bazant/</span>
+        </p>
+    </div>
   </div>
 </section>
