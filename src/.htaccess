@@ -22,6 +22,12 @@ ErrorDocument 404 /404.html
   # Redirect /.well-known URLs
   RewriteRule .well-known/manifest.json /manifest.json
 
+  # Redirect old pages
+  Redirect 301 /kontakt /
+  Redirect 301 /kontakt/index.html /
+  Redirect 301 /ja /
+  Redirect 301 /ja/index.html /
+
   # Rules to correctly serve gzip compressed CSS and JS files.
   # Requires both mod_rewrite and mod_headers to be enabled.
   <IfModule mod_headers.c>

@@ -18,3 +18,11 @@
         - animated logo instead of text?
         - parallax effect for camera
     - L-system
+
+## new structure redesign
+- new logo
+- bigger space between sections
+- menu items 
+- smooth scroll
+- redirects from old routes
+- sections bakground image?
