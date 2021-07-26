@@ -1,28 +1,30 @@
-$transition-duration: .75;
+$transition-duration: 0.75;
 
 @media screen and (prefers-reduced-motion: no-preference) {
   .scroll-transition {
     &-rtl {
       &.transition-initial {
-        opacity: 0;
         transform: translateX(50px);
       }
     }
 
     &-ltr {
       &.transition-initial {
-        opacity: 0;
         transform: translateX(-50px);
       }
     }
 
+    &.transition-initial {
+      opacity: 0;
+      transition: none;
+    }
+
     // make sure this is after all .transition-initial definitions
-    &-rtl, &-ltr {
-      &.transition-final {
-        transition: opacity #{$transition-duration}s ease-out, transform #{$transition-duration}s ease-out;
-        opacity: 1;
-        transform: none;
-      }
+    &.transition-final {
+      transform: none;
+      opacity: 1;
+      transition: opacity #{$transition-duration}s ease-out,
+        transform #{$transition-duration}s ease-out;
     }
   }
 }

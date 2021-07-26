@@ -13,7 +13,7 @@ eleventyNavigation:
 ---
 {%- for entry in collections.about_me %}
   <section class="basic">
-    <div class="container {% if loop.index === 1 %}scroll-transition-ltr{% else %}scroll-transition-rtl transition-postponed{% endif %}">
+    <div class="container scroll-transition {% if loop.index === 1 %}scroll-transition-ltr{% else %}scroll-transition-rtl transition-postponed{% endif %}">
       {{ entry.templateContent | safe }}
     </div>
   </section>
