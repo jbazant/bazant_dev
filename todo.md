@@ -20,7 +20,7 @@
     - L-system
 
 ## new structure redesign
-- new logo
+- new favicon with new logo
 - menu items 
 - smooth scroll
 - redirects from old routes
