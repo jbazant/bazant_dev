@@ -21,7 +21,7 @@
 
 ## new structure redesign
 - new favicon with new logo
-- menu items 
-- smooth scroll
 - redirects from old routes
 - sections background image?
+- fix menu on small devices
+- pin menu on big devices

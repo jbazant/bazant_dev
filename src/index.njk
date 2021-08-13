@@ -30,14 +30,14 @@ priority: 1
 </section>
 
 {%- for entry in collections.about_me %}
-  <section class="basic">
+  <section class="basic" id="ja">
     <div class="container scroll-transition scroll-transition-rtl">
       {{ entry.templateContent | safe }}
     </div>
   </section>
 {%- endfor %}
 
-<section class="basic">
+<section class="basic" id="kontakt">
   <div class="container flex-grid">
     <div class="col col-half scroll-transition scroll-transition-ltr contact-card">
       <h3>Kontakt</h3>

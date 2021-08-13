@@ -10,7 +10,9 @@
 
     <nav class="navigation navigation-top">
       <ul>
-        <li><a href="{{ '/' | url }}"><span>Úvod</span></a></li>
+        <li><a href="{{ '/' | url }}#"><span>Úvod</span></a></li>
+        <li><a href="{{ '/' | url }}#ja"><span>O mně</span></a></li>
+        <li><a href="{{ '/' | url }}#kontakt"><span>Kontakt</span></a></li>
         {% for page in collections.all | eleventyNavigation %}
           <li><a href="{{ page.url | url }}"><span>{{ page.title | safe }}</span></a></li>
         {% endfor %}
