@@ -24,4 +24,3 @@
 - redirects from old routes
 - sections background image?
 - fix menu on small devices
-- pin menu on big devices

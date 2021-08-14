@@ -23,9 +23,16 @@
 }
 
 .page-header {
-  padding: $step3 * 2 0;
+  $vertical-padding: $step3 * 2;
+  padding: $vertical-padding 0 $vertical-padding;
+
   h1 {
     margin:0;
+  }
+
+  @media (min-width: 550px) {
+    // 60px is static menu
+    padding-top: $vertical-padding + 60;
   }
 }
 
@@ -33,9 +40,12 @@
   $vertical-padding: $step * 20;
   padding: $vertical-padding $step;
 
-  /* Larger than mobile */
   @media (min-width: 400px) {
     padding: $vertical-padding $step * 5;
+  }
+  @media (min-width: 550px) {
+    // 60px is static menu
+    padding-top: $vertical-padding + 60;
   }
 }
 
