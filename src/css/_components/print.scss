@@ -47,7 +47,11 @@
     }
   }
 
-  @page {
+  .section--reference {
+    page-break-before: always;
+  }
+
+    @page {
     margin: 5cm 2cm 3cm;
   }
 }

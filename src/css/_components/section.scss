@@ -1,45 +1,49 @@
 @import "../_colors";
 @import "../_sizes";
 
-section.basic {
-  background-color: $white;
-  padding: $step * 20 0 $step * 15;
+section {
+  &.basic {
+    background-color: $white;
+    padding: $step * 20 0 $step * 15;
 
-  &:nth-child(odd) {
-    background-color: $light-background;
-    margin: 0;
+    &:nth-child(odd) {
+      background-color: $light-background;
+      margin: 0;
+    }
+
+    h2 {
+      padding-top: $step3;
+      border-bottom: 1px solid $grey;
+    }
+
+    @media (min-width: 550px) {
+      padding: $step * 30 0 $step * 20;
+    }
   }
 
-  h2 {
-    padding-top: $step3;
-    border-bottom: 1px solid $grey;
+  &.top {
+    background-color: $white;
+    padding: $step * 10 $step2 $step * 10;
+
+    p {
+      margin: 2.5rem;
+      font-size: 1.2em;
+      font-weight: bold;
+      font-style: oblique;
+      color: $muted-color;
+      text-align: center;
+    }
+
+    @media (min-width: 550px) {
+      padding: $step * 15 0 $step * 15;
+    }
   }
 
-  @media (min-width: 550px) {
-    padding: $step * 30 0 $step * 20;
-  }
-}
-
-section.top {
-  background-color: $white;
-  padding: $step * 10 $step2 $step * 10;
-
-  p {
-    margin: 2.5rem;
-    font-size: 1.2em;
-    font-weight: bold;
-    font-style: oblique;
-    color: $muted-color;
-    text-align: center;
-  }
-
-  @media (min-width: 550px) {
-    padding: $step * 15 0 $step * 15;
-  }
-}
-
-@media print {
-  .section--reference {
-    page-break-before: always;
+  &.section-cards {
+    background-image: url('../images/code-1.png');
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
   }
 }
