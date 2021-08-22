@@ -19,6 +19,21 @@ section {
     @media (min-width: 550px) {
       padding: $step * 30 0 $step * 20;
     }
+
+    // We need to go deeper
+    // (NO! This is actually already too much.)
+    @media screen {
+      &.section-cards {
+        background: lighten($primary-color-light, 10%) url('../images/code.jpeg') no-repeat fixed center center;
+        background-size: cover;
+
+        h2 {
+          color: white;
+          border-bottom: none;
+          text-align: center;
+        }
+      }
+    }
   }
 
   &.top {
@@ -37,13 +52,5 @@ section {
     @media (min-width: 550px) {
       padding: $step * 15 0 $step * 15;
     }
-  }
-
-  &.section-cards {
-    background-image: url('../images/code-1.png');
-    background-position: center;
-    background-size: cover;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
   }
 }
