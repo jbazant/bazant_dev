@@ -23,4 +23,3 @@
 - new favicon with new logo
 - redirects from old routes
 - sections background image?
-- fix menu on small devices

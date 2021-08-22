@@ -53,6 +53,8 @@ html is set to 62.5% so that all the REM measurements throughout Skeleton
 are based on 10px sizing. So basically 1.5rem = 15px :) */
 html {
   font-size: 62.5%;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 body {
@@ -63,6 +65,8 @@ body {
   color: $primary-text-color;
   background-color: $dark;
   min-height: 100vh;
+  max-width: 100vw;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
 }
