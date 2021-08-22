@@ -4,9 +4,8 @@ tags: ['bed', '11ty.js', 'SASS', 'Typescript']
 title: Tento web
 description: Statický web generovaný pomocí 11ty.js
 sitemap:
-  priority: 0.6
+  priority: 0.3
   lastmod: "2020-11-05"
-  exclude: true
 ---
 <section class="top">
   <div class="container">
