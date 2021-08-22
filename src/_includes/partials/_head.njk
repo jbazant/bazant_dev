@@ -15,17 +15,14 @@
   <link rel="preload" href="{{ '/fonts/entypo.ttf' }}" as="font" type="font/ttf" crossorigin="anonymous" />
   <link rel="stylesheet" href="{{ ('/css/main.css?v=' + cache.cssTimestamp) | url }}" />
 
-  {% for size in metadata.icons.appleTouchIcon %}
-    {%- set sizeStr = size + 'x' + size -%}
-    <link rel="apple-touch-icon" sizes="{{ sizeStr }}" href="{{ '/images/ico/apple-icon-' + sizeStr + '.png' | url }}" />
-  {% endfor %}
-  {% for size in metadata.icons.favicon %}
-    {%- set sizeStr = size + 'x' + size -%}
-    <link rel="icon" type="image/png" sizes="{{ sizeStr }}"
-          href="{{ '/images/ico/favicon-' + sizeStr + '.png' | url }}"/>
-  {% endfor %}
+  {%- for size in metadata.icons.appleTouchIcon -%}
+    <link rel="apple-touch-icon" sizes="{{ size }}" href="{{ '/images/ico/favicon-' + size + '.png' | url }}" />
+  {%- endfor -%}
+  {%- for size in metadata.icons.favicon -%}
+    <link rel="icon" type="image/png" sizes="{{ size }}" href="{{ '/images/ico/favicon-' + size + '.png' | url }}"/>
+  {%- endfor -%}
   <link rel="manifest" href="{{ '/manifest.json' | url }}"/>
   <meta name="msapplication-TileColor" content="#ffffff"/>
-  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png"/>
+  <meta name="msapplication-TileImage" content="/favicon-144.png"/>
   <meta name="theme-color" content="#ffffff"/>
 </head>

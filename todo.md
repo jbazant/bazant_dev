@@ -19,7 +19,11 @@
         - parallax effect for camera
     - L-system
 
+## How to logo 
+ - [svgtopng](https://svgtopng.com/)
+ - [faviconit](http://faviconit.com/en)
+
 ## new structure redesign
-- new favicon with new logo
 - redirects from old routes
 - sections background image?
+- better print styles?
