@@ -23,6 +23,3 @@
 ## How to logo 
  - [svgtopng](https://svgtopng.com/)
  - [faviconit](http://faviconit.com/en)
-
-## new structure redesign
-- better print styles?
