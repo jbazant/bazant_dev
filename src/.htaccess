@@ -23,10 +23,10 @@ ErrorDocument 404 /404.html
   RewriteRule .well-known/manifest.json /manifest.json
 
   # Redirect old pages
-  Redirect 301 /kontakt /
-  Redirect 301 /kontakt/index.html /
-  Redirect 301 /ja /
-  Redirect 301 /ja/index.html /
+  Redirect 301 /kontakt https://bazant.dev
+  Redirect 301 /kontakt/index.html https://bazant.dev
+  Redirect 301 /ja https://bazant.dev
+  Redirect 301 /ja/index.html https://bazant.dev
 
   # Rules to correctly serve gzip compressed CSS and JS files.
   # Requires both mod_rewrite and mod_headers to be enabled.
