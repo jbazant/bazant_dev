@@ -4,11 +4,15 @@
 
 <header class="" id="site-menu-main">
   <div class="container site-header">
-    <a href="{{ '/' | url }}" title="Jiří Bažant: Úvod" class="site-logo">{% icon 'circular-graph' %}</a>
+    <a href="{{ '/' | url }}" title="Jiří Bažant: Úvod" class="site-logo">
+      {% logo 50, '#7c5b99', '#eee' %}
+    </a>
 
     <nav class="navigation navigation-top">
       <ul>
-        <li><a href="{{ '/' | url }}"><span>Úvod</span></a></li>
+        <li><a href="{{ '/' | url }}#"><span>Úvod</span></a></li>
+        <li><a href="{{ '/' | url }}#ja"><span>O mně</span></a></li>
+        <li><a href="{{ '/' | url }}#kontakt"><span>Kontakt</span></a></li>
         {% for page in collections.all | eleventyNavigation %}
           <li><a href="{{ page.url | url }}"><span>{{ page.title | safe }}</span></a></li>
         {% endfor %}

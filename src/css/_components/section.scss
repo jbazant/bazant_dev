@@ -1,37 +1,56 @@
 @import "../_colors";
 @import "../_sizes";
 
-section.basic {
-  background-color: $white;
-  padding: $step * 5 0;
+section {
+  &.basic {
+    background-color: $white;
+    padding: $step * 20 0 $step * 15;
 
-  &:nth-child(odd) {
-    background-color: $light-background;
-    margin: 0;
+    &:nth-child(odd) {
+      background-color: $light-background;
+      margin: 0;
+    }
+
+    h2 {
+      padding-top: $step3;
+      border-bottom: 1px solid $grey;
+    }
+
+    @media (min-width: 550px) {
+      padding: $step * 30 0 $step * 20;
+    }
+
+    // We need to go deeper
+    // (NO! This is actually already too much.)
+    @media screen {
+      &.section-cards {
+        background: lighten($primary-color-light, 10%) url('../images/code.jpeg') no-repeat fixed center center;
+        background-size: cover;
+
+        h2 {
+          color: white;
+          border-bottom: none;
+          text-align: center;
+        }
+      }
+    }
   }
 
-  h2 {
-    padding-top: $step3;
-    border-bottom: 1px solid $grey;
-  }
-}
+  &.top {
+    background-color: $white;
+    padding: $step * 10 $step2 $step * 10;
 
-section.top {
-  background-color: $white;
-  padding: $step * 5 $step2;
+    p {
+      margin: 2.5rem;
+      font-size: 1.2em;
+      font-weight: bold;
+      font-style: oblique;
+      color: $muted-color;
+      text-align: center;
+    }
 
-  p {
-    margin: 2.5rem;
-    font-size: 1.2em;
-    font-weight: bold;
-    font-style: oblique;
-    color: $muted-color;
-    text-align: center;
-  }
-}
-
-@media print {
-  .section--reference {
-    page-break-before: always;
+    @media (min-width: 550px) {
+      padding: $step * 15 0 $step * 15;
+    }
   }
 }

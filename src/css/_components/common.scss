@@ -1,6 +1,10 @@
 @import "../colors";
 @import "../_mixins/blurIn";
 
+html {
+  scroll-behavior: smooth;
+}
+
 .tmpl-home, .tmpl-basic {
   h1 {
     @include blurIn('h1-blur', 1);
@@ -36,25 +40,3 @@ a.social {
   display: none;
 }
 
-
-@media print {
-  h1:before {
-    content: "Jirka Bažant - ";
-
-    .tmpl-home & {
-      content: none;
-    }
-  }
-
-  .no-print {
-    display: none;
-  }
-
-  .print-only-text {
-    display: inline;
-  }
-
-  .print-only-block {
-    display: block;
-  }
-}
