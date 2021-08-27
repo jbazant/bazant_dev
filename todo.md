@@ -10,9 +10,6 @@
 ## just do it
 * no js navigation for small devices
 
-## life quality tasks
-* better pre commit (lint-staged?)
-
 ## content
 * garden
     - water

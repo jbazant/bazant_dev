@@ -7,7 +7,6 @@ import { initTransitions } from './common/transitions';
 
 ga();
 initTransitions('.scroll-transition');
-
 ready(() => {
   initMenu();
   initContactForm();
