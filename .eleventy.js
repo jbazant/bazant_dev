@@ -3,17 +3,11 @@ const pluginRss = require('@11ty/eleventy-plugin-rss');
 const pluginSass = require('eleventy-plugin-sass');
 const markdownIt = require('markdown-it');
 const lazyImagesPlugin = require('eleventy-plugin-lazyimages');
-const { setUpCustomShortcodes } = require('./eleventy/shortcodes');
-const { setUpCustomFilters } = require('./eleventy/filters');
-
-function setUpPassThroughCopies(eleventyConfig) {
-  eleventyConfig.addPassthroughCopy('./src/assets/');
-  eleventyConfig.addPassthroughCopy('./src/images/');
-  eleventyConfig.addPassthroughCopy('./src/fonts/');
-  eleventyConfig.addPassthroughCopy('./src/browserconfig.xml');
-  eleventyConfig.addPassthroughCopy('./src/favicon.ico');
-  eleventyConfig.addPassthroughCopy('./src/.htaccess');
-}
+const {
+  setUpPassThroughCopies,
+  setUpCustomFilters,
+  setUpCustomShortcodes,
+} = require('./eleventy/setUp');
 
 module.exports = function (eleventyConfig) {
   const mardownOptions = {
