@@ -10,7 +10,9 @@ initTransitions('.scroll-transition');
 
 ready(() => {
   initMenu();
+
   initContactForm();
+
   lazyload(
     'img.img-resp',
     'https://cdn.jsdelivr.net/npm/lazysizes@5/lazysizes.min.js',
