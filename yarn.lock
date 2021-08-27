@@ -8940,6 +8940,11 @@ ts-shader-loader@^1.0.6:
   dependencies:
     loader-utils "^1.1.0"
 
+tsc-files@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/tsc-files/-/tsc-files-1.1.2.tgz#acd181949ef53811fc6df455baef41adaf616442"
+  integrity sha512-biLtl4npoohZ9MBnTFw4NttqYM60RscjzjWxT538UCS8iXaGRZMi+AXj+vEEpDdcjIS2Kx0Acj++1gor5dbbBw==
+
 tslib@^1.8.1, tslib@^1.9.0:
   version "1.13.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.13.0.tgz#c881e13cc7015894ed914862d276436fa9a47043"
