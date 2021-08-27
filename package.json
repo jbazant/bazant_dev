@@ -53,8 +53,14 @@
     "webpack-dev-server": "^3.11.2"
   },
   "lint-staged": {
-    "*.ts": ["tsc-files --noEmit"],
-    "*.(js|ts)": ["eslint"],
-    "**/*.+(js|ts|json|css)": ["prettier --fix", "git add"]
+    "*.ts": [
+      "tsc-files --noEmit"
+    ],
+    "*.(js|ts)": [
+      "eslint --fix"
+    ],
+    "**/*.+(js|ts|json|css)": [
+      "prettier --write"
+    ]
   }
 }
