@@ -10,8 +10,6 @@ Project is based on
 [SASS](https://sass-lang.com/) and
 [webpack](https://webpack.js.org/) (not all the power of it is used).
 
-Also, to be honest, I am a bit ashamed by no tests introduced in this project at all.
-
 ## Installation
 ```
 yarn install
