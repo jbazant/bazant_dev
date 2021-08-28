@@ -3,20 +3,8 @@ const path = require('path');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const TerserPlugin = require('terser-webpack-plugin');
 
-module.exports = {
-  entry: {
-    main: './src/ts/main.ts',
-    scene: './src/ts/scene.ts',
-    error: './src/ts/error.ts',
-    sitemap: './src/ts/sitemap.ts',
-  },
+const common = {
   mode: 'development',
-  output: {
-    //filename: '[name].[contentHash].js',
-    filename: '[name].js',
-    path: path.resolve(__dirname, '_site/js'),
-  },
-
   module: {
     rules: [
       {
@@ -50,3 +38,30 @@ module.exports = {
     ],
   },
 };
+
+module.exports = [
+  {
+    entry: {
+      main: './src/ts/main.ts',
+      scene: './src/ts/scene.ts',
+      error: './src/ts/error.ts',
+      sitemap: './src/ts/sitemap.ts',
+    },
+    output: {
+      //filename: '[name].[contentHash].js',
+      filename: '[name].js',
+      path: path.resolve(__dirname, '_site/js'),
+    },
+    ...common,
+  },
+  {
+    entry: {
+      sw: './src/ts/sw.ts',
+    },
+    output: {
+      filename: '[name].js',
+      path: path.resolve(__dirname, '_site/'),
+    },
+    ...common,
+  },
+];

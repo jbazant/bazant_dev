@@ -4,9 +4,12 @@ import { initContactForm } from './common/contact';
 import { lazyload } from './utils/lazyload';
 import { ga } from './utils/ga';
 import { initTransitions } from './common/transitions';
+import { registerSW } from './service-worker/registerSW';
 
 ga();
 initTransitions('.scroll-transition');
+registerSW();
+
 ready(() => {
   initMenu();
   initContactForm();

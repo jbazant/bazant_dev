@@ -4,17 +4,29 @@ eleventyExcludeFromCollections: true
 dynamicPermalink: false
 ---
 {
- "name": "App",
- "icons": [
-{% for size, density in metadata.icons.android %}
-  {%- set sizeStr = size + 'x' + size -%}
-
-  {
-   "src": "{{ 'images/ico/android-icon-' + sizeStr + '.png' |url }}",
-   "sizes": "{{sizeStr}}",
-   "type": "image/png",
-   "density": "{{ density }}"
-  }{% if not loop.last %},{% endif %}
+  "name": "{{ metadata.title }}",
+  "shortname": "{{ metadata.shortname }}",
+  "description": "{{ metadata.description }}",
+  "icons": [
+{%- for size, density in metadata.icons.android %}
+    {
+      "src": "{{ 'images/ico/favicon-' + size + '.png' | url }}",
+      "sizes": "{{size + 'x' + size}}",
+      "type": "image/png",
+      "density": "{{ density }}"
+    },
 {%- endfor %}
- ]
+{% for size in metadata.icons.maskable %}
+    {
+      "src": "{{ 'images/ico/maskable_icon_x' + size + '.png' | url }}",
+      "sizes": "{{size + 'x' + size}}",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }{% if not loop.last %},{% endif %}
+{%- endfor %}
+ ],
+  "theme_color": "#26122f",
+  "background_color": "#26122f",
+  "display": "browser",
+  "start_url": "/"
 }

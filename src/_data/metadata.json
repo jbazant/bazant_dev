@@ -1,5 +1,6 @@
 {
   "title": "Jirka Bažant",
+  "shortname": "bazant",
   "url": "https://bazant.dev/",
   "description": "Osobní pískoviště freelance fullstack mobile a web vývojáře.",
   "author": {
@@ -15,6 +16,7 @@
       ["96", "2.0"],
       ["144", "3.0"],
       ["192", "4.0"]
-    ]
+    ],
+    "maskable": ["48", "72", "96", "128", "192", "384", "512"]
   }
 }
