@@ -6,7 +6,7 @@
   "scripts": {
     "clean": "rm -rf ./_site",
     "test": "jest",
-    "lint": "tsc --noEmit && eslint 'src/**/*.{ts,tsx}'",
+    "lint": "tsc --noEmit && eslint 'src/**/*.ts'",
     "build:eleventy": "ELEVENTY_ENV=production eleventy",
     "build:webpack": "webpack --mode production",
     "build:sass": "sass --style=compressed src/css/main.scss _site/css/main.css --no-source-map --stop-on-error",
@@ -67,9 +67,9 @@
   },
   "jest": {
     "transform": {
-      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+      ".(ts)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
-    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|js)$",
     "moduleFileExtensions": [
       "ts",
       "js"
