@@ -1,21 +1,7 @@
+import { cacheAssets, deleteStaleCaches } from './cache';
+
 const cacheName = 'bazant-dev-v-0';
 const filesToCache = ['/index.html', '/css/main.css', '/js/main.js', '/images/code.jpeg'];
-
-const cacheAssets = async () => {
-  const cache = await caches.open(cacheName);
-  await cache.addAll(filesToCache);
-};
-
-const deleteStaleCaches = async () => {
-  const keys = await caches.keys();
-  await Promise.all(
-    keys.map(async (key) => {
-      if (key !== cacheName) {
-        await caches.delete(key);
-      }
-    })
-  );
-};
 
 const getResponsePromise = async (request: Request, url: URL) => {
   const cache = await caches.open(cacheName);
@@ -40,19 +26,18 @@ const getResponsePromise = async (request: Request, url: URL) => {
   return response;
 };
 
-self.addEventListener('install', (event: unknown) => {
-  // @ts-ignore
-  event.waitUntil(cacheAssets());
+self.addEventListener('install', (event: ExtendableEvent) => {
+  event.waitUntil(cacheAssets(caches, cacheName, filesToCache));
 });
 
 self.addEventListener('activate', async () => {
-  await deleteStaleCaches();
+  await deleteStaleCaches(caches, cacheName);
+  // todo pwa
   // @ts-ignore
-  self.clients.claim();
+  await self.clients.claim();
 });
 
-self.addEventListener('fetch', async (event) => {
-  // @ts-ignore
+self.addEventListener('fetch', async (event: FetchEvent) => {
   const { request } = event;
   const url = new URL(request.url);
 

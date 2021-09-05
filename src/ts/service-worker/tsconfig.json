@@ -1,14 +1,14 @@
 {
-  "include": ["./src/ts/**/*"],
-  "exclude": ["node_modules", "_site", "eleventy", "./src/ts/service-worker/**/*"],
+  "include": ["./**/*"],
+  "exclude": ["node_modules", "_site", "eleventy"],
   "compilerOptions": {
+    "lib": ["WebWorker", "es2016"],
     "noImplicitAny": true,
     "removeComments": true,
     "preserveConstEnums": true,
     "sourceMap": true,
     "module": "commonjs",
     "target": "es2016",
-    "allowJs": false,
-    "skipLibCheck": true
+    "allowJs": false
   }
 }

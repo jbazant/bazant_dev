@@ -56,10 +56,10 @@ module.exports = [
   },
   {
     entry: {
-      sw: './src/ts/sw.ts',
+      sw: './src/ts/service-worker/sw.ts',
     },
     output: {
-      filename: '[name].js',
+      filename: 'sw.js',
       path: path.resolve(__dirname, '_site/'),
     },
     ...common,
