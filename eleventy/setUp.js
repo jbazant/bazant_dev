@@ -10,6 +10,7 @@ function setUpPassThroughCopies(eleventyConfig) {
   eleventyConfig.addPassthroughCopy('./src/assets/');
   eleventyConfig.addPassthroughCopy('./src/images/');
   eleventyConfig.addPassthroughCopy('./src/fonts/');
+  eleventyConfig.addPassthroughCopy('./src/tools/');
   eleventyConfig.addPassthroughCopy('./src/browserconfig.xml');
   eleventyConfig.addPassthroughCopy('./src/favicon.ico');
   eleventyConfig.addPassthroughCopy('./src/.htaccess');
