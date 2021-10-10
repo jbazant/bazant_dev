@@ -29,5 +29,6 @@ for ($i = 1; $i < count($dictionary); ++$i) {
     array_push($titleArr, pickByRandom($dictionary[$i]));
 }
 
+sleep(3);
 echo json_encode(['title' => implode(' ', $titleArr)]);
 
