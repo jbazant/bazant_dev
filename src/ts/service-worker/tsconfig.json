@@ -2,7 +2,7 @@
   "include": ["./**/*"],
   "exclude": ["node_modules", "_site", "eleventy"],
   "compilerOptions": {
-    "lib": ["WebWorker", "es2016"],
+    "lib": ["webworker", "esnext"],
     "noImplicitAny": true,
     "removeComments": true,
     "preserveConstEnums": true,
