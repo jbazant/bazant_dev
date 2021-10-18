@@ -19,8 +19,13 @@ ErrorDocument 404 /404.html
   RewriteCond %{HTTPS} off
   RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
+  # use nice URL for some pages
+  RewriteRule dlt tools/dlt.php [L]
+  RewriteRule deeplink tools/dlt.php [L]
+  RewriteRule deeplink-tester tools/dlt.php [L]
+
   # Redirect /.well-known URLs
-  RewriteRule .well-known/manifest.json /manifest.json
+  RewriteRule .well-known/manifest.json /manifest.json [L]
 
   # Redirect old pages
   Redirect 301 /kontakt https://bazant.dev
