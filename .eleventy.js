@@ -1,6 +1,5 @@
 const pluginNavigation = require('@11ty/eleventy-navigation');
 const pluginRss = require('@11ty/eleventy-plugin-rss');
-const pluginSass = require('eleventy-plugin-sass');
 const markdownIt = require('markdown-it');
 const lazyImagesPlugin = require('eleventy-plugin-lazyimages');
 const {
@@ -18,14 +17,13 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.setLibrary('md', markdownIt(mardownOptions));
   eleventyConfig.addPlugin(pluginNavigation);
   eleventyConfig.addPlugin(pluginRss);
-  eleventyConfig.addPlugin(pluginSass, {
-    watch: ['src/**/*.{scss,sass}', '!node_modules/**'],
-    sourcemaps: true,
-  });
   eleventyConfig.addPlugin(lazyImagesPlugin, {
     appendInitScript: false,
     preferNativeLazyLoad: true,
     imgSelector: 'img.img-resp',
+  });
+  eleventyConfig.setBrowserSyncConfig({
+    files: ['./_site/css/**/*.css', './_site/js/**/*.js'],
   });
 
   eleventyConfig.setDataDeepMerge(true);
