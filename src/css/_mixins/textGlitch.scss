@@ -1,3 +1,5 @@
+@use "sass:math";
+
 @mixin textGlitch($name, $intensity, $textColor, $background, $highlightColor1, $highlightColor2) {
 
   color: $textColor;
@@ -12,8 +14,8 @@
         @for $i from 0 through $steps {
           $top: random(100);
           $bottom: random(101 - $top);
-          #{percentage($i*(1/$steps))} {
-            clip-path: inset(#{$top}% 0 #{$bottom}% 0);
+          #{percentage($i*(math.div(1, $steps)))} {
+            clip-path: inset(#{$top + '%'} 0 #{$bottom + '%'} 0);
           }
         }
       }
