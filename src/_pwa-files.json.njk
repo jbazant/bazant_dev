@@ -1,0 +1,22 @@
+---
+permalink: /pwa-files.json
+eleventyExcludeFromCollections: true
+dynamicPermalink: false
+
+# NOTE that this can be probably achieved nicely with shortcode and JSON.stringify
+---
+{
+  "date": "{{ site.buildTimeISO }}",
+  "files": [
+    "{{ '/' | url }}",
+    {%- for page in collections.top %}
+    "{{ page.url | url }}",
+    {%- endfor %}
+    {%- for asset in site.assetsToCache %}
+    "{{ asset | url }}",
+    {%- endfor %}
+    "{{ ('/js/main.js?v=' + cache.jsTimestamp) | url }}",
+    "{{ ('/js/error.js?v=' + cache.jsTimestamp) | url }}",
+    "{{ ('/css/main.css?v=' + cache.cssTimestamp) | url }}"
+  ]
+}
