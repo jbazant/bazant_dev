@@ -6,17 +6,15 @@ dynamicPermalink: false
 # NOTE that this can be probably achieved nicely with shortcode and JSON.stringify
 ---
 {
-  "date": "{{ site.buildTimeISO }}",
+  "date": "{{ pwa.buildTimeISO }}",
   "files": [
-    "{{ '/' | url }}",
-    {%- for page in collections.top %}
+    {%- for page in collections.all %}
+      {%- if not page.data.excludeFromPWAPrecache and page.url %}
     "{{ page.url | url }}",
+      {%- endif %}
     {%- endfor %}
-    {%- for asset in site.assetsToCache %}
-    "{{ asset | url }}",
+    {%- for asset in pwa.assetsToPrecache %}
+    "{{ asset | url }}"{% if not loop.last %},{% endif %}
     {%- endfor %}
-    "{{ ('/js/main.js?v=' + cache.jsTimestamp) | url }}",
-    "{{ ('/js/error.js?v=' + cache.jsTimestamp) | url }}",
-    "{{ ('/css/main.css?v=' + cache.cssTimestamp) | url }}"
   ]
 }

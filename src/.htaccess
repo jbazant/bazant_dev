@@ -105,9 +105,9 @@ ErrorDocument 404 /404.html
       ExpiresByType video/mpeg "access plus 1 month"
 
       # CSS, JavaScript
-      ExpiresByType text/css "access plus 1 month"
-      ExpiresByType text/javascript "access plus 1 month"
-      ExpiresByType application/javascript "access plus 1 month"
+      ExpiresByType text/css "access plus 1 hour"
+      ExpiresByType text/javascript "access plus 1 hour"
+      ExpiresByType application/javascript "access plus 1 hour"
 
       # Manifest files
       ExpiresByType application/manifest+json "access plus 1 week"

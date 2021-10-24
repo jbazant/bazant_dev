@@ -1,14 +1,13 @@
 import { cacheAssets, deleteStaleCaches } from './cache';
 import { onFetch } from './onFetch';
 
-const cacheName = 'bazant-dev-v0';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { date, files } = require('../../../_site/pwa-files.json');
 
-// todo generate files on build time, with timestamp (do not forget version string for js and css)
-// see https://mvolkmann.github.io/blog/topics/#/blog/eleventy/pwa/?v=1.0.18
-const filesToCache = ['/index.html', '/css/main.css', '/js/main.js', '/images/code.jpeg'];
+const cacheName = 'bazant-dev-' + date;
 
 self.addEventListener('install', (event: ExtendableEvent) => {
-  event.waitUntil(cacheAssets(caches, cacheName, filesToCache));
+  event.waitUntil(cacheAssets(caches, cacheName, files));
 });
 
 self.addEventListener('activate', async () => {
