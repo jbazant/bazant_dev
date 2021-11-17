@@ -8,6 +8,7 @@ dynamicPermalink: false
 {
   "date": "{{ pwa.buildTimeISO }}",
   "files": [
+    "{{ '/offline.html' | url }}",
     {%- for page in collections.all %}
       {%- if not page.data.excludeFromPWAPrecache and page.url %}
     "{{ page.url | url }}",

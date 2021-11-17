@@ -43,8 +43,7 @@ export async function getResponsePromise(
   } catch (e) {
     console.info('service-worker NO response with error ', e.message);
     if (request.headers.get('accept').includes('text/html')) {
-      // TODO PWA respond with offline page
-      // return caches.match(offlineUrl);
+      return caches.match('/offline.html');
     }
     throw e;
   }

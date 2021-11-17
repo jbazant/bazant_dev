@@ -23,7 +23,7 @@ module.exports = function (eleventyConfig) {
     imgSelector: 'img.img-resp',
   });
   eleventyConfig.setBrowserSyncConfig({
-    files: ['./_site/css/**/*.css', './_site/js/**/*.js'],
+    files: ['./_site/css/**/*.css', './_site/js/**/*.js', './_site/**/*.html'],
   });
 
   eleventyConfig.setDataDeepMerge(true);

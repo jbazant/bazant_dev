@@ -1,0 +1,27 @@
+@import "../_mixins/visualIdentity";
+
+.offline-page {
+    @include heroBackground();
+    display: flex;
+    flex-grow: 1;
+
+  .offline-info {
+    h1, p, a {
+      color: $light-text;
+      text-align: center;
+    }
+
+    @media print {
+      h1 {
+        color: $common-heading;
+      }
+
+
+      p {
+        //color:
+      }
+
+      background: none;
+    }
+  }
+}
