@@ -25,6 +25,7 @@ Statické HTML, CSS bez knihoven třetích stran a pár řádků JS.
  * Styly jsou psané pomocí [SASS](https://sass-lang.com/).
  * Namísto Javasctiptu je většinout použit [TypeScript](https://www.typescriptlang.org/).
  * Kontaktní formulář využívá služby [Formspree](https://formspree.io/).
+ * [PWA](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps) pro preload jednotlivých stránek, řízení cache a zobrazování offline upozornění.
 
 ### Kompletní verze
 
