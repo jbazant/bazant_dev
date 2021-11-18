@@ -5,7 +5,7 @@ title: Tento web
 description: Statický web generovaný pomocí 11ty.js
 sitemap:
   priority: 0.3
-  lastmod: "2020-11-05"
+  lastmod: "2021-11-17"
 ---
 <section class="top">
   <div class="container">

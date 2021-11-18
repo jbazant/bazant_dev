@@ -12,7 +12,9 @@ title: Sitemap XML
   <xsl:output method="html" version="1.0" encoding="UTF-8" indent="yes"/>
   <xsl:template match="/">
     <html lang="en">
+    <head>
     {% include 'partials/_head.njk' %}
+    </head>
     <body>
     <main class="container--flex-grow">
       <section class="page-header">
