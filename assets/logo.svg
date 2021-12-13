@@ -4,7 +4,7 @@
         width="310" height="310"
         xmlns="http://www.w3.org/2000/svg">
     <rect width="310" height="310" rx="20" />
-    <g transform="translate(5 5) scale(1.5)">
+    <g transform="translate(35 35) scale(1.2)">
         <path
                 d="m 24.5 143 l 150 0 l -75 -129.9038 z m 19.0021 -32.4135 l 37.1398 0 l -18.5699 32.164 z m 55.9979 -32.6632 l -18.5699 -32.164 l 37.1398 0 z m 0 64.8272 l -37.2839 -64.5775 l 74.5678 -0.0001 z m 37.428 0 l -18.5699 -32.164 l 37.1398 0 z"
                 fill="#7c5b99"

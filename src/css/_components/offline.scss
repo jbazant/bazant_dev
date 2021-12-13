@@ -1,0 +1,99 @@
+@import '../_mixins/visualIdentity';
+
+$shutdown-length: 4s;
+$fadein-length: 2s;
+
+.offline-page {
+  background-color: black;
+
+  .offline-section {
+    background-color: $primary-color;
+    flex-grow: 1;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    @media screen and (prefers-reduced-motion: no-preference) {
+      animation: shutdown $shutdown-length forwards;
+    }
+  }
+
+  .offline-info {
+    text-align: center;
+
+    @media screen and (prefers-reduced-motion: no-preference) {
+      opacity: 0;
+      width: 1px;
+      height: 1px;
+
+      animation: fadein-info $fadein-length forwards $shutdown-length;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      padding: 20 * $step $step3;
+    }
+
+    h1,
+    p,
+    a {
+      color: $light-text;
+      text-align: center;
+    }
+
+    @media print {
+      h1 {
+        color: $common-heading;
+      }
+
+      background: none;
+    }
+  }
+}
+
+@keyframes shutdown {
+  10% {
+    background-color: $primary-color;
+    width: 100%;
+    flex-grow: 1;
+    margin: 0;
+  }
+  20% {
+    background-color: $primary-color;
+  }
+  35% {
+    flex-grow: 0.001;
+    width: 100%;
+  }
+  60% {
+    flex-grow: 0.001;
+    width: 0.1%;
+    background-color: white;
+  }
+  99% {
+    flex-grow: 0.001;
+    width: 0.1%;
+    background-color: black;
+  }
+  100% {
+    flex-grow: 1;
+    width: 100%;
+    background-color: black;
+  }
+}
+
+@keyframes fadein-info {
+  1% {
+    width: 100%;
+    height: auto;
+    padding: 20 * $step $step3;
+  }
+  100% {
+    opacity: 1;
+    width: 100%;
+    height: auto;
+    padding: 20 * $step $step3;
+  }
+}

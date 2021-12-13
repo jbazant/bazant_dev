@@ -4,7 +4,6 @@
 * Responsive images (https://github.com/nhoizey/images-responsiver), CDN?
 * form transitions (error messages, success message)
 * woff2 and preload
-* PWA
 * [svg icon](https://css-tricks.com/svg-favicons-in-action/)?
 
 ## just do it
@@ -20,3 +19,7 @@
 ## How to logo 
  - [svgtopng](https://svgtopng.com/)
  - [faviconit](http://faviconit.com/en)
+ - [maskable](https://maskable.app/editor)
+
+## PWA
+ - article?

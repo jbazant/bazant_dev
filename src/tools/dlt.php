@@ -20,7 +20,7 @@ $paths = [
 <head>
     <meta charset="UTF-8">
     <title>Deep link test</title>
-    <meta name="robots" content="noindex nofollow">
+    <meta name="robots" content="noindex, nofollow" />
 </head>
 <body>
 <h1>Deep link tests</h1>

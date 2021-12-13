@@ -1,4 +1,3 @@
-  <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -20,10 +19,10 @@
     <link rel="apple-touch-icon" sizes="{{ size }}" href="{{ '/images/ico/favicon-' + size + '.png' | url }}" />
   {%- endfor -%}
   {%- for size in metadata.icons.favicon -%}
-    <link rel="icon" type="image/png" sizes="{{ size }}" href="{{ '/images/ico/favicon-' + size + '.png' | url }}"/>
+    <link rel="icon" type="image/png" sizes="{{ size }}" href="{{ '/images/ico/favicon-' + size + '.png' | url }}" />
   {%- endfor -%}
-  <link rel="manifest" href="{{ '/manifest.json' | url }}"/>
-  <meta name="msapplication-TileColor" content="#ffffff"/>
-  <meta name="msapplication-TileImage" content="/favicon-144.png"/>
-  <meta name="theme-color" content="#ffffff"/>
-</head>
+  <link rel="manifest" href="{{ '/manifest.json' | url }}" />
+  <meta name="application-name" content="{{ site.name }}" />
+  <meta name="msapplication-TileColor" content="#26122f" />
+  <meta name="msapplication-TileImage" content="/favicon-144.png" />
+  <meta name="theme-color" content="#26122f" />
