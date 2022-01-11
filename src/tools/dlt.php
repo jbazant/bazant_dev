@@ -8,11 +8,11 @@
 $projectUid = $_GET['p'] ? urlencode(htmlspecialchars($_GET['p'])) : 'SOME_PROJECT_UID';
 $domains = ['qa', 'cloud9', 'cloud', 'us.cloud'];
 $paths = [
-        '/myProfile/index',
-        '/project/list',
-        '/project2/show/' . $projectUid,
-        '/project/create',
-        '/job2/create/' . $projectUid
+    '/myProfile/index',
+    '/project/list',
+    '/project2/show/' . $projectUid,
+    '/project/create',
+    '/job2/create/' . $projectUid
 ];
 ?>
 <!DOCTYPE html>
@@ -24,7 +24,13 @@ $paths = [
 </head>
 <body>
 <h1>Deep link tests</h1>
-<p>If you want to specify project UID you can do it by specifying "p" PATH parameter.</p>
+
+<form method="get" action="<?php print $_SERVER['REQUEST_URI'] ?>">
+    <label for="project_uid">Project UID:</label>
+    <input name="p" type="text" value="<?php print $projectUid ?>" id="project_uid" width="100"/>
+    <input type="submit" value="Set" />
+</form>
+
 <?php foreach ($domains as $domain): ?>
     <h2><?php print $domain ?></h2>
     <ul>
