@@ -21,18 +21,16 @@ function getScriptParam(string $name, $defaultValue = null) {
 
 function generateTitle(?string $prefix): string {
     $dictionary = [
-            ['Rincewind', 'Lukeas Lus', 'Bilbo', 'Duncan', 'Hari', 'Zaphod', 'Kvothe'],
-            ['of', 'with', 'on', 'under', 'and'],
-            ['Frozen', 'Flame', 'Lame', 'Leafy', 'Dusty', 'Magic', 'Stone'],
-            ['River', 'Moon', 'Book', 'Wand', 'Boulder', 'Goblet', 'Pen', 'Knife', 'Fork']
+            ['Rincewind', 'Lukeas Lus', 'Bilbo', 'Duncan', 'Hari', 'Zaphod', 'Kvothe', 'Joshua'],
+            ['of', 'with', 'on', 'under', 'and the'],
+            ['Frozen', 'Flame', 'Lame', 'Leafy', 'Dusty', 'Magic', 'Stone', 'Wooden'],
+            ['River', 'Moon', 'Book', 'Wand', 'Boulder', 'Goblet', 'Pen', 'Knife', 'Fork', 'Stepper']
     ];
 
-    $titleArr = [];
-
-    array_push($titleArr, $prefix ? $prefix : pickByRandom($dictionary[0]));
+    $titleArr = [$prefix ?: pickByRandom($dictionary[0])];
 
     for ($i = 1; $i < count($dictionary); ++$i) {
-        array_push($titleArr, pickByRandom($dictionary[$i]));
+        $titleArr[] = pickByRandom($dictionary[$i]);
     }
 
     return implode(' ', $titleArr);
