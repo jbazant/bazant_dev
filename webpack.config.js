@@ -45,7 +45,6 @@ module.exports = [
       main: './src/ts/main.ts',
       scene: './src/ts/scene.ts',
       error: './src/ts/error.ts',
-      sitemap: './src/ts/sitemap.ts',
     },
     output: {
       //filename: '[name].[contentHash].js',

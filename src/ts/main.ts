@@ -2,11 +2,9 @@ import { ready } from './utils/domHelpers';
 import { initMenu } from './common/menu';
 import { initContactForm } from './common/contact';
 import { lazyload } from './utils/lazyload';
-import { ga } from './utils/ga';
 import { initTransitions } from './common/transitions';
 import { registerSW } from './utils/registerSW';
 
-ga();
 initTransitions('.scroll-transition');
 registerSW();
 
