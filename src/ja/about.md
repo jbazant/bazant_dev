@@ -51,7 +51,7 @@ a [MariaDB](https://mariadb.org/) (respektive [MySQL](https://www.mysql.com/)). 
 
 Mám menší zkušenosti i&nbsp;s&nbsp;NoSQL databázemi [MongoDB](https://www.mongodb.com/) a [CouchDB](https://couchdb.apache.org/).
 
-Jako cache jsem párkrát použil [memcached](https://www.memcached.org/), [redis](https://redis.io/) i [APCu](https://www.php.net/manual/en/book.apcu.php).
+Jako cache jsem párkrát použil [Memcached](https://www.memcached.org/), [Redis](https://redis.io/) i [APCu](https://www.php.net/manual/en/book.apcu.php).
 
 #### Znám základy...
 ... i&nbsp;pár dalších technologií. Občas je použiji, ale pokud hledáte někoho, jehož hlavní

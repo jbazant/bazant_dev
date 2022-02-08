@@ -37,7 +37,7 @@ Počet vygenerovaných unikátních kódů byl v&nbsp;řádu stovek miliónů. P
 ### Dobrá voda
 Soutěžní web s&nbsp;aukcí víček o&nbsp;hodnotné ceny.
 
-Postaveno na PHP, Yii, node.js, Express.js, WebSockets a PostgreSQL.
+Postaveno na PHP, Yii, Node.js, Express.js, WebSockets a PostgreSQL.
 
 ### SMS i FB soutěže
 
