@@ -24,7 +24,8 @@ Projekt byl, po více jak osmi letech provozu, ke konci června 2021 ukončen.
  * Drupal 7,
  * C (algoritmus pro porovnání rodokmenů),
  * JS,
- * LESS.
+ * LESS,
+ * APCu.
 
 ### Moje role
  * úvodní analýza projektu,
