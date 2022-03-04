@@ -53,4 +53,44 @@ section {
       padding: $step * 15 0 $step * 15;
     }
   }
+
+  &.ua {
+    padding: 0;
+    margin: 0;
+    $ua-blue: #0057b7;
+    $ua-yellow: #ffdd00;
+
+    .container {
+      background: linear-gradient(to bottom, $ua-blue 50%, $ua-yellow 50%);
+      position: relative;
+    }
+
+    .ua-row {
+      text-align: center;
+      font-size: 32px;
+      font-weight: bold;
+      letter-spacing: .4rem;
+      margin: 0;
+
+      &-1 {
+        color: $ua-yellow;
+        padding: 80px 10px 50px;
+      }
+      &-2 {
+        color: $ua-blue;
+        padding: 50px 10px 80px;
+      }
+    }
+  }
+
+  &.news {
+    padding: $step * 10 $step2 $step * 10;
+    p {
+      margin: 2.5rem;
+      font-size: 1.2em;
+      font-weight: bold;
+      color: $common-heading;
+      text-align: center;
+    }
+  }
 }
