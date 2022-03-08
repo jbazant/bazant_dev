@@ -63,6 +63,10 @@ section {
     .container {
       background: linear-gradient(to bottom, $ua-blue 50%, $ua-yellow 50%);
       position: relative;
+
+      @media (min-width: 400px) {
+        width: 100%;
+      }
     }
 
     .ua-row {
