@@ -5,6 +5,13 @@ dynamicPermalink: false
 ---
 User-agent: *
 Allow: /
+
 Disallow: /tools/*
+Disallow: /dlt
+Disallow: /deeplink
+Disallow: /deeplink-tester
+
+Disallow: /404.html
+Disallow: /offline.html
 
 Sitemap: {{ '/sitemap.xml' | absoluteUrl(metadata.url) }}
