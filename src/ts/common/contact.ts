@@ -119,7 +119,6 @@ class ContactForm {
           para.innerHTML = 'Paráda, holub je na cestě!';
           para.classList.add('form-success-info');
           parent.appendChild(para);
-          gtag('event', 'generate_lead');
         } else {
           this.fields[this.fields.length - 1].addError(
             'Ajaj. Něco se pokazilo! Možná to zkusíme později?'
