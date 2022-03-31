@@ -1,4 +1,6 @@
 import * as THREE from 'three';
+import { Font, FontLoader } from 'three/examples/jsm/loaders/FontLoader';
+import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry';
 
 const BASE_GEOMETRY_PARAMS = {
   height: 1,
@@ -24,14 +26,14 @@ export class Text3d extends THREE.Mesh {
     this.clock = new THREE.Clock(true);
     this.textMaterial = new THREE.MeshPhongMaterial({ emissiveIntensity: 0.1, shininess: 100 });
 
-    new THREE.FontLoader().load(FONT_URL, (font) => this._onFontLoaded(font, lines));
+    new FontLoader().load(FONT_URL, (font) => this._onFontLoaded(font, lines));
 
     this.rotateY(Math.PI / 4);
     this.position.set(-5, 0, -5);
   }
 
-  _createTextLine(text: string, font: THREE.Font, y: number): void {
-    const geometry = new THREE.TextBufferGeometry(text, { font, ...BASE_GEOMETRY_PARAMS });
+  _createTextLine(text: string, font: Font, y: number): void {
+    const geometry = new TextGeometry(text, { font, ...BASE_GEOMETRY_PARAMS });
     geometry.computeBoundingBox();
 
     const mesh = new THREE.Mesh(geometry, this.textMaterial);
@@ -45,7 +47,7 @@ export class Text3d extends THREE.Mesh {
     this.add(mesh);
   }
 
-  _onFontLoaded(font: THREE.Font, lines: Array<string>): void {
+  _onFontLoaded(font: Font, lines: Array<string>): void {
     lines.forEach((text, index) => {
       const y = (lines.length - index) * 20 - 10;
       this._createTextLine(text, font, y);

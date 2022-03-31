@@ -332,7 +332,7 @@ export class GPUComputationRenderer {
     this.currentTextureIndex = nextTextureIndex;
   }
 
-  public doRenderTarget(material: THREE.ShaderMaterial, output: THREE.RenderTarget): void {
+  public doRenderTarget(material: THREE.ShaderMaterial, output: THREE.WebGLRenderTarget): void {
     this.mesh.material = material;
     this.renderer.setRenderTarget(output);
     this.renderer.render(this.scene, this.camera);
@@ -340,7 +340,7 @@ export class GPUComputationRenderer {
     this.mesh.material = this.passThruShader;
   }
 
-  public renderTexture(input: THREE.Texture, output: THREE.RenderTarget): void {
+  public renderTexture(input: THREE.Texture, output: THREE.WebGLRenderTarget): void {
     this.passThruUniforms.texture.value = input;
     this.doRenderTarget(this.passThruShader, output);
     this.passThruUniforms.texture.value = null;
