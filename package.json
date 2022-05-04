@@ -26,6 +26,7 @@
     "@11ty/eleventy": "^1.0.0",
     "@11ty/eleventy-navigation": "^0.3.2",
     "@11ty/eleventy-plugin-rss": "^1.1.2",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^4.0.0",
     "@types/jest": "^27.4.1",
     "@types/service-worker-mock": "^2.0.1",
     "@types/stats.js": "^0.17.0",

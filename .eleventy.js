@@ -2,6 +2,7 @@ const pluginNavigation = require('@11ty/eleventy-navigation');
 const pluginRss = require('@11ty/eleventy-plugin-rss');
 const markdownIt = require('markdown-it');
 const lazyImagesPlugin = require('eleventy-plugin-lazyimages');
+const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
 const {
   setUpPassThroughCopies,
   setUpCustomFilters,
@@ -22,6 +23,7 @@ module.exports = function (eleventyConfig) {
     preferNativeLazyLoad: true,
     imgSelector: 'img.img-resp',
   });
+  eleventyConfig.addPlugin(syntaxHighlight);
   eleventyConfig.setBrowserSyncConfig({
     files: ['./_site/css/**/*.css', './_site/js/**/*.js', './_site/**/*.html'],
   });

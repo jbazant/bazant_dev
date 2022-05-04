@@ -1,0 +1,158 @@
+/**
+ * Darcula theme
+ *
+ * Adapted from a theme based on:
+ * IntelliJ Darcula Theme (https://github.com/bulenkov/Darcula)
+ *
+ * Build on work of Alexandre Paradis <service.paradis@gmail.com>
+ *
+ * Updated to match site design
+ */
+
+@import '../_colors';
+@import "../_mixins/visualIdentity";
+
+code[class*='language-'],
+pre[class*='language-'] {
+  color: #a9b7c6;
+  font-family: Consolas, Monaco, 'Andale Mono', monospace;
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  line-height: 1.5;
+  tab-size: 4;
+  hyphens: none;
+
+  &::selection, & ::selection {
+    color: inherit;
+    background: rgba(33, 66, 131, 0.85);
+    background: $text-empathized-light;
+  }
+}
+
+pre[class*='language-'] {
+  padding: 0.5em;
+  margin: 0.5em 0 2em;
+  overflow: auto;
+  border-radius: 8px;
+  background: $darker linear-gradient(135deg, $primary-color-light 0%, $dark 100%);
+
+  & > code {
+    display: block;
+    padding: 1rem 1.5rem;
+    border: 1px solid $grey;
+    border-radius: 4px;
+    background: $darker linear-gradient(135deg, $darker 0%, $primary-color 100%);
+  }
+}
+
+:not(pre) > code[class*='language-'] {
+  background: $darker;
+  padding: 0.1em;
+  border-radius: 0.3em;
+}
+
+.token {
+  &.comment, &.prolog, &.cdata {
+    color: #808080;
+  }
+  
+  &.delimiter,
+  &.boolean,
+  &.keyword,
+  &.selector,
+  &.important,
+  &.atrule {
+    color: #cc7832;
+  }
+  
+  &.operator,
+  &.punctuation,
+  &.attr-name {
+    color: #a9b7c6;
+  }
+
+  &.tag,
+  &.tag .punctuation,
+  &.doctype,
+  &.builtin {
+    color: #e8bf6a;
+  }
+
+  &.entity,
+  &.number,
+  &.symbol {
+    color: #6897bb;
+  }
+
+  &.property,
+  &.constant,
+  &.variable {
+    color: #9876aa;
+  }
+
+  &.string,
+  &.char {
+    color: #6a8759;
+  }
+
+  &.attr-value,
+  &.attr-value .punctuation {
+    color: #a5c261;
+  }
+
+  &.attr-value .punctuation:first-child {
+    color: #a9b7c6;
+  }
+
+  &.url {
+    color: #287bde;
+    text-decoration: underline;
+  }
+
+  &.function {
+    color: #ffc66d;
+  }
+
+  &.regex {
+    background: #364135;
+  }
+
+  &.bold {
+    font-weight: bold;
+  }
+
+  &.italic {
+    font-style: italic;
+  }
+
+  &.inserted {
+    background: #294436;
+  }
+
+  &.deleted {
+    background: #484a4a;
+  }
+}
+
+code.language-css .token {
+  &.property,
+  &.property + .token.punctuation {
+    color: #a9b7c6;
+  }
+
+  &.id {
+    color: #ffc66d;
+  }
+
+  &.selector > .token {
+    &.class,
+    &.attribute,
+    &.pseudo-class,
+    &.pseudo-element {
+      color: #ffc66d;
+    }
+  }
+}

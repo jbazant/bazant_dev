@@ -16,10 +16,11 @@
         - parallax effect for camera
     - L-system
 
-## How to logo 
- - [svgtopng](https://svgtopng.com/)
- - [faviconit](http://faviconit.com/en)
- - [maskable](https://maskable.app/editor)
-
-## PWA
- - article?
+## Blog
+- Blog index page (do not forget to add it to cache)
+- Blogpost layout
+  - no Top section
+- Better style for Blockqoute
+- better ::selection color
+- article?
+- do not forget to index it
