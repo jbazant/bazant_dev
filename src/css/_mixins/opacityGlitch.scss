@@ -1,3 +1,4 @@
+@use "sass:math";
 @mixin opacityGlitch($name, $duration) {
   // max point should be 0.97 (1 - $blinkDuration)
   $points: 0.04 0.1 0.3 0.4 0.6 0.8 0.88 0.9 0.97;
@@ -11,11 +12,11 @@
   @at-root {
     @keyframes #{$name}-anim {
       @each $point in $points {
-        #{percentage($point)} {
+        #{math.percentage($point)} {
           opacity: #{$opacity};
         }
         $opacity: 1 - $opacity;
-        #{percentage($point + $blinkDuration)} {
+        #{math.percentage($point + $blinkDuration)} {
           opacity: $opacity;
         }
       }

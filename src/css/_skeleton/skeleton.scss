@@ -7,9 +7,9 @@
 * 12/29/2014
 */
 
-@import "../_colors";
-@import "../_sizes";
-@import "normalize";
+@use "../_colors";
+@use "../_sizes";
+@use "normalize";
 
 html {
   letter-spacing: .06rem;
@@ -62,8 +62,8 @@ body {
   line-height: 1.6;
   font-weight: 400;
   font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: $primary-text-color;
-  background-color: $dark;
+  color: colors.$primary-text-color;
+  background-color: colors.$dark;
   min-height: 100vh;
   max-width: 100vw;
   overflow-x: hidden;
@@ -72,7 +72,7 @@ body {
 }
 
 main {
-  background-color: $light-background;
+  background-color: colors.$light-background;
 }
 
 
@@ -82,7 +82,7 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0 0 2rem;
   font-weight: 300;
   font-family: "Arial Black", Gadget, sans-serif;
-  color: $common-heading;
+  color: colors.$common-heading;
 }
 
 h1 {
@@ -131,12 +131,12 @@ p {
 /* Links
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 a {
-  color: $link-color;
-  transition: $transition-default;
+  color: colors.$link-color;
+  transition: sizes.$transition-default;
   font-weight: bold;
 
   &:hover {
-    color: $link-color-active;
+    color: colors.$link-color-active;
   }
 }
 
@@ -152,7 +152,7 @@ input[type="button"] {
   display: inline-block;
   height: 38px;
   padding: 0 30px;
-  color: $secondary-button-text-color;
+  color: colors.$secondary-button-text-color;
   text-align: center;
   font-size: 11px;
   font-weight: 600;
@@ -163,7 +163,7 @@ input[type="button"] {
   white-space: nowrap;
   background-color: transparent;
   border-radius: 4px;
-  border: 1px solid $secondary-button-color;
+  border: 1px solid colors.$secondary-button-color;
   cursor: pointer;
   box-sizing: border-box;
 }
@@ -178,8 +178,8 @@ button:focus,
 input[type="submit"]:focus,
 input[type="reset"]:focus,
 input[type="button"]:focus {
-  color: $secondary-button-text-color-active;
-  border-color: $secondary-button-color-active;
+  color: colors.$secondary-button-text-color-active;
+  border-color: colors.$secondary-button-color-active;
   outline: 0;
 }
 
@@ -188,9 +188,9 @@ button.button-primary,
 input[type="submit"].button-primary,
 input[type="reset"].button-primary,
 input[type="button"].button-primary {
-  color: $primary-button-text-color;
-  background-color: $primary-button-color;
-  border-color: $primary-button-color;
+  color: colors.$primary-button-text-color;
+  background-color: colors.$primary-button-color;
+  border-color: colors.$primary-button-color;
 }
 
 .button.button-secondary,
@@ -198,9 +198,9 @@ button.button-secondary,
 input[type="submit"].button-secondary,
 input[type="reset"].button-secondary,
 input[type="button"].button-secondary {
-  color: $secondary-button-text-color;
+  color: colors.$secondary-button-text-color;
   background-color: white;
-  border: 2px solid $secondary-button-text-color-active;
+  border: 2px solid colors.$secondary-button-text-color-active;
 }
 
 .button.button-primary:hover,
@@ -213,9 +213,9 @@ button.button-primary:focus,
 input[type="submit"].button-primary:focus,
 input[type="reset"].button-primary:focus,
 input[type="button"].button-primary:focus {
-  color: $primary-button-text-color-active;
-  background-color: $primary-button-color-active;
-  border-color: $primary-button-color-active;
+  color: colors.$primary-button-text-color-active;
+  background-color: colors.$primary-button-color-active;
+  border-color: colors.$primary-button-color-active;
 }
 
 .button.button-secondary:hover,
@@ -228,15 +228,15 @@ button.button-secondary:focus,
 input[type="submit"].button-secondary:focus,
 input[type="reset"].button-secondary:focus,
 input[type="button"].button-secondary:focus {
-  color: $secondary-button-text-color-active;
+  color: colors.$secondary-button-text-color-active;
   background-color: white;
-  border-color: $secondary-button-color-active;
+  border-color: colors.$secondary-button-color-active;
 }
 
 button:disabled,
 button[disabled] {
-  background-color: $muted-color;
-  border-color: $dark;
+  background-color: colors.$muted-color;
+  border-color: colors.$dark;
 }
 
 
@@ -253,8 +253,8 @@ textarea,
 select {
   height: 38px;
   padding: 6px 10px; /* The 6px vertically centers text on FF, ignored by Webkit */
-  background-color: $input-background-color;
-  border: 1px solid $input-border-color;
+  background-color: colors.$input-background-color;
+  border: 1px solid colors.$input-border-color;
   border-radius: 4px;
   box-shadow: none;
   box-sizing: border-box;
@@ -289,7 +289,7 @@ input[type="url"]:focus,
 input[type="password"]:focus,
 textarea:focus,
 select:focus {
-  border: 1px solid $primary-button-color;
+  border: 1px solid colors.$primary-button-color;
   outline: 0;
 }
 
@@ -352,8 +352,8 @@ code {
   margin: 0 .2rem;
   font-size: 90%;
   white-space: nowrap;
-  background: $code-background-color;
-  border: 1px solid $code-border-color;
+  background: colors.$code-background-color;
+  border: 1px solid colors.$code-border-color;
   border-radius: 4px;
 }
 
@@ -417,7 +417,7 @@ hr {
   margin-top: 3rem;
   margin-bottom: 3.5rem;
   border-width: 0;
-  border-top: 1px solid $hr-color;
+  border-top: 1px solid colors.$hr-color;
 }
 
 /* Media Queries

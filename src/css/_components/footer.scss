@@ -1,15 +1,15 @@
-@import '../colors';
-@import '../_sizes';
+@use '../colors';
+@use '../_sizes';
 
 footer {
-  background-color: $dark;
+  background-color: colors.$dark;
 
   @media print {
     display: none;
   }
 
   .container {
-    padding: $step3;
+    padding: sizes.$step3;
 
     /* Larger than phablet */
     @media (min-width: 550px) {
@@ -19,7 +19,7 @@ footer {
       align-items: center;
 
       > * {
-        margin: 10 * $step $step3;
+        margin: 10 * sizes.$step sizes.$step3;
       }
     }
   }
@@ -27,16 +27,16 @@ footer {
   a {
     font-size: 30px;
     text-decoration: none;
-    color: $grey;
-    transition: color $transition-default ease;
+    color: colors.$grey;
+    transition: color sizes.$transition-default ease;
     margin-right: 8px;
 
     &:hover {
-      color: $white;
+      color: colors.$white;
     }
   }
 
   .copy {
-    color: $light-text;
+    color: colors.$light-text;
   }
 }

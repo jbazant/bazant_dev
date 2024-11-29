@@ -1,4 +1,6 @@
-@import '../_mixins/visualIdentity';
+@use '../_mixins/visualIdentity';
+@use "../colors";
+@use "../sizes";
 
 $shutdown-length: 4s;
 $fadein-length: 2s;
@@ -7,7 +9,7 @@ $fadein-length: 2s;
   background-color: black;
 
   .offline-section {
-    background-color: $primary-color;
+    background-color: colors.$primary-color;
     flex-grow: 1;
     width: 100%;
 
@@ -33,19 +35,19 @@ $fadein-length: 2s;
     }
 
     @media (prefers-reduced-motion: reduce) {
-      padding: 20 * $step $step3;
+      padding: 20 * sizes.$step sizes.$step3;
     }
 
     h1,
     p,
     a {
-      color: $light-text;
+      color: colors.$light-text;
       text-align: center;
     }
 
     @media print {
       h1 {
-        color: $common-heading;
+        color: colors.$common-heading;
       }
 
       background: none;
@@ -55,13 +57,13 @@ $fadein-length: 2s;
 
 @keyframes shutdown {
   10% {
-    background-color: $primary-color;
+    background-color: colors.$primary-color;
     width: 100%;
     flex-grow: 1;
     margin: 0;
   }
   20% {
-    background-color: $primary-color;
+    background-color: colors.$primary-color;
   }
   35% {
     flex-grow: 0.001;
@@ -88,12 +90,12 @@ $fadein-length: 2s;
   1% {
     width: 100%;
     height: auto;
-    padding: 20 * $step $step3;
+    padding: 20 * sizes.$step sizes.$step3;
   }
   100% {
     opacity: 1;
     width: 100%;
     height: auto;
-    padding: 20 * $step $step3;
+    padding: 20 * sizes.$step sizes.$step3;
   }
 }

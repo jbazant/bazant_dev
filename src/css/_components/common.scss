@@ -1,5 +1,5 @@
-@import "../colors";
-@import "../_mixins/blurIn";
+@use "../colors";
+@use "../_mixins/blurIn";
 
 html {
   scroll-behavior: smooth;
@@ -7,7 +7,7 @@ html {
 
 .tmpl-home, .tmpl-basic {
   h1 {
-    @include blurIn('h1-blur', 1);
+    @include blurIn.blurIn('h1-blur', 1);
   }
 }
 

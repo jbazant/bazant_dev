@@ -1,20 +1,20 @@
-@import "../_colors";
-@import "../_sizes";
-@import "../_mixins/visualIdentity";
-@import "../_mixins/blurIn";
+@use "../_colors";
+@use "../_sizes";
+@use "../_mixins/visualIdentity";
+@use "../_mixins/blurIn";
 
 
 .page-header, .hero, .page-not-found {
-  @include heroBackground();
+  @include visualIdentity.heroBackground();
 
   h1, h2 {
-    color: $light-text;
+    color: colors.$light-text;
   }
 
 
   @media print {
     h1, h2 {
-      color: $common-heading;
+      color: colors.$common-heading;
       text-align: center;
     }
 
@@ -23,7 +23,7 @@
 }
 
 .page-header {
-  $vertical-padding: $step3 * 2;
+  $vertical-padding: sizes.$step3 * 2;
   padding: $vertical-padding 0 $vertical-padding;
 
   h1 {
@@ -37,11 +37,11 @@
 }
 
 .hero, .page-not-found {
-  $vertical-padding: $step * 20;
-  padding: $vertical-padding $step;
+  $vertical-padding: sizes.$step * 20;
+  padding: $vertical-padding sizes.$step;
 
   @media (min-width: 400px) {
-    padding: $vertical-padding $step * 5;
+    padding: $vertical-padding sizes.$step * 5;
   }
   @media (min-width: 550px) {
     // 60px is static menu
@@ -50,5 +50,5 @@
 }
 
 .hero h2 {
-  @include blurIn('h2hero-blur', 1.5);
+  @include blurIn.blurIn('h2hero-blur', 1.5);
 }

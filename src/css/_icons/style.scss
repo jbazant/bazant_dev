@@ -1,12 +1,12 @@
-@import "variables";
+@use "variables";
 
 @font-face {
-  font-family: '#{$icomoon-font-family}';
-  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot');
-  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?#iefix') format('embedded-opentype'),
-    url('#{$icomoon-font-path}/#{$icomoon-font-family}.ttf') format('truetype'),
-    url('#{$icomoon-font-path}/#{$icomoon-font-family}.woff') format('woff'),
-    url('#{$icomoon-font-path}/#{$icomoon-font-family}.svg##{$icomoon-font-family}') format('svg');
+  font-family: '#{variables.$icomoon-font-family}';
+  src:  url('#{variables.$icomoon-font-path}/#{variables.$icomoon-font-family}.eot');
+  src:  url('#{variables.$icomoon-font-path}/#{variables.$icomoon-font-family}.eot?#iefix') format('embedded-opentype'),
+    url('#{variables.$icomoon-font-path}/#{variables.$icomoon-font-family}.ttf') format('truetype'),
+    url('#{variables.$icomoon-font-path}/#{variables.$icomoon-font-family}.woff') format('woff'),
+    url('#{variables.$icomoon-font-path}/#{variables.$icomoon-font-family}.svg##{variables.$icomoon-font-family}') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -14,7 +14,7 @@
 
 .icon {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: '#{$icomoon-font-family}' !important;
+  font-family: '#{variables.$icomoon-font-family}' !important;
   speak: none;
   font-style: normal;
   font-weight: normal;
@@ -29,77 +29,77 @@
 
 .icon-archive {
   &:before {
-    content: $icon-archive;
+    content: variables.$icon-archive;
   }
 }
 .icon-check {
   &:before {
-    content: $icon-check;
+    content: variables.$icon-check;
   }
 }
 .icon-circular-graph {
   &:before {
-    content: $icon-circular-graph;
+    content: variables.$icon-circular-graph;
   }
 }
 .icon-cross {
   &:before {
-    content: $icon-cross;
+    content: variables.$icon-cross;
   }
 }
 .icon-cw {
   &:before {
-    content: $icon-cw;
+    content: variables.$icon-cw;
   }
 }
 .icon-cycle {
   &:before {
-    content: $icon-cycle;
+    content: variables.$icon-cycle;
   }
 }
 .icon-home {
   &:before {
-    content: $icon-home;
+    content: variables.$icon-home;
   }
 }
 .icon-link {
   &:before {
-    content: $icon-link;
+    content: variables.$icon-link;
   }
 }
 .icon-mail {
   &:before {
-    content: $icon-mail;
+    content: variables.$icon-mail;
   }
 }
 .icon-menu {
   &:before {
-    content: $icon-menu;
+    content: variables.$icon-menu;
   }
 }
 .icon-tree {
   &:before {
-    content: $icon-tree;
+    content: variables.$icon-tree;
   }
 }
 .icon-user {
   &:before {
-    content: $icon-user;
+    content: variables.$icon-user;
   }
 }
 .icon-github-with-circle {
   &:before {
-    content: $icon-github-with-circle;
+    content: variables.$icon-github-with-circle;
   }
 }
 .icon-linkedin-with-circle {
   &:before {
-    content: $icon-linkedin-with-circle;
+    content: variables.$icon-linkedin-with-circle;
   }
 }
 .icon-twitter-with-circle {
   &:before {
-    content: $icon-twitter-with-circle;
+    content: variables.$icon-twitter-with-circle;
   }
 }
 

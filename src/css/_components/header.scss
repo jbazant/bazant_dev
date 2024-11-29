@@ -1,30 +1,30 @@
-@import '../_sizes';
-@import '../_colors';
+@use '../_sizes';
+@use '../_colors';
 
 header, .main-menu-switch {
-  background-color: $dark;
+  background-color: colors.$dark;
 
   a {
     text-decoration: none;
-    color: $light-text;
+    color: colors.$light-text;
 
     &:hover {
-      color: $white;
+      color: colors.$white;
     }
   }
 }
 
 .main-menu-switch {
   position: fixed;
-  right: $step;
-  bottom: $step;
+  right: sizes.$step;
+  bottom: sizes.$step;
   z-index: 98;
   font-size: 4rem;
   border-radius: 2rem;
   line-height: 1;
   height: 4rem;
   width: 4rem;
-  color: $light-text;
+  color: colors.$light-text;
 
   @media (min-width: 550px), print {
     display: none;
@@ -76,7 +76,7 @@ header {
   }
 
   .navigation {
-    border-bottom: 1px solid $grey;
+    border-bottom: 1px solid colors.$grey;
 
     @media (min-width: 550px) {
       border-bottom: none;
@@ -99,16 +99,16 @@ header {
   }
 
   li {
-    border-top: 1px solid $grey;
+    border-top: 1px solid colors.$grey;
     margin: 0;
 
     @media (min-width: 550px) {
       padding: 0;
       border-top: none;
-      border-left: 1px solid $grey;
+      border-left: 1px solid colors.$grey;
 
       &:last-child {
-        border-right: 1px solid $grey;
+        border-right: 1px solid colors.$grey;
       }
     }
 
@@ -116,15 +116,15 @@ header {
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: $step * 3 0;
+      padding: sizes.$step * 3 0;
 
       &:hover {
-        background-color: $darker;
+        background-color: colors.$darker;
       }
 
       @media (min-width: 550px) {
         height: 100%;
-        padding: 0 $step * 3;
+        padding: 0 sizes.$step * 3;
       }
 
       @media (min-width: 750px) {
@@ -135,10 +135,10 @@ header {
 
   .site-logo {
     line-height: 1;
-    padding: $step * 4 0;
+    padding: sizes.$step * 4 0;
 
     @media (min-width: 550px) {
-      padding: $step $step * 4;
+      padding: sizes.$step sizes.$step * 4;
     }
 
     @media (min-width: 750px) {
@@ -148,7 +148,7 @@ header {
 
   .main-menu-close {
     line-height: 1;
-    padding: $step * 4;
+    padding: sizes.$step * 4;
 
     @media (min-width: 550px) {
       display: none;

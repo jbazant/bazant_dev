@@ -1,5 +1,5 @@
-@import "../_colors";
-@import "../_sizes";
+@use "../_colors";
+@use "../_sizes";
 
 .flex-grid {
   display: block;
@@ -8,9 +8,9 @@
 
 .col {
   flex: 1;
-  margin: $step;
+  margin: sizes.$step;
   box-sizing: border-box;
-  padding: $step2;
+  padding: sizes.$step2;
 }
 
 .col-nopad {

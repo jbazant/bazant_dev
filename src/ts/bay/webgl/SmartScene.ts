@@ -114,6 +114,6 @@ export class SmartScene {
     this._renderMirror();
     this.renderer.render(this.scene, this.camera);
     requestAnimationFrame(this.run);
-    this.stats && this.stats.update();
+    this.stats?.update();
   };
 }

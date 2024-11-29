@@ -1,6 +1,6 @@
-@import "../_colors";
-@import "../_sizes";
-@import "../_mixins/visualIdentity";
+@use "../_colors";
+@use "../_sizes";
+@use "../_mixins/visualIdentity";
 
 table {
   &.smaller {
@@ -30,17 +30,18 @@ table {
 }
 
 th, td {
-  padding: $step $step2;
+  padding: sizes.$step sizes.$step2;
 }
 
 thead {
-  color: $white;
-  @include heroBackground();
-  border-bottom: 1px $darker solid;
+  color: colors.$white;
+  border-bottom: 1px colors.$darker solid;
+
+  @include visualIdentity.heroBackground();
 
   th {
     text-align: center;
-    border-right: 1px solid $white;
+    border-right: 1px solid colors.$white;
 
     &:last-child {
       border-right: none;
@@ -60,6 +61,6 @@ tbody {
   }
 
   tr:nth-child(even) {
-    background-color: $white;
+    background-color: colors.$white;
   }
 }

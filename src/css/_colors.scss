@@ -1,6 +1,8 @@
+@use "sass:color";
+
 $primary-color: #26122f;
-$primary-color-light: lighten($primary-color, 10%);
-$primary-color-dark: darken($primary-color, 10%);
+$primary-color-light: color.adjust($primary-color, $lightness: 10%);
+$primary-color-dark: color.adjust($primary-color, $lightness: -10%);
 
 $text-empathized: #453356;
 $text-empathized-light: #7c5b99;
