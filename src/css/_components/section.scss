@@ -37,6 +37,17 @@ section {
     }
   }
 
+  &.photo {
+    padding: 0;
+    margin: 0;
+
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+  }
+
   &.top {
     background-color: colors.$white;
     padding: sizes.$step * 10 sizes.$step2 sizes.$step * 10;
@@ -56,10 +67,12 @@ section {
   }
 
   &.ua {
-    padding: 0;
-    margin: 0;
     $ua-blue: #0057b7;
     $ua-yellow: #ffdd00;
+
+    padding: 0;
+    margin: 0;
+    background-color: colors.$white;
 
     .container {
       background: linear-gradient(to bottom, $ua-blue 50%, $ua-yellow 50%);

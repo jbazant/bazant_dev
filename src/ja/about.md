@@ -6,16 +6,18 @@ date: "2010-02-02"
 ### Jsem
 * Fullstack webový a mobilní vývojář,
 * inženýr (ČVUT FEL - obor Softwarové inženýrství),
-* OSVČ, 
-* plátce DPH,
-* otec.
+* otec,
+* jachtař bez posádky, 
+* cyklista bez fyzičky,
+* kiter bez talentu a
+* patlal s 3D tiskárnou.
 
 ### Vím něco málo o těchto technologiích
 A někdy ve&nbsp;své kariéře jsem je použil i&nbsp;k&nbsp;něčemu jinému, než je vypsání "Hello world!" nebo blikání diodou.
 
 #### PHP
 Začal jsem s&nbsp;PHP 4 a "frameworky" vytvořenými přímo ve&nbsp;firmách.
-Dnes používám výlučně PHP 7.3+ a stavím na&nbsp;osvědčených open source projektech.
+Dnes používám výlučně PHP 8.3+ a stavím na&nbsp;osvědčených open source projektech.
 
 [Symfony](https://symfony.com/),
 [Yii](https://www.yiiframework.com/),
@@ -42,7 +44,8 @@ dnes se soustředím spíše na&nbsp;mobilní Chrome a Safari, ale hlavně na&nb
 [Jest](https://jestjs.io/),
 [WebSocket](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket),
 [Detox](https://github.com/wix/detox),
-[TypeScript](https://www.typescriptlang.org/) 
+[Vue](https://vuejs.org/),
+[TypeScript](https://www.typescriptlang.org/),
 i&nbsp;[Flow](https://flow.org/en/).
 
 #### Databáze
