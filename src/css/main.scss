@@ -1,19 +1,19 @@
-@import "_skeleton/skeleton";
-@import "_icons/style";
+@use "_skeleton/skeleton";
+@use "_icons/style";
 
-@import "_components/common";
-@import "_components/grid";
-@import "_components/tags";
-@import "_components/header";
-@import "_components/hero";
-@import "_components/error";
-@import "_components/cards";
-@import "_components/footer";
-@import "_components/section";
-@import "_components/contact";
-@import "_components/table";
-@import "_components/offline";
-@import "_components/print";
+@use "_components/common";
+@use "_components/grid";
+@use "_components/tags";
+@use "_components/header";
+@use "_components/hero";
+@use "_components/error";
+@use "_components/cards";
+@use "_components/footer";
+@use "_components/section";
+@use "_components/contact";
+@use "_components/table";
+@use "_components/offline";
+@use "_components/print";
 
-@import "_utility/animations";
-@import "_utility/transitions";
+@use "_utility/animations";
+@use "_utility/transitions";

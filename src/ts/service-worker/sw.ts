@@ -1,8 +1,8 @@
 import { cacheAssets, deleteStaleCaches } from './cache';
 import { onFetch } from './onFetch';
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { date, files } = require('../../../_site/pwa-files.json');
+// @ts-expect-error - trying to import generated file
+import { date, files } from '../../../_site/pwa-files.json';
 
 const cacheName = 'bazant-dev-' + date;
 
@@ -12,7 +12,7 @@ self.addEventListener('install', (event: ExtendableEvent) => {
 
 self.addEventListener('activate', async () => {
   await deleteStaleCaches(caches, cacheName);
-  // @ts-ignore
+  // @ts-expect-error - unknown property `clients`
   await self.clients.claim();
 });
 

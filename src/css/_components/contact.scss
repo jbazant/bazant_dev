@@ -1,5 +1,5 @@
-@import '../_colors';
-@import '../_sizes';
+@use '../_colors';
+@use '../_sizes';
 
 .contact-form {
   form {
@@ -17,15 +17,15 @@
   }
 
   .form-error {
-    color: $alert-text;
+    color: colors.$alert-text;
     font-style: italic;
     font-size: 0.9em;
-    margin: -$step2 $step2 $step $step2;
+    margin: -(sizes.$step2) sizes.$step2 sizes.$step sizes.$step2;
   }
 
   .form-field-error {
-    color: $alert-text;
-    border: 1px solid $alert-text;
+    color: colors.$alert-text;
+    border: 1px solid colors.$alert-text;
   }
 
   .form-success-info {
@@ -48,27 +48,27 @@
 }
 
 .contact-card {
-  padding: 10 * $step 5 * $step;
-  background-color: $white;
-  border: 1px solid $secondary-button-color;
-  border-radius: $step;
+  padding: 10 * sizes.$step 5 * sizes.$step;
+  background-color: colors.$white;
+  border: 1px solid colors.$secondary-button-color;
+  border-radius: sizes.$step;
   flex: 3;
 
   @media screen {
     &:hover {
-      border-color: $secondary-button-color-active;
+      border-color: colors.$secondary-button-color-active;
       box-shadow: 1px 1px 2px 2px #ccc;
     }
   }
 }
 
 .contact-social {
-  padding: 10 * $step + 1 5 * $step;
+  padding: 10 * sizes.$step + 1 5 * sizes.$step;
   flex: 2;
 
   @media screen {
     hr {
-      border-color: $dark;
+      border-color: colors.$dark;
     }
   }
 }

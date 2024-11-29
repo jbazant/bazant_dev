@@ -12,9 +12,9 @@
     @for $i from 1 through 2 {
       @keyframes #{$name}-anim-#{$i} {
         @for $i from 0 through $steps {
-          $top: random(100);
-          $bottom: random(101 - $top);
-          #{percentage($i*(math.div(1, $steps)))} {
+          $top: math.random(100);
+          $bottom: math.random(101 - $top);
+          #{math.percentage($i*(math.div(1, $steps)))} {
             clip-path: inset(#{$top + '%'} 0 #{$bottom + '%'} 0);
           }
         }

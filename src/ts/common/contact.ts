@@ -124,7 +124,7 @@ class ContactForm {
             'Ajaj. Něco se pokazilo! Možná to zkusíme později?'
           );
         }
-      } catch (e) {
+      } catch (_e) {
         this.fields[this.fields.length - 1].addError(
           'Ajaj. Něco se pokazilo! Možná to zkusíme později?'
         );

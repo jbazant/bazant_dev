@@ -1,13 +1,13 @@
-@import "../_colors";
-@import "../_sizes";
+@use "../_colors";
+@use "../_sizes";
 
 .cards {
+  align-items: stretch;
+  padding: 12px 0;
+
   & > * {
     margin: 12px;
   }
-
-  align-items: stretch;
-  padding: 12px 0;
 }
 
 .card {
@@ -15,10 +15,10 @@
   flex-direction: column;
   justify-content: space-between;
   text-align: center;
-  padding: 10 * $step 5 * $step;
-  background-color: $white;
-  border: 1px solid $secondary-button-color;
-  border-radius: $step;
+  padding: 10 * sizes.$step 5 * sizes.$step;
+  background-color: colors.$white;
+  border: 1px solid colors.$secondary-button-color;
+  border-radius: sizes.$step;
   text-decoration: none;
   font-weight: bold;
 
@@ -28,8 +28,8 @@
   }
 
   &, h2, h3, .theme-icon {
-    color: $muted-color;
-    transition: $transition-default;
+    color: colors.$muted-color;
+    transition: sizes.$transition-default;
   }
 
   p {
@@ -42,12 +42,12 @@
   }
 
   &:hover {
-    border-color: $secondary-button-color-active;
+    border-color: colors.$secondary-button-color-active;
     box-shadow: 1px 1px 2px 2px #ccc;
 
     &, h2, h3, .theme-icon {
-      color: $hovered-color;
-      transition: $transition-default;
+      color: colors.$hovered-color;
+      transition: sizes.$transition-default;
     }
   }
 }

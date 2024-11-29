@@ -1,4 +1,6 @@
-@import '../_colors';
+@use "sass:color";
+@use "sass:math";
+@use '../_colors';
 
 @mixin gradientBackground($primary, $secondary) {
   background: $primary
@@ -6,12 +8,12 @@
 }
 
 @mixin withGradient($primary) {
-  $secondary: lighten($primary, 10%);
+  $secondary: color.adjust($primary, $lightness: 10%);
   @include gradientBackground($primary, $secondary);
 }
 
 @mixin withDarkenGradient($primary) {
-  $secondary: darken($primary, 10%);
+  $secondary: color.adjust($primary, $lightness: -10%);
   background: $primary
     linear-gradient(135deg, $secondary 0%, $primary 50%, $secondary 51%, $secondary 100%);
 }
@@ -25,7 +27,7 @@
   );
   $speed: 60;
 
-  @include withGradient($primary-color);
+  @include withGradient(colors.$primary-color);
   background-size: 160% 100%;
 
   @media screen and (prefers-reduced-motion: no-preference) {
@@ -36,7 +38,7 @@
     @keyframes hero-anim {
       @each $frame, $position in $points {
         #{$frame} {
-          background-position: #{percentage($position)} 50%;
+          background-position: #{math.percentage($position)} 50%;
         }
       }
     }

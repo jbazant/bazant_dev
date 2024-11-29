@@ -1,8 +1,1 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
-
-lint-staged
-
-# unfortunately I have no idea how to use multiple tsconfigs with lint-staged
-# and tsc-files modules seems have no solution for that
-tsc --noEmit
+npm test
