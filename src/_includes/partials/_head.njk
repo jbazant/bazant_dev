@@ -11,8 +11,6 @@
   <meta name="twitter:card" content="summary_large_image" />
 
   {% if page.url %}<link rel="canonical" href="{{ (page.url or '') | absoluteUrl(metadata.url) }}" />{% endif %}
-  <link rel="preload" href="{{ '/fonts/entypo.woff' }}" as="font" type="font/woff" crossorigin="anonymous" />
-  <link rel="preload" href="{{ '/fonts/entypo.ttf' }}" as="font" type="font/ttf" crossorigin="anonymous" />
   <link rel="stylesheet" href="{{ ('/css/main.css?v=' + cache.cssTimestamp) | url }}" />
 
   {%- for size in metadata.icons.appleTouchIcon -%}
